@@ -1,0 +1,13 @@
+{
+  "product": "TheDiffNews",
+  "version": "v1",
+  "notes": "Blindspot is a positive finding only. Absent → API { present: false, rule_id: null }; UI omits the row. Requires outlet_count >= 2.",
+  "rules": [
+    {"rule_id": "missing_left", "definition": "No left or lean_left outlets in the cluster while lean_right/right coverage is present and the story has clear partisan stakes."},
+    {"rule_id": "missing_right", "definition": "No right or lean_right outlets in the cluster while left/lean_left coverage is present and the story has clear partisan stakes."},
+    {"rule_id": "missing_center", "definition": "Only partisan outlets (left/right bands); no center member when wire/center sources typically cover this beat."},
+    {"rule_id": "one_side_thin", "definition": "One spectrum side has ≤1 member while the other has ≥3, on a high-stakes contested story."},
+    {"rule_id": "no_primary_source", "definition": "Cluster is all commentary/secondary; no primary doc, paper, filing, or official release when one exists and is material (pairs with source_code framing)."},
+    {"rule_id": "geo_thin", "definition": "Story has material non-US impact but members are US-only outlets (country field)."}
+  ]
+}

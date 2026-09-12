@@ -1,0 +1,50 @@
+{
+  "version": "0.1",
+  "outlet": {
+    "outlet_id": "string",
+    "name": "string",
+    "homepage_url": "url",
+    "feed_url": "url|null",
+    "domain": "string",
+    "country": "string",
+    "language": "string",
+    "active": "bool"
+  },
+  "article": {
+    "article_id": "ulid",
+    "outlet_id": "string",
+    "canonical_url": "url",
+    "url_hash": "hex",
+    "title": "string",
+    "dek": "string|null",
+    "authors": "string[]",
+    "language": "string",
+    "published_at": "datetime",
+    "ingested_at": "datetime",
+    "content_hash": "hex|null",
+    "status": "fetched|dropped|deduped|clustered",
+    "drop_reason": "paywall_empty|non_article|duplicate|lang_filter|fetch_fail|policy|null",
+    "duplicate_of": "ulid|null",
+    "story_id": "ulid|null",
+    "raw_ref": "string"
+  },
+  "story": {
+    "story_id": "ulid",
+    "title": "string",
+    "first_seen_at": "datetime",
+    "last_updated_at": "datetime",
+    "article_count": "int",
+    "outlet_count": "int",
+    "cluster_version": "int",
+    "status": "open|frozen|split",
+    "primary_category": "weight_and_bias|parallax|blindspot|prism|source_code|off_distribution"
+  },
+  "story_member": {
+    "story_id": "ulid",
+    "article_id": "ulid",
+    "method": "canonical_url|content_hash|title_entity|manual",
+    "score": "float|null",
+    "evidence": "object",
+    "assigned_at": "datetime"
+  }
+}

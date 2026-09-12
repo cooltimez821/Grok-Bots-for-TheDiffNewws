@@ -1,0 +1,20 @@
+{
+  "stories_total": 151,
+  "feed_stories": 6,
+  "held_single_outlet": 145,
+  "deduped": 0,
+  "unclustered": 0,
+  "by_category": {
+    "prism": 5,
+    "source_code": 2,
+    "weight_and_bias": 144
+  },
+  "by_bias_band": {
+    "center": 2,
+    "mixed": 4
+  },
+  "unexplained_merges": 0,
+  "clustered_articles": 159,
+  "survivors": 159,
+  "generated_at": "2026-09-11T23:53:19.118827Z"
+}
