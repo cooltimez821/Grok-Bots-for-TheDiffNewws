@@ -1,20 +1,21 @@
 import Link from "next/link";
-import {
-  CATEGORY_ORDER,
-  categoryLabel,
-  type CategoryFilter,
-} from "@/lib/categories";
+import { categoryLabel, type CategoryFilter } from "@/lib/categories";
 import type { PrimaryCategory } from "@/lib/types";
 
 type CategoryNavStubProps = {
   active?: PrimaryCategory | "all";
+  /** Only chips for these categories (plus All). Same chrome as home. */
+  available: PrimaryCategory[];
 };
 
 /** Same chrome chips as home; on detail they navigate back to the feed. */
-export function CategoryNavStub({ active = "all" }: CategoryNavStubProps) {
+export function CategoryNavStub({
+  active = "all",
+  available,
+}: CategoryNavStubProps) {
   const items: { id: CategoryFilter; label: string }[] = [
     { id: "all", label: "All" },
-    ...CATEGORY_ORDER.map((id) => ({ id, label: categoryLabel(id) })),
+    ...available.map((id) => ({ id, label: categoryLabel(id) })),
   ];
 
   return (

@@ -7,9 +7,10 @@ import { MemberList } from "@/components/MemberList";
 import { SiteHeader } from "@/components/SiteHeader";
 import {
   CATEGORY_HELPERS,
+  categoriesInFeed,
   categoryLabel,
 } from "@/lib/categories";
-import { getAllStoryIds, getStoryById } from "@/lib/feed";
+import { getAllStoryIds, getFeedStories, getStoryById } from "@/lib/feed";
 
 type PageProps = {
   params: Promise<{ id: string }>;
@@ -24,10 +25,15 @@ export default async function StoryDetailPage({ params }: PageProps) {
   const story = getStoryById(id);
   if (!story) notFound();
 
+  const available = categoriesInFeed(getFeedStories());
+
   return (
     <main className="mx-auto min-h-screen max-w-3xl px-4 py-4 md:px-8 md:py-6">
       <SiteHeader variant="detail" rightLabel="no auth gate" />
-      <CategoryNavStub active={story.primary_category} />
+      <CategoryNavStub
+        active={story.primary_category}
+        available={available}
+      />
       <div className="pt-2">
         <span className="mb-1.5 inline-block border border-[#0a7a75] bg-[#d7eceb] px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.1em] text-[#085652]">
           {categoryLabel(story.primary_category)}

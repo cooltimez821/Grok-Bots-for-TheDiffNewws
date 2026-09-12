@@ -32,3 +32,11 @@ export type CategoryFilter = "all" | PrimaryCategory;
 export function categoryLabel(id: PrimaryCategory): string {
   return CATEGORY_LABELS[id];
 }
+
+/** Categories that appear on at least one story in the feed (stable order). */
+export function categoriesInFeed(
+  stories: { primary_category: PrimaryCategory }[],
+): PrimaryCategory[] {
+  const present = new Set(stories.map((s) => s.primary_category));
+  return CATEGORY_ORDER.filter((id) => present.has(id));
+}

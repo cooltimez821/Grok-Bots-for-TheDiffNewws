@@ -1,20 +1,22 @@
 "use client";
 
 import {
-  CATEGORY_ORDER,
   categoryLabel,
   type CategoryFilter,
 } from "@/lib/categories";
+import type { PrimaryCategory } from "@/lib/types";
 
 type CategoryNavProps = {
   value: CategoryFilter;
   onChange: (next: CategoryFilter) => void;
+  /** Only chips for these categories (plus All). Hides empty filters. */
+  available: PrimaryCategory[];
 };
 
-export function CategoryNav({ value, onChange }: CategoryNavProps) {
+export function CategoryNav({ value, onChange, available }: CategoryNavProps) {
   const items: { id: CategoryFilter; label: string }[] = [
     { id: "all", label: "All" },
-    ...CATEGORY_ORDER.map((id) => ({ id, label: categoryLabel(id) })),
+    ...available.map((id) => ({ id, label: categoryLabel(id) })),
   ];
 
   return (

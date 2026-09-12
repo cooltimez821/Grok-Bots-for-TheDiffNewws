@@ -1,7 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { CategoryFilter } from "@/lib/categories";
+import {
+  categoriesInFeed,
+  type CategoryFilter,
+} from "@/lib/categories";
 import type { Story } from "@/lib/types";
 import { CategoryNav } from "./CategoryNav";
 import { StoryCard } from "./StoryCard";
@@ -13,6 +16,8 @@ type HomeFeedProps = {
 export function HomeFeed({ stories }: HomeFeedProps) {
   const [category, setCategory] = useState<CategoryFilter>("all");
 
+  const available = useMemo(() => categoriesInFeed(stories), [stories]);
+
   const filtered = useMemo(() => {
     if (category === "all") return stories;
     return stories.filter((s) => s.primary_category === category);
@@ -20,7 +25,11 @@ export function HomeFeed({ stories }: HomeFeedProps) {
 
   return (
     <>
-      <CategoryNav value={category} onChange={setCategory} />
+      <CategoryNav
+        value={category}
+        onChange={setCategory}
+        available={available}
+      />
       {stories.length > 0 && stories.length < 12 ? (
         <p className="mb-3 text-[12px] text-[#6a6a6a]">
           Showing multi-outlet stories

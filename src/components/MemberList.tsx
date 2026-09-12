@@ -8,10 +8,9 @@ type MemberListProps = {
 
 export function MemberList({ members, outletCount }: MemberListProps) {
   return (
-    <section>
+    <section aria-label={`Sources (${outletCount})`}>
       <div className="mb-2 mt-4 text-[10px] uppercase tracking-[0.1em] text-[#8e8e8e]">
-        {outletCount} member source{outletCount === 1 ? "" : "s"} · title · dek
-        · outlet_name · canonical_url · published_at
+        Sources
       </div>
       <ul className="flex list-none flex-col gap-2.5 p-0">
         {members.map((m, i) => (
