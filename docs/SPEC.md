@@ -37,7 +37,7 @@ If `blindspot` is missing, null, or `{ present: false }`, the card **must not br
 
 ## Acceptance sample
 
-Home card + detail for “OpenAI releases GPT-5…” (`weight_and_bias`): 5 outlets, `bias_band` L2·C2·R1, `blindspot.present=true` / `rule_id=right_underrepresented`.
+Home card + detail for “OpenAI releases GPT-5…” (`weight_and_bias`): 5 outlets, `bias_band` L2·C2·R1, `blindspot.present=true` / `rule_id=missing_right`.
 
 ## Out of v1 — do not draw
 
