@@ -7,17 +7,16 @@ type BlindspotRowProps = {
 /**
  * Blindspot row ONLY when present === true.
  * Omit entirely when false — never muted "no blindspot".
+ * Cool Signal tokens only — no warm/tan/beige.
  */
 export function BlindspotRow({ blindspot }: BlindspotRowProps) {
-  if (!blindspot?.present) return null;
+  if (blindspot?.present !== true) return null;
 
   return (
-    <div className="mt-0.5 flex items-center gap-1.5 bg-[#f3ead8] px-1.5 py-1 text-[11px] text-[#8a5a12]">
-      <span className="text-[10px] font-bold uppercase tracking-[0.06em]">
-        Blindspot
-      </span>
+    <div className="blindspot-row">
+      <span className="bs-lab">Blindspot</span>
       {blindspot.rule_id ? (
-        <span className="text-[#7a6840]">{blindspot.rule_id}</span>
+        <span className="bs-rule">{blindspot.rule_id}</span>
       ) : null}
     </div>
   );

@@ -1,26 +1,49 @@
 @import "tailwindcss";
 
-:root {
-  --ink: #141414;
-  --ink-2: #2a2a2a;
-  --muted: #6a6a6a;
-  --faint: #8e8e8e;
-  --line: #d4d4d2;
-  --line-2: #e6e6e4;
-  --fill: #efefed;
-  --paper: #ffffff;
-  --bg: #e2e2df;
-  --accent: #0a7a75;
-  --accent-ink: #085652;
-  --accent-soft: #d7eceb;
-  --warn: #8a5a12;
-  --warn-soft: #f3ead8;
+/* Signal — cool editorial dark + teal. Cool neutrals only; no browns/tans. */
+:root[data-theme="signal"],
+[data-theme="signal"] {
+  --bg: #07090d;
+  --bg-glow: rgba(0, 212, 200, 0.055);
+  --surface: #0f141c;
+  --surface-raised: #141a24;
+  --border: #232b38;
+  --border-strong: #343e4f;
+  --ink: #f1f4f8;
+  --ink-2: #d7e0ea;
+  --muted: #8e98a8;
+  --faint: #5a6474;
+  --accent: #00d4c8;
+  --accent-hover: #1ae0d4;
+  --accent-soft: rgba(0, 212, 200, 0.10);
+  --accent-ring: rgba(0, 212, 200, 0.38);
+  --accent-ink: #00d4c8;
+  --on-accent: #041010;
+  --meter-track: #0a0e14;
+  --meter-l: #4e596b; /* cool slate */
+  --meter-c: #b4bcc8; /* cool light gray */
+  --meter-r: #323b4a; /* cool dark slate */
+  /* BlindspotRow present:true — cool teal/slate only (no warm beige/tan) */
+  --blindspot-bg: rgba(0, 212, 200, 0.08);
+  --blindspot-border: rgba(0, 212, 200, 0.42);
+  --blindspot-ink: #d7e8ea;
+  --blindspot-label: #00d4c8;
+  --blindspot-meta: #8e98a8;
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 8px 24px rgba(0, 0, 0, 0.35);
+  --font: "IBM Plex Sans", system-ui, sans-serif;
+  /* Legacy aliases — cool only; --warn mapped away from warm values */
+  --line: var(--border);
+  --line-2: var(--border);
+  --fill: var(--meter-track);
+  --paper: var(--surface);
+  --warn: var(--blindspot-label);
+  --warn-soft: var(--blindspot-bg);
 }
 
 @theme inline {
   --color-background: var(--bg);
   --color-foreground: var(--ink);
-  --font-sans: "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: var(--font-ibm-plex-sans), "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 * {
@@ -34,12 +57,46 @@ body {
 
 body {
   margin: 0;
-  background: var(--bg);
+  background:
+    radial-gradient(900px 480px at 78% -8%, var(--bg-glow), transparent 58%),
+    radial-gradient(700px 400px at 8% 100%, rgba(45, 70, 100, 0.08), transparent 50%),
+    var(--bg);
   color: var(--ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 a {
   color: inherit;
+}
+
+/* BlindspotRow — cool Signal only when present:true */
+.blindspot-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 8px;
+  padding: 5px 8px;
+  background: var(--blindspot-bg);
+  border: 1px solid var(--blindspot-border);
+  border-left: 2px solid var(--accent);
+  border-radius: 1px;
+  font-size: 11px;
+  color: var(--blindspot-ink);
+}
+
+.blindspot-row .bs-lab {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blindspot-label);
+}
+
+.blindspot-row .bs-rule {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--blindspot-meta);
+  font-variant-numeric: tabular-nums;
 }

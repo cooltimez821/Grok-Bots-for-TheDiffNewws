@@ -14,22 +14,28 @@ export function BiasMeter({
 
   return (
     <div className="mb-1.5 flex items-center gap-2">
-      <span className="w-16 shrink-0 text-[9px] uppercase tracking-[0.08em] text-[#8e8e8e]">
+      <span className="w-16 shrink-0 text-[9px] uppercase tracking-[0.08em] text-[var(--faint)]">
         bias_band
       </span>
       <div
-        className={`flex h-2 w-full overflow-hidden border border-[#d4d4d2] bg-[#efefed] ${maxWidthClass}`}
+        className={`flex h-2 w-full overflow-hidden rounded-sm border border-[var(--border-strong)] bg-[var(--meter-track)] ${maxWidthClass}`}
         role="img"
         aria-label={`Bias band: ${biasBandLabel(band)}`}
       >
-        <span className="block h-full bg-[#4a4a4a]" style={{ width: `${w.left}%` }} />
-        <span className="block h-full bg-[#9a9a9a]" style={{ width: `${w.center}%` }} />
         <span
-          className="block h-full border-l border-white bg-[#d0d0d0]"
+          className="block h-full bg-[var(--meter-l)]"
+          style={{ width: `${w.left}%` }}
+        />
+        <span
+          className="block h-full bg-[var(--meter-c)]"
+          style={{ width: `${w.center}%` }}
+        />
+        <span
+          className="block h-full border-l border-[var(--meter-track)] bg-[var(--meter-r)]"
           style={{ width: `${w.right}%` }}
         />
       </div>
-      <span className="whitespace-nowrap text-[10px] text-[#6a6a6a]">
+      <span className="whitespace-nowrap text-[10px] font-semibold text-[var(--muted)]">
         {biasBandLabel(band)}
       </span>
     </div>

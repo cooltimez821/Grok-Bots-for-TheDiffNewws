@@ -31,8 +31,8 @@ export function CategoryNavStub({
             href="/"
             className={
               on
-                ? "shrink-0 whitespace-nowrap rounded-full border border-[#141414] bg-[#141414] px-2 py-1 text-[11px] text-white no-underline"
-                : "shrink-0 whitespace-nowrap rounded-full border border-[#d4d4d2] bg-white px-2 py-1 text-[11px] text-[#2a2a2a] no-underline"
+                ? "shrink-0 whitespace-nowrap rounded-full border border-[var(--accent)] bg-[var(--accent)] px-3 py-1.5 text-[11px] font-semibold text-[var(--on-accent)] no-underline"
+                : "shrink-0 whitespace-nowrap rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 text-[11px] font-medium text-[var(--muted)] no-underline"
             }
           >
             {item.label}

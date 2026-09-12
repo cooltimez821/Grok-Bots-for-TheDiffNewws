@@ -35,13 +35,13 @@ export default async function StoryDetailPage({ params }: PageProps) {
         available={available}
       />
       <div className="pt-2">
-        <span className="mb-1.5 inline-block border border-[#0a7a75] bg-[#d7eceb] px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.1em] text-[#085652]">
+        <span className="mb-1.5 inline-block rounded-sm border border-[var(--accent-ring)] bg-[var(--accent-soft)] px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.1em] text-[var(--accent)]">
           {categoryLabel(story.primary_category)}
         </span>
-        <h1 className="mb-2 mt-2 text-[22px] font-bold leading-tight tracking-tight md:text-[28px]">
+        <h1 className="mb-2 mt-2 text-[22px] font-bold leading-tight tracking-tight text-[var(--ink)] md:text-[28px]">
           {story.title}
         </h1>
-        <p className="mb-3 text-[12px] text-[#6a6a6a]">
+        <p className="mb-3 text-[12px] text-[var(--muted)]">
           {categoryLabel(story.primary_category)} —{" "}
           {CATEGORY_HELPERS[story.primary_category]}. Helper copy only; this is
           not a different product surface.
@@ -50,7 +50,10 @@ export default async function StoryDetailPage({ params }: PageProps) {
         <BlindspotRow blindspot={story.labels.blindspot} />
         <MemberList members={story.members} outletCount={story.outlet_count} />
         <p className="mt-6 text-[12px]">
-          <Link href="/" className="font-semibold text-[#085652] hover:underline">
+          <Link
+            href="/"
+            className="font-semibold text-[var(--accent)] hover:underline"
+          >
             ← Back to feed
           </Link>
         </p>

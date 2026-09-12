@@ -31,12 +31,12 @@ export function HomeFeed({ stories }: HomeFeedProps) {
         available={available}
       />
       {stories.length > 0 && stories.length < 12 ? (
-        <p className="mb-3 text-[12px] text-[#6a6a6a]">
+        <p className="mb-3 text-[12px] text-[var(--faint)]">
           Showing multi-outlet stories
         </p>
       ) : null}
       {filtered.length === 0 ? (
-        <p className="rounded border border-dashed border-[#d4d4d2] bg-white px-3 py-6 text-center text-[13px] text-[#6a6a6a]">
+        <p className="rounded border border-dashed border-[var(--border)] bg-[var(--surface)] px-3 py-6 text-center text-[13px] text-[var(--muted)]">
           No clusters in this category yet.
         </p>
       ) : (

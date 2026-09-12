@@ -12,9 +12,9 @@ export function SiteHeader({
   const brand = (
     <div>
       <div className="text-[18px] font-bold tracking-tight md:text-[22px]">
-        The<em className="not-italic text-[#0a7a75]">Diff</em>News
+        The<em className="not-italic text-[var(--accent)]">Diff</em>News
       </div>
-      <div className="mt-0.5 text-[10px] uppercase tracking-[0.08em] text-[#6a6a6a]">
+      <div className="mt-0.5 text-[10px] font-medium uppercase tracking-[0.08em] text-[var(--faint)]">
         {variant === "detail"
           ? "Cluster detail · same chrome as home"
           : "Independent AI coverage · not affiliated with Ground News"}
@@ -23,12 +23,12 @@ export function SiteHeader({
   );
 
   return (
-    <header className="flex shrink-0 items-center justify-between border-b border-[#141414] pb-2.5 pt-2">
+    <header className="flex shrink-0 items-center justify-between border-b border-[var(--ink)] pb-2.5 pt-2">
       {variant === "detail" ? (
         <div className="flex items-center gap-2">
           <Link
             href="/"
-            className="grid h-[22px] w-[22px] place-items-center rounded-full border border-[#141414] text-xs leading-none text-[#141414]"
+            className="grid h-[22px] w-[22px] place-items-center rounded-full border border-[var(--ink)] text-xs leading-none text-[var(--ink)]"
             aria-label="Back to feed"
           >
             ←
@@ -42,7 +42,7 @@ export function SiteHeader({
           {brand}
         </Link>
       )}
-      <div className="hidden text-[10px] uppercase tracking-[0.04em] text-[#8e8e8e] sm:block">
+      <div className="hidden text-[10px] font-medium uppercase tracking-[0.04em] text-[var(--faint)] sm:block">
         {rightLabel}
       </div>
     </header>
