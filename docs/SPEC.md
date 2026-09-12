@@ -22,7 +22,7 @@ Member row
 
 - `outlet_name`, `title`, `dek`, `canonical_url` (link affordance), `published_at`
 
-If `blindspot` is missing, null, or `{ present: false }`, the card **must not break**. Show nothing (Prism card) or muted “no blindspot” (Parallax / Source Code cards). Both treatments are valid; Eng may pick one.
+If `blindspot` is missing, null, or `{ present: false }`, the card **must not break** — **omit the row**. Never show a muted “no blindspot” line (positive finding only; Bob/Dee/Bias lock).
 
 ## Category display labels
 
@@ -47,7 +47,7 @@ Auth, search, personalization, trust labels, multi-tag categories, per-category 
 
 1. **Home feed** — mobile 390×844, desktop 1440×900. All + six filters. Cards show chip, title, bias_band, optional blindspot, outlet count.
 2. **Cluster detail** — same chrome. Category + bias_band + blindspot. Member list. Back to feed. No login wall.
-3. **Empty / missing blindspot** — Parallax card uses muted “no blindspot”; Prism card omits the row.
+3. **Empty / missing blindspot** — omit the row entirely when `present` is false/missing; never paint a muted empty state.
 
 ## Assumptions
 
