@@ -63,3 +63,8 @@ Home feed drops stories with **no member `published_at` in the last 48 hours**. 
 ## Same-cycle Amodei (2026-09-14)
 
 Same `event_key` (`amodei_call`) merges across the **48h freshness window**, not 18h. 18h forked Sep-12 vs Sep-13/14 into two home cards — that's a bug. Satellites (Trump/China/stocks) still never share `amodei_call`.
+
+
+## one_side_thin (2026-09-14 evening)
+
+Thick partisan side must **strictly outnumber center** (`thick > center`) and be ≥3 vs ≤1. Tied with center stays quiet (Trump 3ll/3c/1rr is beat skew).

@@ -619,13 +619,13 @@ def compute_blindspot(members: list, outlets: dict, category: str) -> dict:
     if stakes_policy and outlet_count >= 3:
         if center == 0 and (left > 0 or right > 0):
             return {"present": True, "rule_id": "missing_center"}
-        # Bias 2026-09-14: do not fire one_side_thin when center already holds
-        # absolute majority — that is beat/catalog skew, not a contested thin side.
-        center_abs = center > outlet_count / 2
-        if left > 0 and right > 0 and not center_abs:
-            if left == 1 and right >= 3:
+        # Bias 2026-09-14: one_side_thin needs the thick partisan side to
+        # strictly outnumber center (and ≥3 vs ≤1). Tied with center or
+        # center absolute majority stays quiet — beat/catalog skew.
+        if left > 0 and right > 0:
+            if left == 1 and right >= 3 and right > center:
                 return {"present": True, "rule_id": "one_side_thin"}
-            if right == 1 and left >= 3:
+            if right == 1 and left >= 3 and left > center:
                 return {"present": True, "rule_id": "one_side_thin"}
 
     if allow_doc_geo:

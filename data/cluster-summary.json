@@ -1,23 +1,23 @@
 {
-  "stories_total": 138,
-  "feed_stories": 8,
-  "held_single_outlet": 130,
+  "stories_total": 140,
+  "feed_stories": 7,
+  "held_single_outlet": 133,
   "deduped": 6,
   "unclustered": 0,
   "by_category": {
     "blindspot": 1,
     "prism": 3,
-    "source_code": 2,
-    "weight_and_bias": 132
+    "source_code": 1,
+    "weight_and_bias": 135
   },
   "by_bias_band": {
-    "center": 3,
-    "mixed": 5
+    "center": 1,
+    "mixed": 6
   },
   "unexplained_merges": 0,
   "clustered_articles": 172,
   "survivors": 178,
-  "aged_out_stories": 28,
+  "aged_out_stories": 19,
   "freshness_hours": 48,
-  "generated_at": "2026-09-14T19:33:08.927491Z"
+  "generated_at": "2026-09-14T21:27:20.812723Z"
 }
