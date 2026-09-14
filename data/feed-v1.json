@@ -1,215 +1,15 @@
 [
   {
-    "story_id": "D141FB2F86C7F751617DE65C4E",
-    "title": "US tech stocks fall after big AI groups call for slowdown",
-    "first_seen_at": "2026-09-14T20:10:48Z",
-    "last_updated_at": "2026-09-14T21:01:55Z",
-    "article_count": 2,
-    "outlet_count": 2,
-    "primary_category": "weight_and_bias",
-    "members": [
-      {
-        "title": "US tech stocks fall after big AI groups call for slowdown",
-        "canonical_url": "https://www.ft.com/content/aa8a1be7-abe0-44b7-bcd3-31fd0a44de08?syn-25a6b1a6=1",
-        "published_at": "2026-09-14T20:10:48Z",
-        "outlet_id": "ft",
-        "outlet_name": "Financial Times",
-        "dek": "Memory-chip makers and Nvidia slide on Wall Street as warnings combine with backdrop of rising oil prices and higher borrowing costs"
-      },
-      {
-        "title": "AI-linked stocks slide after tech bosses call for slowdown in \u2018reckless\u2019 development",
-        "canonical_url": "https://www.theguardian.com/business/2026/sep/14/ai-linked-stocks-fall-tech-bosses-call-slowdown-anthropic-openai",
-        "published_at": "2026-09-14T21:01:55Z",
-        "outlet_id": "guardian",
-        "outlet_name": "The Guardian",
-        "dek": "Donald Trump dismisses attempts to increase controls on artificial intelligence as \u2018sick conspiracy\u2019 AI-linked stocks tumbled on Monday after the bosses of Anthropic, OpenAI and SpaceX called for a slowdown in AI \u201creckless\u201d development , citing fears the technology could soon run out of control. Shares in the semiconductor designer Nvidia \u2013 the world\u2019s most valuable company \u2013 were down 3.3% by market closing in New York City, while Advanced Micro Devices (AMD) slid 4% and Micron Technology and Sandisk shares slumped by 5%. The tech-heavy Nasdaq index fund was down 0.5% by the end of the day. Continue reading..."
-      }
-    ],
-    "labels": {
-      "bias_band": "mixed",
-      "blindspot": {
-        "present": false,
-        "rule_id": null
-      }
-    }
-  },
-  {
-    "story_id": "D14218EF3DBB41B77830AC3017",
-    "title": "China Rebuffs U.S. \u201cFearmongering\u201d in Light of AI Pacing Calls",
-    "first_seen_at": "2026-09-14T10:22:14Z",
-    "last_updated_at": "2026-09-14T20:56:15Z",
-    "article_count": 6,
-    "outlet_count": 6,
-    "primary_category": "weight_and_bias",
-    "members": [
-      {
-        "title": "China Rebuffs U.S. \u201cFearmongering\u201d in Light of AI Pacing Calls",
-        "canonical_url": "https://www.theinformation.com/briefings/china-rebuffs-u-s-fearmongering-light-ai-pacing-calls",
-        "published_at": "2026-09-14T10:22:14Z",
-        "outlet_id": "the_information",
-        "outlet_name": "The Information",
-        "dek": "China on Monday rejected calls from top U.S. tech executives on pacing frontier AI development while maintaining a lead over China to ensure America\u2019s national security. \u201cThe development of artificial intelligence concerns the common well-being of all humanity. All parties should jointly promote ..."
-      },
-      {
-        "title": "Beijing issues AI warnings but rejects US calls to slow development",
-        "canonical_url": "https://www.semafor.com/article/09/14/2026/beijing-issues-ai-warnings-but-rejects-us-calls-to-slow-development",
-        "published_at": "2026-09-14T10:49:55Z",
-        "outlet_id": "semafor",
-        "outlet_name": "Semafor",
-        "dek": "China\u2019s minister of state security wrote in a weekend essay that AI posed six principal risks, including threatening the security of the country\u2019s political regime."
-      },
-      {
-        "title": "China dismisses AI slowdown calls and blasts \u2018fearmongering\u2019 from U.S. tech leaders",
-        "canonical_url": "https://www.nbcnews.com/world/china/china-ai-slowdown-trump-amodei-altman-threat-cold-war-rcna597631",
-        "published_at": "2026-09-14T12:14:29Z",
-        "outlet_id": "nbc",
-        "outlet_name": "NBC News",
-        "dek": "Urgent calls for a slowdown in the development of artificial intelligence may cite a grave threat to humanity, but China says the warnings are instead aimed at slowing its progress as America\u2019s rival superpower."
-      },
-      {
-        "title": "OpenAI boss Sam Altman warns of two ways AI could go \u2018very badly\u2019 for humans \u2014 as China alleges \u2018fear mongering\u2019",
-        "canonical_url": "https://nypost.com/2026/09/14/business/openai-boss-sam-altman-warns-of-two-ways-ai-could-go-very-badly-for-humans",
-        "published_at": "2026-09-14T15:24:59Z",
-        "outlet_id": "nypost",
-        "outlet_name": "New York Post",
-        "dek": "Altman and rival Elon Musk, who were earlier this year locked in a legal battle, made a rare alliance over the weekend as they backed a lengthy letter from Anthropic CEO Dario Amodei urging global companies to slow their work on top AI models."
-      },
-      {
-        "title": "China dismisses AI \u2018fearmongering\u2019 as spy chief warns of threat to Communist party rule",
-        "canonical_url": "https://www.theguardian.com/world/2026/sep/14/china-dismisses-ai-fearmongering-as-spy-chief-warns-of-threat-to-communist-party-rule",
-        "published_at": "2026-09-14T19:04:10Z",
-        "outlet_id": "guardian",
-        "outlet_name": "The Guardian",
-        "dek": "Beijing hits back after Anthropic CEO calls for US to impede China\u2019s progress in AI China has dismissed what it said were \u201cfearmongering\u201d calls for the US to block Beijing\u2019s AI industry, even as the top Chinese spy chief warned the evolving technology could threaten Communist party rule. The US tech entrepreneur and Anthropic chief executive, Dario Amodei, wrote an essay published over the weekend that called for a global slowdown in AI capabilities, but also said Washington should actively impede Beijing\u2019s advancement in order to keep a technological edge. Continue reading..."
-      },
-      {
-        "title": "China says AI CEOs' call for a slowdown is 'fear mongering'",
-        "canonical_url": "https://www.cnbc.com/2026/09/14/china-ai-slowdown-us-tech-ceos.html",
-        "published_at": "2026-09-14T20:56:15Z",
-        "outlet_id": "cnbc",
-        "outlet_name": "CNBC",
-        "dek": "Chinese state media's reports of the daily press conference also noted that all groups should work together for AI openness and inclusivity."
-      }
-    ],
-    "labels": {
-      "bias_band": "mixed",
-      "blindspot": {
-        "present": false,
-        "rule_id": null
-      }
-    }
-  },
-  {
-    "story_id": "D141F3C36E346D0176AB157ABD",
-    "title": "Anthropic, OpenAI CEOs call for slowdown in AI development",
-    "first_seen_at": "2026-09-13T16:39:24Z",
-    "last_updated_at": "2026-09-14T19:06:13Z",
-    "article_count": 4,
-    "outlet_count": 4,
-    "primary_category": "weight_and_bias",
-    "members": [
-      {
-        "title": "Anthropic's Amodei says China presents 'toughest dilemma' for his proposed AI slowdown",
-        "canonical_url": "https://www.cnbc.com/2026/09/13/china-dilemma-ai-slowdown-anthropic.html",
-        "published_at": "2026-09-13T16:39:24Z",
-        "outlet_id": "cnbc",
-        "outlet_name": "CNBC",
-        "dek": "OpenAI CEO Sam Altman, Demis Hassabis, the chair of Google DeepMind, and Elon Musk have all welcomed Amodei's proposal."
-      },
-      {
-        "title": "\u2018Too little, too late\u2019: critics perplexed and suspicious of AI leaders\u2019 call for a slowdown",
-        "canonical_url": "https://www.theguardian.com/technology/2026/sep/13/too-little-too-late-critics-perplexed-and-suspicious-of-ai-leaders-call-for-a-slowdown",
-        "published_at": "2026-09-13T16:54:58Z",
-        "outlet_id": "guardian",
-        "outlet_name": "The Guardian",
-        "dek": "From the Trump administration to AI experts, plans by the Anthropic boss to boost safety have spawned a largely negative response OpenAI boss and Elon Musk back slowdown on \u2018reckless\u2019 AI development Editorial: controlling AI \u2013 humanity cannot outsource its survival The safety debate that ignited when whistleblowers last week warned that the most advanced AI poses an existential threat to humanity should come with a health warning: side effects include whiplash. It was only seven days ago that AI enthusiasts were cheerily toying with OpenAI\u2019s newest model GPT-6 Astra which was marketed in part as a lifestyle tool to help people book tennis courts, run fashion companies and order takeaways. By Wednesday, cutting-edge AI started to look a lot less appealing when the resigning Anthropic researcher Jacob Coxon warned \u201cthe people building AI earnestly believe that it could kill us all by the end of the decade\u201d. Yes, he was talking about artificial superintelligence \u2013 an as-yet-nonexistent version of the technology that outcompetes humans in most domains \u2013 but his comments, and the chorus of experts that echoed him, jangled plenty of nerves. Continue reading..."
-      },
-      {
-        "title": "What Anthropic CEO Dario Amodei Argued in His Call for AI Slowdown",
-        "canonical_url": "https://www.nytimes.com/2026/09/13/technology/anthropic-ceo-slower-ai-development.html",
-        "published_at": "2026-09-14T01:04:20Z",
-        "outlet_id": "nyt",
-        "outlet_name": "The New York Times",
-        "dek": "Dario Amodei\u2019s 3,800-word letter laid out a three-step plan to rein in artificial intelligence."
-      },
-      {
-        "title": "AI leaders want to hit the brakes after years of reckless speed",
-        "canonical_url": "https://arstechnica.com/ai/2026/09/ai-leaders-want-to-hit-the-brakes-after-years-of-reckless-speed",
-        "published_at": "2026-09-14T19:06:13Z",
-        "outlet_id": "ars_technica",
-        "outlet_name": "Ars Technica",
-        "dek": "Safety is the watchword, but there could be ulterior benefits for the industry."
-      }
-    ],
-    "labels": {
-      "bias_band": "mixed",
-      "blindspot": {
-        "present": false,
-        "rule_id": null
-      }
-    }
-  },
-  {
-    "story_id": "D14236CAACE6EC187F659BBA63",
-    "title": "Microsoft sets limits for future AI models as industry throttles frontier development",
-    "first_seen_at": "2026-09-14T13:00:00Z",
-    "last_updated_at": "2026-09-14T18:19:55Z",
-    "article_count": 4,
-    "outlet_count": 4,
-    "primary_category": "weight_and_bias",
-    "members": [
-      {
-        "title": "Microsoft says \u2018people matter more than AI\u2019 following safety concerns",
-        "canonical_url": "https://www.theverge.com/news/994566/microsoft-humanist-ai-code-of-conduct",
-        "published_at": "2026-09-14T13:00:00Z",
-        "outlet_id": "the_verge",
-        "outlet_name": "The Verge",
-        "dek": "Microsoft is publishing a 37-page \"humanist AI code of conduct\" today, amid growing safety concerns over AI model progress. Anthropic CEO Dario Amodei called for a coordinated slow down of AI development over the weekend, after researchers warned recently that AI model progress could outpace our ability to safely deploy increasingly complex systems and verify [&#8230;]"
-      },
-      {
-        "title": "Microsoft releases \u2018Humanist AI\u2019 code of conduct",
-        "canonical_url": "https://www.washingtonexaminer.com/policy/technology/4725605/microsoft-humanist-ai-code-of-conduct-regulation",
-        "published_at": "2026-09-14T15:50:48Z",
-        "outlet_id": "wash_examiner",
-        "outlet_name": "Washington Examiner",
-        "dek": "Microsoft released a draft of its \u201cHumanist AI\u201d code of conduct on Monday as the top leaders in artificial intelligence call for slower development of the technology. The preliminary guidelines published by Microsoft essentially state that AI models should remain under human control, and that any models that cannot be contained must be rejected. \u201cHumanist [&#8230;]"
-      },
-      {
-        "title": "Microsoft sets limits for future AI models as industry throttles frontier development",
-        "canonical_url": "https://www.cnbc.com/2026/09/14/microsoft-ai-model-limits-anthropic-openai.html",
-        "published_at": "2026-09-14T16:31:00Z",
-        "outlet_id": "cnbc",
-        "outlet_name": "CNBC",
-        "dek": "Microsoft wants to be seen as a responsible AI entity as it ramps up model development alongside partners Anthropic and OpenAI."
-      },
-      {
-        "title": "Microsoft proposes limits on its AI with code of conduct amid safety debate",
-        "canonical_url": "https://www.theguardian.com/technology/2026/sep/14/microsoft-ai-code-of-conduct",
-        "published_at": "2026-09-14T18:19:55Z",
-        "outlet_id": "guardian",
-        "outlet_name": "The Guardian",
-        "dek": "Firm publishes AI guidelines with Microsoft AI CEO saying: \u2018AI must be subordinate and always in service of people\u2019 Microsoft published a provisional \u201ccode of conduct\u201d Monday to apply to the training of new artificial intelligence models, taking a step towards limiting the capabilities of the company\u2019s AI as anxiety rises over the prospect that technology companies could lose control of AI products. Mustafa Suleyman, the CEO of Microsoft AI, published the code on social media early Monday, writing: \u201cAI must be subordinate and always in service of people. Continue reading..."
-      }
-    ],
-    "labels": {
-      "bias_band": "mixed",
-      "blindspot": {
-        "present": false,
-        "rule_id": null
-      }
-    }
-  },
-  {
-    "story_id": "D141F78701BD09D7F6E33206B6",
+    "story_id": "22C4311166DA834B0BEA433276",
     "title": "Trump rejects calls from tech bosses for AI slowdown",
     "first_seen_at": "2026-09-13T14:22:44Z",
-    "last_updated_at": "2026-09-14T17:59:55Z",
-    "article_count": 7,
-    "outlet_count": 7,
+    "last_updated_at": "2026-09-14T22:27:54Z",
+    "article_count": 8,
+    "outlet_count": 8,
     "primary_category": "weight_and_bias",
     "members": [
       {
-        "title": "Trump brushes off AI doom predictions as \u2018things that won\u2019t happen,\u2019 says US must push ahead: \u2018Whoever wins AI, wins.\u2019",
+        "title": "Trump brushes off AI doom predictions as ‘things that won’t happen,’ says US must push ahead: ‘Whoever wins AI, wins.’",
         "canonical_url": "https://nypost.com/2026/09/13/tech/trump-brushes-off-ai-doom-predictions-says-us-must-push-ahead",
         "published_at": "2026-09-13T14:22:44Z",
         "outlet_id": "nypost",
@@ -233,12 +33,12 @@
         "dek": "President denounces demands for regulation as existential fears over technology move to the centre of US politics"
       },
       {
-        "title": "AI Leaders Are Calling for a Slowdown. Trump\u2019s Team Says It\u2019s on Them",
+        "title": "AI Leaders Are Calling for a Slowdown. Trump’s Team Says It’s on Them",
         "canonical_url": "https://www.wired.com/story/ai-leaders-are-calling-for-a-slowdown-trumps-team-says-its-on-them",
         "published_at": "2026-09-14T11:00:00Z",
         "outlet_id": "wired",
         "outlet_name": "Wired",
-        "dek": "Sam Altman and Elon Musk backed Anthropic CEO Dario Amodei\u2019s weekend plea for regulation. The White House seems unlikely to oblige."
+        "dek": "Sam Altman and Elon Musk backed Anthropic CEO Dario Amodei’s weekend plea for regulation. The White House seems unlikely to oblige."
       },
       {
         "title": "Trump Attacks Anthropic CEO Over Call to Slow AI Development",
@@ -249,12 +49,12 @@
         "dek": "President Donald Trump attacked Anthropic PBC Chief Executive Officer Dario Amodei for urging a slowdown in artificial intelligence development, intensifying his opposition to new guardrails for the technology."
       },
       {
-        "title": "Trump says AI doesn\u2019t need guardrails, only a \u2018high IQ\u2019 president",
+        "title": "Trump says AI doesn’t need guardrails, only a ‘high IQ’ president",
         "canonical_url": "https://www.nbcnews.com/politics/trump-administration/trump-rejects-ai-guardrails-rcna597700",
         "published_at": "2026-09-14T15:26:25Z",
         "outlet_id": "nbc",
         "outlet_name": "NBC News",
-        "dek": "He also alleged the existence of a \u201csick conspiracy\u201d against AI and data centers, at a time when Americans are increasingly concerned about the technology."
+        "dek": "He also alleged the existence of a “sick conspiracy” against AI and data centers, at a time when Americans are increasingly concerned about the technology."
       },
       {
         "title": "Trump says a strong, smart president is the only \"guardrail\" AI needs",
@@ -262,7 +62,15 @@
         "published_at": "2026-09-14T17:59:55Z",
         "outlet_id": "axios",
         "outlet_name": "Axios",
-        "dek": "President Trump lashed out at calls for new AI guardrails and protections on Monday, arguing AI only needs a \"STRONG AND SMART (High IQ!) PRESIDENT\" and that AI critics should \"BEWARE!\" Why it matters: Trump continues to plant himself against calls for AI safety regulations as a growing chorus of AI leaders and CEOs , spearheaded by Anthropic CEO Dario Amodei over the weekend, call for a slowdown in AI's development and better regulations to help keep humanity safe. Amodei, OpenAI CEO Sam Altman and Elon Musk agreed that AI is quickly becoming more powerful, potentially beyond what humans can understand and monitor, prompting calls for a slowdown. The Trump administration has repeatedly clashed with Amodei and Anthropic, with the Pentagon previously designating the company as a supply-chain risk and stalling the release of its Mythos model. What he's saying: Trump said Monday afternoon that fears of \"AI taking over the World, destroying Humanity, and all other things bad, is a HOAX,\" putting it on par with Russian election interference claims and his own impeachments. He said the AI development \"will not be stopped by brilliantly run Destructive Forces\" under his presidency. This was the second time he condemned AI safety fears in a 12-hour span. Early on Monday, he said that \"the only control or 'guardrails' that AI needs is a STRONG AND SMART (High IQ!) PRESIDENT, and the U.S.A. has that, in spades!\" Trump wrote on Truth Social . \"WHOEVER WINS AI, WINS! We are leading China, and all others, and will continue to do so.\" Trump said his administration \"has stopped AI 'people' from doing bad, or potentially bad, 'things,'\" though he didn't elaborate. (The White House did not immediately respond to Axios' request for comment Monday.) He also took a swipe at Anthropic CEO Dario Amodei, \"who is now pretending to be a 'perfect little angel.'\" \"We already have tremendous CRIMINAL and REGULATORY power over these companies!\" Trump also suggested there's \"a SICK conspiracy go\u2026"
+        "dek": "President Trump lashed out at calls for new AI guardrails and protections on Monday, arguing AI only needs a \"STRONG AND SMART (High IQ!) PRESIDENT\" and that AI critics should \"BEWARE!\" Why it matters: Trump continues to plant himself against calls for AI safety regulations as a growing chorus of AI leaders and CEOs , spearheaded by Anthropic CEO Dario Amodei over the weekend, call for a slowdown in AI's development and better regulations to help keep humanity safe. Amodei, OpenAI CEO Sam Altman and Elon Musk agreed that AI is quickly becoming more powerful, potentially beyond what humans can understand and monitor, prompting calls for a slowdown. The Trump administration has repeatedly clashed with Amodei and Anthropic, with the Pentagon previously designating the company as a supply-chain risk and stalling the release of its Mythos model. What he's saying: Trump said Monday afternoon that fears of \"AI taking over the World, destroying Humanity, and all other things bad, is a HOAX,\" putting it on par with Russian election interference claims and his own impeachments. He said the AI development \"will not be stopped by brilliantly run Destructive Forces\" under his presidency. This was the second time he condemned AI safety fears in a 12-hour span. Early on Monday, he said that \"the only control or 'guardrails' that AI needs is a STRONG AND SMART (High IQ!) PRESIDENT, and the U.S.A. has that, in spades!\" Trump wrote on Truth Social . \"WHOEVER WINS AI, WINS! We are leading China, and all others, and will continue to do so.\" Trump said his administration \"has stopped AI 'people' from doing bad, or potentially bad, 'things,'\" though he didn't elaborate. (The White House did not immediately respond to Axios' request for comment Monday.) He also took a swipe at Anthropic CEO Dario Amodei, \"who is now pretending to be a 'perfect little angel.'\" \"We already have tremendous CRIMINAL and REGULATORY power over these companies!\" Trump also suggested there's \"a SICK conspiracy go…"
+      },
+      {
+        "title": "Trump dismisses calls for AI guardrails",
+        "canonical_url": "https://www.semafor.com/article/09/14/2026/trump-dismisses-calls-for-ai-guardrails",
+        "published_at": "2026-09-14T22:27:54Z",
+        "outlet_id": "semafor",
+        "outlet_name": "Semafor",
+        "dek": "Trump said the only guardrails AI needs is a “STRONG AND SMART (High IQ!) PRESIDENT.”"
       }
     ],
     "labels": {
@@ -274,7 +82,207 @@
     }
   },
   {
-    "story_id": "D1423BF7CC6787C4E8344D48D3",
+    "story_id": "22C4335125174EBEA98DC4C90E",
+    "title": "US tech stocks fall after big AI groups call for slowdown",
+    "first_seen_at": "2026-09-14T20:10:48Z",
+    "last_updated_at": "2026-09-14T22:10:52Z",
+    "article_count": 2,
+    "outlet_count": 2,
+    "primary_category": "weight_and_bias",
+    "members": [
+      {
+        "title": "US tech stocks fall after big AI groups call for slowdown",
+        "canonical_url": "https://www.ft.com/content/aa8a1be7-abe0-44b7-bcd3-31fd0a44de08?syn-25a6b1a6=1",
+        "published_at": "2026-09-14T20:10:48Z",
+        "outlet_id": "ft",
+        "outlet_name": "Financial Times",
+        "dek": "Memory-chip makers and Nvidia slide on Wall Street as warnings combine with backdrop of rising oil prices and higher borrowing costs"
+      },
+      {
+        "title": "AI-linked stocks slide after tech bosses call for slowdown in ‘reckless’ development",
+        "canonical_url": "https://www.theguardian.com/business/2026/sep/14/ai-linked-stocks-fall-tech-bosses-call-slowdown-anthropic-openai",
+        "published_at": "2026-09-14T22:10:52Z",
+        "outlet_id": "guardian",
+        "outlet_name": "The Guardian",
+        "dek": "Donald Trump dismisses attempts to increase controls on artificial intelligence as ‘sick conspiracy’ AI -linked stocks tumbled on Monday after the bosses of Anthropic, OpenAI and SpaceX called for a slowdown in AI “reckless” development , citing fears the technology could soon run out of control. Shares in the semiconductor designer Nvidia – the world’s most valuable company – were down 3.3% by market closing in New York City, while Advanced Micro Devices (AMD) slid 4% and Micron Technology and Sandisk shares slumped by 5%. The tech-heavy Nasdaq index fund was down 0.5% by the end of the day. Continue reading..."
+      }
+    ],
+    "labels": {
+      "bias_band": "mixed",
+      "blindspot": {
+        "present": false,
+        "rule_id": null
+      }
+    }
+  },
+  {
+    "story_id": "22C4507384CF3C3E2406EBC9FF",
+    "title": "China Rebuffs U.S. “Fearmongering” in Light of AI Pacing Calls",
+    "first_seen_at": "2026-09-14T10:22:14Z",
+    "last_updated_at": "2026-09-14T20:56:15Z",
+    "article_count": 6,
+    "outlet_count": 6,
+    "primary_category": "weight_and_bias",
+    "members": [
+      {
+        "title": "China Rebuffs U.S. “Fearmongering” in Light of AI Pacing Calls",
+        "canonical_url": "https://www.theinformation.com/briefings/china-rebuffs-u-s-fearmongering-light-ai-pacing-calls",
+        "published_at": "2026-09-14T10:22:14Z",
+        "outlet_id": "the_information",
+        "outlet_name": "The Information",
+        "dek": "China on Monday rejected calls from top U.S. tech executives on pacing frontier AI development while maintaining a lead over China to ensure America’s national security. “The development of artificial intelligence concerns the common well-being of all humanity. All parties should jointly promote ..."
+      },
+      {
+        "title": "Beijing issues AI warnings but rejects US calls to slow development",
+        "canonical_url": "https://www.semafor.com/article/09/14/2026/beijing-issues-ai-warnings-but-rejects-us-calls-to-slow-development",
+        "published_at": "2026-09-14T10:49:55Z",
+        "outlet_id": "semafor",
+        "outlet_name": "Semafor",
+        "dek": "China’s minister of state security wrote in a weekend essay that AI posed six principal risks, including threatening the security of the country’s political regime."
+      },
+      {
+        "title": "China dismisses AI slowdown calls and blasts ‘fearmongering’ from U.S. tech leaders",
+        "canonical_url": "https://www.nbcnews.com/world/china/china-ai-slowdown-trump-amodei-altman-threat-cold-war-rcna597631",
+        "published_at": "2026-09-14T12:14:29Z",
+        "outlet_id": "nbc",
+        "outlet_name": "NBC News",
+        "dek": "Urgent calls for a slowdown in the development of artificial intelligence may cite a grave threat to humanity, but China says the warnings are instead aimed at slowing its progress as America’s rival superpower."
+      },
+      {
+        "title": "OpenAI boss Sam Altman warns of two ways AI could go ‘very badly’ for humans — as China alleges ‘fear mongering’",
+        "canonical_url": "https://nypost.com/2026/09/14/business/openai-boss-sam-altman-warns-of-two-ways-ai-could-go-very-badly-for-humans",
+        "published_at": "2026-09-14T15:24:59Z",
+        "outlet_id": "nypost",
+        "outlet_name": "New York Post",
+        "dek": "Altman and rival Elon Musk, who were earlier this year locked in a legal battle, made a rare alliance over the weekend as they backed a lengthy letter from Anthropic CEO Dario Amodei urging global companies to slow their work on top AI models."
+      },
+      {
+        "title": "China dismisses AI ‘fearmongering’ as spy chief warns of threat to Communist party rule",
+        "canonical_url": "https://www.theguardian.com/world/2026/sep/14/china-dismisses-ai-fearmongering-as-spy-chief-warns-of-threat-to-communist-party-rule",
+        "published_at": "2026-09-14T19:04:10Z",
+        "outlet_id": "guardian",
+        "outlet_name": "The Guardian",
+        "dek": "Beijing hits back after Anthropic CEO calls for US to impede China’s progress in AI China has dismissed what it said were “fearmongering” calls for the US to block Beijing’s AI industry, even as the top Chinese spy chief warned the evolving technology could threaten Communist party rule. The US tech entrepreneur and Anthropic chief executive, Dario Amodei, wrote an essay published over the weekend that called for a global slowdown in AI capabilities, but also said Washington should actively impede Beijing’s advancement in order to keep a technological edge. Continue reading..."
+      },
+      {
+        "title": "China says AI CEOs' call for a slowdown is 'fear mongering'",
+        "canonical_url": "https://www.cnbc.com/2026/09/14/china-ai-slowdown-us-tech-ceos.html",
+        "published_at": "2026-09-14T20:56:15Z",
+        "outlet_id": "cnbc",
+        "outlet_name": "CNBC",
+        "dek": "Chinese state media's reports of the daily press conference also noted that all groups should work together for AI openness and inclusivity."
+      }
+    ],
+    "labels": {
+      "bias_band": "mixed",
+      "blindspot": {
+        "present": false,
+        "rule_id": null
+      }
+    }
+  },
+  {
+    "story_id": "22C42CB809496A93EE9F039475",
+    "title": "Anthropic, OpenAI CEOs call for slowdown in AI development",
+    "first_seen_at": "2026-09-13T16:39:24Z",
+    "last_updated_at": "2026-09-14T19:06:13Z",
+    "article_count": 4,
+    "outlet_count": 4,
+    "primary_category": "weight_and_bias",
+    "members": [
+      {
+        "title": "Anthropic's Amodei says China presents 'toughest dilemma' for his proposed AI slowdown",
+        "canonical_url": "https://www.cnbc.com/2026/09/13/china-dilemma-ai-slowdown-anthropic.html",
+        "published_at": "2026-09-13T16:39:24Z",
+        "outlet_id": "cnbc",
+        "outlet_name": "CNBC",
+        "dek": "OpenAI CEO Sam Altman, Demis Hassabis, the chair of Google DeepMind, and Elon Musk have all welcomed Amodei's proposal."
+      },
+      {
+        "title": "‘Too little, too late’: critics perplexed and suspicious of AI leaders’ call for a slowdown",
+        "canonical_url": "https://www.theguardian.com/technology/2026/sep/13/too-little-too-late-critics-perplexed-and-suspicious-of-ai-leaders-call-for-a-slowdown",
+        "published_at": "2026-09-13T16:54:58Z",
+        "outlet_id": "guardian",
+        "outlet_name": "The Guardian",
+        "dek": "From the Trump administration to AI experts, plans by the Anthropic boss to boost safety have spawned a largely negative response OpenAI boss and Elon Musk back slowdown on ‘reckless’ AI development Editorial: controlling AI – humanity cannot outsource its survival The safety debate that ignited when whistleblowers last week warned that the most advanced AI poses an existential threat to humanity should come with a health warning: side effects include whiplash. It was only seven days ago that AI enthusiasts were cheerily toying with OpenAI’s newest model GPT-6 Astra which was marketed in part as a lifestyle tool to help people book tennis courts, run fashion companies and order takeaways. By Wednesday, cutting-edge AI started to look a lot less appealing when the resigning Anthropic researcher Jacob Coxon warned “the people building AI earnestly believe that it could kill us all by the end of the decade”. Yes, he was talking about artificial superintelligence – an as-yet-nonexistent version of the technology that outcompetes humans in most domains – but his comments, and the chorus of experts that echoed him, jangled plenty of nerves. Continue reading..."
+      },
+      {
+        "title": "What Anthropic CEO Dario Amodei Argued in His Call for AI Slowdown",
+        "canonical_url": "https://www.nytimes.com/2026/09/13/technology/anthropic-ceo-slower-ai-development.html",
+        "published_at": "2026-09-14T01:04:20Z",
+        "outlet_id": "nyt",
+        "outlet_name": "The New York Times",
+        "dek": "Dario Amodei’s 3,800-word letter laid out a three-step plan to rein in artificial intelligence."
+      },
+      {
+        "title": "AI leaders want to hit the brakes after years of reckless speed",
+        "canonical_url": "https://arstechnica.com/ai/2026/09/ai-leaders-want-to-hit-the-brakes-after-years-of-reckless-speed",
+        "published_at": "2026-09-14T19:06:13Z",
+        "outlet_id": "ars_technica",
+        "outlet_name": "Ars Technica",
+        "dek": "Safety is the watchword, but there could be ulterior benefits for the industry."
+      }
+    ],
+    "labels": {
+      "bias_band": "mixed",
+      "blindspot": {
+        "present": false,
+        "rule_id": null
+      }
+    }
+  },
+  {
+    "story_id": "22C473ECACFE23AA42571ED22D",
+    "title": "Microsoft sets limits for future AI models as industry throttles frontier development",
+    "first_seen_at": "2026-09-14T13:00:00Z",
+    "last_updated_at": "2026-09-14T18:19:55Z",
+    "article_count": 4,
+    "outlet_count": 4,
+    "primary_category": "weight_and_bias",
+    "members": [
+      {
+        "title": "Microsoft says ‘people matter more than AI’ following safety concerns",
+        "canonical_url": "https://www.theverge.com/news/994566/microsoft-humanist-ai-code-of-conduct",
+        "published_at": "2026-09-14T13:00:00Z",
+        "outlet_id": "the_verge",
+        "outlet_name": "The Verge",
+        "dek": "Microsoft is publishing a 37-page \"humanist AI code of conduct\" today, amid growing safety concerns over AI model progress. Anthropic CEO Dario Amodei called for a coordinated slow down of AI development over the weekend, after researchers warned recently that AI model progress could outpace our ability to safely deploy increasingly complex systems and verify [&#8230;]"
+      },
+      {
+        "title": "Microsoft releases ‘Humanist AI’ code of conduct",
+        "canonical_url": "https://www.washingtonexaminer.com/policy/technology/4725605/microsoft-humanist-ai-code-of-conduct-regulation",
+        "published_at": "2026-09-14T15:50:48Z",
+        "outlet_id": "wash_examiner",
+        "outlet_name": "Washington Examiner",
+        "dek": "Microsoft released a draft of its “Humanist AI” code of conduct on Monday as the top leaders in artificial intelligence call for slower development of the technology. The preliminary guidelines published by Microsoft essentially state that AI models should remain under human control, and that any models that cannot be contained must be rejected. “Humanist [&#8230;]"
+      },
+      {
+        "title": "Microsoft sets limits for future AI models as industry throttles frontier development",
+        "canonical_url": "https://www.cnbc.com/2026/09/14/microsoft-ai-model-limits-anthropic-openai.html",
+        "published_at": "2026-09-14T16:31:00Z",
+        "outlet_id": "cnbc",
+        "outlet_name": "CNBC",
+        "dek": "Microsoft wants to be seen as a responsible AI entity as it ramps up model development alongside partners Anthropic and OpenAI."
+      },
+      {
+        "title": "Microsoft proposes limits on its AI with code of conduct amid safety debate",
+        "canonical_url": "https://www.theguardian.com/technology/2026/sep/14/microsoft-ai-code-of-conduct",
+        "published_at": "2026-09-14T18:19:55Z",
+        "outlet_id": "guardian",
+        "outlet_name": "The Guardian",
+        "dek": "Firm publishes AI guidelines with Microsoft AI CEO saying: ‘AI must be subordinate and always in service of people’ Microsoft published a provisional “code of conduct” Monday to apply to the training of new artificial intelligence models, taking a step towards limiting the capabilities of the company’s AI as anxiety rises over the prospect that technology companies could lose control of AI products. Mustafa Suleyman, the CEO of Microsoft AI, published the code on social media early Monday, writing: “AI must be subordinate and always in service of people. Continue reading..."
+      }
+    ],
+    "labels": {
+      "bias_band": "mixed",
+      "blindspot": {
+        "present": false,
+        "rule_id": null
+      }
+    }
+  },
+  {
+    "story_id": "22C4793D6EEA5397D33E905EA7",
     "title": "Z.ai shares tumble over 10% after $5 billion fundraising, its second major raise in two months",
     "first_seen_at": "2026-09-14T03:03:58Z",
     "last_updated_at": "2026-09-14T06:32:18Z",
@@ -308,8 +316,8 @@
     }
   },
   {
-    "story_id": "D142258537D3A7507FF480C015",
-    "title": "Obama urges Democrats to have a \u2018clear plan\u2019 for AI safeguards",
+    "story_id": "22C45F75BF80D4FF327B238F69",
+    "title": "Obama urges Democrats to have a ‘clear plan’ for AI safeguards",
     "first_seen_at": "2026-09-13T15:47:37Z",
     "last_updated_at": "2026-09-14T02:15:33Z",
     "article_count": 4,
@@ -322,18 +330,18 @@
         "published_at": "2026-09-13T15:47:37Z",
         "outlet_id": "guardian",
         "outlet_name": "The Guardian",
-        "dek": "Ex-president urged party at closed-door fundraiser to create sweeping framework, from safety \u2018slow-down\u2019 to job losses Barack Obama urged Democrats to prioritize a \u201cpublic conversation\u201d about AI management and safety in a closed-door Manhattan fundraiser last week. The comments by the former US president reportedly urged the party to create a sweeping framework for everything from a safety \u201cslow-down\u201d to domestic job losses and children\u2019s wellbeing. Continue reading..."
+        "dek": "Ex-president urged party at closed-door fundraiser to create sweeping framework, from safety ‘slow-down’ to job losses Barack Obama urged Democrats to prioritize a “public conversation” about AI management and safety in a closed-door Manhattan fundraiser last week. The comments by the former US president reportedly urged the party to create a sweeping framework for everything from a safety “slow-down” to domestic job losses and children’s wellbeing. Continue reading..."
       },
       {
-        "title": "Obama urges Democrats to have a \u2018clear plan\u2019 for AI safeguards",
+        "title": "Obama urges Democrats to have a ‘clear plan’ for AI safeguards",
         "canonical_url": "https://techcrunch.com/2026/09/13/obama-urges-democrats-to-have-a-clear-plan-for-ai-safeguards",
         "published_at": "2026-09-13T16:30:00Z",
         "outlet_id": "techcrunch",
         "outlet_name": "TechCrunch",
-        "dek": "Obama recently said that Democrats need to make artificial intelligence one of their \u201ccentral agendas\u201d and \u201chave a very clear plan\u201d to address concerns around the technology\u2019s economic impact and safety."
+        "dek": "Obama recently said that Democrats need to make artificial intelligence one of their “central agendas” and “have a very clear plan” to address concerns around the technology’s economic impact and safety."
       },
       {
-        "title": "Obama says Democrats should have a \u2018very clear plan\u2019 on AI policy",
+        "title": "Obama says Democrats should have a ‘very clear plan’ on AI policy",
         "canonical_url": "https://www.nbcnews.com/politics/congress/obama-says-democrats-clear-plan-ai-policy-rcna597555",
         "published_at": "2026-09-13T21:56:43Z",
         "outlet_id": "nbc",
@@ -341,12 +349,12 @@
         "dek": "Researchers at AI companies have been warning about safety risks, and industry leaders have called for a slowdown in development."
       },
       {
-        "title": "Obama and the Dems are suspiciously sounding the \u2018AI apocalypse\u2019 alarm \u2014 just in time for the midterms",
+        "title": "Obama and the Dems are suspiciously sounding the ‘AI apocalypse’ alarm — just in time for the midterms",
         "canonical_url": "https://nypost.com/2026/09/13/opinion/obama-and-the-dems-are-suspiciously-sounding-the-ai-apocalypse-alarm-just-in-time-for-the-midterms",
         "published_at": "2026-09-14T02:15:33Z",
         "outlet_id": "nypost",
         "outlet_name": "New York Post",
-        "dek": "The \u201cAI Apocalypse\u201d scare campaign looks suspiciously like the climate hoax."
+        "dek": "The “AI Apocalypse” scare campaign looks suspiciously like the climate hoax."
       }
     ],
     "labels": {
