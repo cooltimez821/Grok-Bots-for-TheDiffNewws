@@ -1,19 +1,12 @@
 {
-  "stories_total": 131,
-  "feed_stories": 2,
-  "held_single_outlet": 129,
-  "deduped": 0,
-  "unclustered": 0,
-  "by_category": {
-    "prism": 2,
-    "source_code": 1,
-    "weight_and_bias": 128
-  },
-  "by_bias_band": {
-    "mixed": 2
-  },
+  "feed_stories": 8,
+  "held_single_outlet": null,
   "unexplained_merges": 0,
-  "clustered_articles": 134,
-  "survivors": 134,
-  "generated_at": "2026-09-14T13:49:53.272957Z"
+  "by_bias_band": {
+    "mixed": 3,
+    "center": 3,
+    "lean_left": 2
+  },
+  "note": "density squeeze from existing catalog articles; satellites split; unique outlets; no skeleton blindspots; no Reuters/AP",
+  "generated_at": "2026-09-14T14:01:49.433452+00:00"
 }
