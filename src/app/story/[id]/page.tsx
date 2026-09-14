@@ -35,7 +35,7 @@ export default async function StoryDetailPage({ params }: PageProps) {
         available={available}
       />
       <div className="pt-2">
-        <span className="mb-1.5 inline-block rounded-sm border border-[var(--accent-ring)] bg-[var(--accent-soft)] px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.1em] text-[var(--accent)]">
+        <span className="mb-1.5 inline-block rounded border border-[var(--violet-ring)] bg-[var(--violet-soft)] px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.14em] text-[var(--violet)]">
           {categoryLabel(story.primary_category)}
         </span>
         <h1 className="mb-2 mt-2 text-[22px] font-bold leading-tight tracking-tight text-[var(--ink)] md:text-[28px]">

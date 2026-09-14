@@ -18,7 +18,7 @@ export function MemberList({ members, outletCount }: MemberListProps) {
             key={`${m.canonical_url}-${i}`}
             className="rounded-sm border border-[var(--border)] bg-[var(--surface)] p-3 shadow-[var(--shadow-card)]"
           >
-            <div className="text-[11px] font-bold uppercase tracking-[0.06em] text-[var(--accent)]">
+            <div className="text-[11px] font-bold uppercase tracking-[0.06em] text-[var(--violet)]">
               {m.outlet_name}
             </div>
             <h4 className="mt-1 text-[14px] font-semibold leading-snug text-[var(--ink)]">
@@ -35,7 +35,7 @@ export function MemberList({ members, outletCount }: MemberListProps) {
                 href={m.canonical_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-semibold text-[var(--accent)] underline-offset-2 hover:underline"
+                className="font-semibold text-[var(--violet)] underline-offset-2 hover:underline"
               >
                 Open source ↗
               </a>

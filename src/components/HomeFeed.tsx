@@ -31,7 +31,7 @@ export function HomeFeed({ stories }: HomeFeedProps) {
         available={available}
       />
       {stories.length > 0 && stories.length < 12 ? (
-        <p className="mb-3 text-[12px] text-[var(--faint)]">
+        <p className="mb-3 text-[11px] font-medium tracking-[0.02em] text-[var(--faint)]">
           Showing multi-outlet stories
         </p>
       ) : null}

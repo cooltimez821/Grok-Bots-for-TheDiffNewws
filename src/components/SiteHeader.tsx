@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 type SiteHeaderProps = {
-  variant?: "home" | "detail";
+  variant?: "home" | "detail" | "agents";
   rightLabel?: string;
 };
 
@@ -23,7 +23,7 @@ export function SiteHeader({
   );
 
   return (
-    <header className="flex shrink-0 items-center justify-between border-b border-[var(--ink)] pb-2.5 pt-2">
+    <header className="flex shrink-0 items-start justify-between gap-6 border-b border-[var(--ink)] pb-3 pt-2">
       {variant === "detail" ? (
         <div className="flex items-center gap-2">
           <Link
@@ -42,8 +42,24 @@ export function SiteHeader({
           {brand}
         </Link>
       )}
-      <div className="hidden text-[10px] font-medium uppercase tracking-[0.04em] text-[var(--faint)] sm:block">
-        {rightLabel}
+      <div className="flex shrink-0 items-center gap-3.5 pt-1">
+        {variant === "agents" ? (
+          <Link
+            href="/"
+            className="whitespace-nowrap text-[12px] font-semibold text-[var(--violet)] no-underline hover:text-[var(--violet-hover)]"
+          >
+            ← Feed
+          </Link>
+        ) : (
+          <>
+            <div className="hidden text-[10px] font-medium uppercase tracking-[0.04em] text-[var(--faint)] sm:block">
+              {rightLabel}
+            </div>
+            <Link href="/for-agents" className="agents-btn" data-testid="agents-btn">
+              Agents
+            </Link>
+          </>
+        )}
       </div>
     </header>
   );

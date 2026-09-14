@@ -31,9 +31,10 @@ export function CategoryNav({ value, onChange, available }: CategoryNavProps) {
             key={item.id}
             type="button"
             onClick={() => onChange(item.id)}
+            aria-pressed={on}
             className={
               on
-                ? "shrink-0 whitespace-nowrap rounded-full border border-[var(--accent)] bg-[var(--accent)] px-3 py-1.5 text-[11px] font-semibold text-[var(--on-accent)]"
+                ? "shrink-0 whitespace-nowrap rounded-full border border-[var(--violet)] bg-[var(--violet)] px-3 py-1.5 text-[11px] font-semibold text-[var(--on-violet)]"
                 : "shrink-0 whitespace-nowrap rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 text-[11px] font-medium text-[var(--muted)]"
             }
           >
