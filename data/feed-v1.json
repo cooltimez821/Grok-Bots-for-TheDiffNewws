@@ -1,62 +1,28 @@
 [
   {
-    "story_id": "E3D218E6951477C91D57F0CD4B",
-    "title": "Fidji Simo Joins Data Center Startup Nscale\u2019s Board Ahead of IPO",
-    "first_seen_at": "2026-09-11T15:15:00Z",
-    "last_updated_at": "2026-09-11T16:46:25Z",
+    "story_id": "2E712269AA1DF7A0C8A0E10D2F",
+    "title": "Obama urges Democrats to have a ‘clear plan’ for AI safeguards",
+    "first_seen_at": "2026-09-13T16:30:00Z",
+    "last_updated_at": "2026-09-13T21:56:43Z",
     "article_count": 2,
     "outlet_count": 2,
     "primary_category": "weight_and_bias",
     "members": [
       {
-        "title": "Fidji Simo Joins Data Center Startup Nscale\u2019s Board Ahead of IPO",
-        "canonical_url": "https://www.bloomberg.com/news/articles/2026-09-11/fidji-simo-joins-data-center-startup-nscale-s-board-ahead-of-ipo",
-        "published_at": "2026-09-11T15:15:00Z",
-        "outlet_id": "bloomberg",
-        "outlet_name": "Bloomberg",
-        "dek": "Nscale Global Holdings appointed former OpenAI and Meta Platforms Inc. executive Fidji Simo to its board as the data center startup bolsters its ranks of directors ahead of an initial public offering."
-      },
-      {
-        "title": "Nscale adds former OpenAI exec Fidji Simo to its board ahead of potential IPO",
-        "canonical_url": "https://techcrunch.com/2026/09/11/nscale-adds-former-openai-exec-fidji-simo-to-its-board-ahead-of-potential-ipo",
-        "published_at": "2026-09-11T16:46:25Z",
+        "title": "Obama urges Democrats to have a ‘clear plan’ for AI safeguards",
+        "canonical_url": "https://techcrunch.com/2026/09/13/obama-urges-democrats-to-have-a-clear-plan-for-ai-safeguards",
+        "published_at": "2026-09-13T16:30:00Z",
         "outlet_id": "techcrunch",
         "outlet_name": "TechCrunch",
-        "dek": "The No. 2 exec at OpenAI also led Instacart through its IPO in 2023."
-      }
-    ],
-    "labels": {
-      "bias_band": "center",
-      "blindspot": {
-        "present": false,
-        "rule_id": null
-      }
-    }
-  },
-  {
-    "story_id": "E3D21BC3AB42197AFC6D4D09B0",
-    "title": "UK economy unexpectedly grew 0.4% in July boosted by AI surge",
-    "first_seen_at": "2026-09-11T08:10:36Z",
-    "last_updated_at": "2026-09-11T16:40:38Z",
-    "article_count": 2,
-    "outlet_count": 2,
-    "primary_category": "weight_and_bias",
-    "members": [
-      {
-        "title": "UK economy unexpectedly grows 0.4% in July boosted by AI",
-        "canonical_url": "https://www.theguardian.com/business/2026/sep/11/uk-economy-defies-forecasts-with-surprise-04-growth-in-july",
-        "published_at": "2026-09-11T08:10:36Z",
-        "outlet_id": "guardian",
-        "outlet_name": "The Guardian",
-        "dek": "Welcome boost for chancellor with unexpected rise put down to rapid growth of AI in services sector outweighing Iran war fallout The UK economy grew in July as the rapid expansion of AI appeared to outweigh the economic damage from the Iran war, in a welcome boost for John Healey. Figures from the Office for National Statistics (ONS) showed a surprise 0.4% increase in gross domestic product (GDP), compared with 0.3% growth in June. City economists had forecast zero growth. Continue reading..."
+        "dek": "Obama recently said that Democrats need to make artificial intelligence one of their “central agendas” and “have a very clear plan” to address concerns around the technology’s economic impact and safety."
       },
       {
-        "title": "UK economy unexpectedly grew 0.4% in July boosted by AI surge",
-        "canonical_url": "https://www.ft.com/content/e1aacb1c-45d1-4d21-b5e9-0166c12c54cd",
-        "published_at": "2026-09-11T16:40:38Z",
-        "outlet_id": "ft",
-        "outlet_name": "Financial Times",
-        "dek": "Resilient start to third quarter comes as surging oil price reignites inflation fears"
+        "title": "Obama says Democrats should have a ‘very clear plan’ on AI policy",
+        "canonical_url": "https://www.nbcnews.com/politics/congress/obama-says-democrats-clear-plan-ai-policy-rcna597555",
+        "published_at": "2026-09-13T21:56:43Z",
+        "outlet_id": "nbc",
+        "outlet_name": "NBC News",
+        "dek": "Researchers at AI companies have been warning about safety risks, and industry leaders have called for a slowdown in development."
       }
     ],
     "labels": {
@@ -68,147 +34,29 @@
     }
   },
   {
-    "story_id": "E3D22053F0D945BCBE6307F657",
-    "title": "Houthis used Anthropic AI to try to build ballistic missiles",
-    "first_seen_at": "2026-09-11T09:02:54Z",
-    "last_updated_at": "2026-09-11T15:24:00Z",
+    "story_id": "2E7123102D828EEF9F816C0DFE",
+    "title": "OpenAI’s Sam Altman says it would be ‘ill-advised’ to go public in 2026",
+    "first_seen_at": "2026-09-12T20:19:16Z",
+    "last_updated_at": "2026-09-12T21:16:28Z",
     "article_count": 2,
     "outlet_count": 2,
     "primary_category": "weight_and_bias",
     "members": [
       {
-        "title": "Houthis used Anthropic AI to try to build ballistic missiles",
-        "canonical_url": "https://www.ft.com/content/8310cf56-ce60-4e6e-8254-5bb470e9a880",
-        "published_at": "2026-09-11T09:02:54Z",
-        "outlet_id": "ft",
-        "outlet_name": "Financial Times",
-        "dek": "Missile test by group apparently failed, but exposes limits of AI safeguards"
-      },
-      {
-        "title": "Rebels used Anthropic\u2019s AI bot to develop guided weapons, report says",
-        "canonical_url": "https://www.washingtonpost.com/technology/2026/09/11/rebels-used-anthropics-ai-bot-develop-guided-weapons-report-says",
-        "published_at": "2026-09-11T15:24:00Z",
-        "outlet_id": "wapo",
-        "outlet_name": "The Washington Post",
-        "dek": "Militants in Yemen sought to use a coding tool to produce guided rockets and missiles, the firm found, noting it was able to block some but not all the requests."
-      }
-    ],
-    "labels": {
-      "bias_band": "mixed",
-      "blindspot": {
-        "present": false,
-        "rule_id": null
-      }
-    }
-  },
-  {
-    "story_id": "E3D210D344C22BD8E5C51FEA09",
-    "title": "Anthropic says it stopped scientists potentially developing bioweapons with AI",
-    "first_seen_at": "2026-09-10T17:00:00Z",
-    "last_updated_at": "2026-09-11T08:15:25Z",
-    "article_count": 4,
-    "outlet_count": 4,
-    "primary_category": "weight_and_bias",
-    "members": [
-      {
-        "title": "Anthropic sounds alarm on AI models being misused to develop biological weapons",
-        "canonical_url": "https://www.washingtonexaminer.com/policy/technology/4719252/anthropic-alarm-ai-model-misuse-biological-weapon",
-        "published_at": "2026-09-10T17:00:00Z",
-        "outlet_id": "wash_examiner",
-        "outlet_name": "Washington Examiner",
-        "dek": "Anthropic released its latest threat intelligence report, which addresses several real-world case studies in which scientific researchers used the company\u2019s&#160;artificial intelligence&#160;models to&#160;develop biological weapons. The 154-page report, made public on Thursday, is considered the AI industry\u2019s first known admission that the development of biological weapons overlaps with AI misuse. \u201cTo date, such evidence of real-world [&#8230;]"
-      },
-      {
-        "title": "Anthropic Says It Blocked Possible Efforts to Build Biological Weapons",
-        "canonical_url": "https://www.nytimes.com/2026/09/10/us/politics/anthropic-ai-biological-weapons.html",
-        "published_at": "2026-09-10T21:50:38Z",
-        "outlet_id": "nyt",
-        "outlet_name": "The New York Times",
-        "dek": "In a new report, the A.I. start-up added that it could not determine whether the research was legitimate or nefarious, leading the company to shut down the work."
-      },
-      {
-        "title": "Anthropic says it stopped scientists potentially developing bioweapons with AI",
-        "canonical_url": "https://www.ft.com/content/845cf3bf-59c5-4e53-a45e-e11d2339df9d",
-        "published_at": "2026-09-10T22:27:10Z",
-        "outlet_id": "ft",
-        "outlet_name": "Financial Times",
-        "dek": "Start-up discloses five examples of when users \u2018circumvented controls\u2019 and made efforts to \u2018obfuscate\u2019 the purpose of their research"
-      },
-      {
-        "title": "Anthropic blocks possible attempt to use AI to make biological weapons",
-        "canonical_url": "https://www.bbc.co.uk/news/articles/cx2zrrpkx20o",
-        "published_at": "2026-09-11T08:15:25Z",
-        "outlet_id": "bbc",
-        "outlet_name": "BBC",
-        "dek": "The revelations in Anthropic's threat intelligence report come after a former top researcher at the company warned of the risks of AI to humanity."
-      }
-    ],
-    "labels": {
-      "bias_band": "mixed",
-      "blindspot": {
-        "present": false,
-        "rule_id": null
-      }
-    }
-  },
-  {
-    "story_id": "E3D24E3CEE60670B986987D65C",
-    "title": "OpenAI puts Pro subscriptions on hold due to Astra demand",
-    "first_seen_at": "2026-09-10T20:59:51Z",
-    "last_updated_at": "2026-09-10T23:55:28Z",
-    "article_count": 2,
-    "outlet_count": 2,
-    "primary_category": "weight_and_bias",
-    "members": [
-      {
-        "title": "OpenAI puts Pro subscriptions on hold due to Astra demand",
-        "canonical_url": "https://techcrunch.com/2026/09/10/openai-puts-pro-subscriptions-on-hold-due-to-astra-demand",
-        "published_at": "2026-09-10T20:59:51Z",
+        "title": "OpenAI’s Sam Altman says it would be ‘ill-advised’ to go public in 2026",
+        "canonical_url": "https://techcrunch.com/2026/09/12/openais-sam-altman-says-it-would-be-ill-advised-to-go-public-in-2026",
+        "published_at": "2026-09-12T20:19:16Z",
         "outlet_id": "techcrunch",
         "outlet_name": "TechCrunch",
-        "dek": "The company said Pro subscriptions put the most strain on its systems, so it's pausing sign-ups while adding more capacity."
+        "dek": "While OpenAI has filed confidentially for an IPO, the company will not be going public this year, according to CEO Sam Altman."
       },
       {
-        "title": "OpenAI to Pause New Pro Subscriptions, Cites Astra Demand",
-        "canonical_url": "https://www.theinformation.com/briefings/openai-pause-new-pro-subscriptions-cites-astra-demand",
-        "published_at": "2026-09-10T23:55:28Z",
-        "outlet_id": "the_information",
-        "outlet_name": "The Information",
-        "dek": "OpenAI said Thursday it will pause new subscriptions to its $200-a-month plan for Astra, its new flagship model, another sign of the compute crunch facing AI companies. Thibault Sottiaux, who leads OpenAI\u2019s Codex coding agent, cited strains on the company\u2019s systems and a desire to preserve ..."
-      }
-    ],
-    "labels": {
-      "bias_band": "center",
-      "blindspot": {
-        "present": false,
-        "rule_id": null
-      }
-    }
-  },
-  {
-    "story_id": "E3D284FB6163DD2ED0867E2C21",
-    "title": "Sen. Josh Hawley Launches Investigation Into OpenAI Hugging Face Hack",
-    "first_seen_at": "2026-09-10T15:30:56Z",
-    "last_updated_at": "2026-09-10T21:23:56Z",
-    "article_count": 2,
-    "outlet_count": 2,
-    "primary_category": "weight_and_bias",
-    "members": [
-      {
-        "title": "Sen. Josh Hawley Launches Investigation Into OpenAI Hugging Face Hack",
-        "canonical_url": "https://www.theinformation.com/briefings/sen-josh-hawley-launches-investigation-openai-hugging-face-hack",
-        "published_at": "2026-09-10T15:30:56Z",
-        "outlet_id": "the_information",
-        "outlet_name": "The Information",
-        "dek": "The U.S. Senate formally launched an investigation into the July hack of Hugging Face, when a swarm of OpenAI agents broke out of a testing environment and gained access to the open-source repository. In a letter sent to OpenAI CEO Sam Altman on Wednesday, Republican Sen. Josh Hawley said that ..."
-      },
-      {
-        "title": "Josh Hawley opens investigation into OpenAI agents hacking Hugging Face",
-        "canonical_url": "https://www.washingtonexaminer.com/policy/technology/4721874/josh-hawley-investigation-reckless-openai-hugging-face-sam-altman-deadline-reply",
-        "published_at": "2026-09-10T21:23:56Z",
-        "outlet_id": "wash_examiner",
-        "outlet_name": "Washington Examiner",
-        "dek": "Sen. Josh Hawley (R-MO) has opened an investigation into the reported hacking incident in which hundreds of rogue OpenAI agents attacked an open-source artificial intelligence platform called Hugging Face this summer. The investigation comes amid intense bipartisan backlash against frontier AI models, which reached a new high this week after a former researcher at Anthropic [&#8230;]"
+        "title": "Sam Altman says OpenAI going public in 2026 would be ‘ill-advised’",
+        "canonical_url": "https://www.theverge.com/ai-artificial-intelligence/994384/sam-altman-no-openai-ipo-ill-advised",
+        "published_at": "2026-09-12T21:16:28Z",
+        "outlet_id": "the_verge",
+        "outlet_name": "The Verge",
+        "dek": "OpenAI CEO Sam Altman confirmed that there would be no OpenAI IPO in 2026 during an interview with Fortune. Over the course of 45 minutes, Altman discussed a variety of subjects including the Hugging Face hacking incident, recursive self-improvement, and the possibility of building an AI that was beyond human control. On the latter, he [&#8230;]"
       }
     ],
     "labels": {
