@@ -68,3 +68,8 @@ Same `event_key` (`amodei_call`) merges across the **48h freshness window**, not
 ## one_side_thin (2026-09-14 evening)
 
 Thick partisan side must **strictly outnumber center** (`thick > center`) and be ≥3 vs ≤1. Tied with center stays quiet (Trump 3ll/3c/1rr is beat skew).
+
+
+## one_side_thin beat-skew (2026-09-15)
+
+Stay quiet when the thin side is **only `nypost`** and the thick side has ≥2 tech-beat outlets (`the_verge`, `wired`, `techcrunch`, `ars_technica`). Catalog AI-press lean ≠ a spectrum hole.

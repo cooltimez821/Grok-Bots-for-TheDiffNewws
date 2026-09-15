@@ -99,6 +99,7 @@ TOKEN_ALIAS = {
 LEFT_BANDS = {"left", "lean_left"}
 RIGHT_BANDS = {"right", "lean_right"}
 CENTER_BANDS = {"center"}
+TECH_BEAT_OUTLETS = {"the_verge", "wired", "techcrunch", "ars_technica"}
 
 POLICY_HINTS = re.compile(
     r"\b(congress|senate|house|bill|lawmaker|regulate|regulation|ban|"
@@ -623,10 +624,22 @@ def compute_blindspot(members: list, outlets: dict, category: str) -> dict:
         # strictly outnumber center (and ≥3 vs ≤1). Tied with center or
         # center absolute majority stays quiet — beat/catalog skew.
         if left > 0 and right > 0:
-            if left == 1 and right >= 3 and right > center:
-                return {"present": True, "rule_id": "one_side_thin"}
-            if right == 1 and left >= 3 and left > center:
-                return {"present": True, "rule_id": "one_side_thin"}
+            thick_left = left >= 3 and right == 1 and left > center
+            thick_right = right >= 3 and left == 1 and right > center
+            if thick_left or thick_right:
+                oids = [m["outlet_id"] for m in members]
+                thin_ids = [
+                    m["outlet_id"]
+                    for m in members
+                    if outlets.get(m["outlet_id"], {}).get("bias_band")
+                    in (RIGHT_BANDS if thick_left else LEFT_BANDS)
+                ]
+                tech_on_thick = sum(1 for oid in oids if oid in TECH_BEAT_OUTLETS)
+                # Bias: nypost-only thin vs tech-heavy thick is catalog beat skew
+                if set(thin_ids) <= {"nypost"} and tech_on_thick >= 2:
+                    pass
+                else:
+                    return {"present": True, "rule_id": "one_side_thin"}
 
     if allow_doc_geo:
         places: set[str] = set()
