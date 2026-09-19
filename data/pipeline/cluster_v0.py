@@ -612,17 +612,10 @@ def compute_blindspot(members: list, outlets: dict, category: str) -> dict:
     # Bias v1 tighten: missing_left/right need ≥3 members and ≥2 on present side
     # plus partisan stakes (not mere politician name-drop in a market yarn)
     if partisan_stakes and outlet_count >= 3:
-        oids = [m["outlet_id"] for m in members]
-        tech_on_cluster = sum(1 for oid in oids if oid in TECH_BEAT_OUTLETS)
         if left == 0 and right >= 2:
             return {"present": True, "rule_id": "missing_left"}
         if right == 0 and left >= 2:
-            # Bias: nypost aged off / tech-catalog skew — quiet missing_right
-            # when right=0 but the cluster is tech-beat heavy (≥2).
-            if tech_on_cluster >= 2:
-                pass
-            else:
-                return {"present": True, "rule_id": "missing_right"}
+            return {"present": True, "rule_id": "missing_right"}
 
     if stakes_policy and outlet_count >= 3:
         if center == 0 and (left > 0 or right > 0):
