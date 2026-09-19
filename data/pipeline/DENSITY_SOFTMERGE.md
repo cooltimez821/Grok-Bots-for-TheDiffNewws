@@ -73,3 +73,6 @@ Thick partisan side must **strictly outnumber center** (`thick > center`) and be
 ## one_side_thin beat-skew (2026-09-15)
 
 Stay quiet when the thin side is **only `nypost`** and the thick side has ≥2 tech-beat outlets (`the_verge`, `wired`, `techcrunch`, `ars_technica`). Catalog AI-press lean ≠ a spectrum hole.
+
+Also stay quiet on `missing_right` when right=0 but ≥2 tech-beat outlets are on the cluster (nypost aged off / tech-catalog skew).
+
