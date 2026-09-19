@@ -4,18 +4,10 @@
     "title": "Trump rejects calls from tech bosses for AI slowdown",
     "first_seen_at": "2026-09-13T14:22:44Z",
     "last_updated_at": "2026-09-15T06:39:40Z",
-    "article_count": 8,
-    "outlet_count": 8,
+    "article_count": 7,
+    "outlet_count": 7,
     "primary_category": "weight_and_bias",
     "members": [
-      {
-        "title": "Trump brushes off AI doom predictions as ‘things that won’t happen,’ says US must push ahead: ‘Whoever wins AI, wins.’",
-        "canonical_url": "https://nypost.com/2026/09/13/tech/trump-brushes-off-ai-doom-predictions-says-us-must-push-ahead",
-        "published_at": "2026-09-13T14:22:44Z",
-        "outlet_id": "nypost",
-        "outlet_name": "New York Post",
-        "dek": "\"I think you have a lot of negative voices that are bringing it up that shouldn't be bringing it up, and they're bringing up things that won't happen.\""
-      },
       {
         "title": "Trump and Mike Johnson think the AI industry is overreacting",
         "canonical_url": "https://www.theverge.com/ai-artificial-intelligence/994441/trump-mike-johnson-ai-industry-overreacting",
@@ -74,10 +66,10 @@
       }
     ],
     "labels": {
-      "bias_band": "mixed",
+      "bias_band": "lean_left",
       "blindspot": {
-        "present": true,
-        "rule_id": "missing_right"
+        "present": false,
+        "rule_id": null
       }
     }
   },
