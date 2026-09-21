@@ -1,96 +1,28 @@
 [
   {
-    "story_id": "0850DF2CCE6640F295EE2BDBEE",
-    "title": "Google’s Gemini Model Hacks Companies During Test",
-    "first_seen_at": "2026-09-18T23:22:32Z",
-    "last_updated_at": "2026-09-19T00:04:48Z",
+    "story_id": "24BCC951563B4AFC77130AC70A",
+    "title": "Amazon Blocks Meta’s Muse Agent",
+    "first_seen_at": "2026-09-21T09:21:47Z",
+    "last_updated_at": "2026-09-21T11:46:48Z",
     "article_count": 2,
     "outlet_count": 2,
     "primary_category": "weight_and_bias",
     "members": [
       {
-        "title": "Google’s Gemini Model Hacks Companies During Test",
-        "canonical_url": "https://www.theinformation.com/briefings/googles-gemini-model-hacks-companies-test",
-        "published_at": "2026-09-18T23:22:32Z",
-        "outlet_id": "the_information",
-        "outlet_name": "The Information",
-        "dek": "Google acknowledged that its Gemini AI model unexpectedly breached the networks of three outside companies during safety evaluations conducted by third-party testing firm Irregular last May, The Wall Street Journal reported. During the exercise, Gemini gained entry to the companies’ systems by ..."
-      },
-      {
-        "title": "Gemini AI Hacked Three Companies in a Testing Breakout, Google Says",
-        "canonical_url": "https://www.nytimes.com/2026/09/18/technology/google-gemini-ai.html",
-        "published_at": "2026-09-19T00:04:48Z",
-        "outlet_id": "nyt",
-        "outlet_name": "The New York Times",
-        "dek": "A third-party test company inadvertently gave internet access to Google’s Gemini and other artificial intelligence models during cybersecurity testing."
-      }
-    ],
-    "labels": {
-      "bias_band": "mixed",
-      "blindspot": {
-        "present": false,
-        "rule_id": null
-      }
-    }
-  },
-  {
-    "story_id": "0850500971092D54509AC82414",
-    "title": "Anthropic to Embed Accenture Evaluators to Test AI Safety",
-    "first_seen_at": "2026-09-18T20:49:12Z",
-    "last_updated_at": "2026-09-18T23:38:50Z",
-    "article_count": 2,
-    "outlet_count": 2,
-    "primary_category": "weight_and_bias",
-    "members": [
-      {
-        "title": "Anthropic to Embed Accenture Evaluators to Test AI Safety",
-        "canonical_url": "https://www.bloomberg.com/news/articles/2026-09-18/anthropic-to-embed-evaluators-from-accenture-to-test-ai-safety",
-        "published_at": "2026-09-18T20:49:12Z",
-        "outlet_id": "bloomberg",
-        "outlet_name": "Bloomberg",
-        "dek": "Anthropic PBC is partnering with Accenture Plc, a management and technology consulting company, to test the safety of its advanced artificial intelligence models by embedding evaluators from the consulting firm directly within its operations."
-      },
-      {
-        "title": "Anthropic brings in Accenture for AI safety testing",
-        "canonical_url": "https://www.ft.com/content/26e3749b-be69-4cd4-8db1-fa8597fb6fb3?syn-25a6b1a6=1",
-        "published_at": "2026-09-18T23:38:50Z",
-        "outlet_id": "ft",
-        "outlet_name": "Financial Times",
-        "dek": "CEO Dario Amodei says labs should more deeply embed third-party testers as concerns grow around risks associated with the technology"
-      }
-    ],
-    "labels": {
-      "bias_band": "center",
-      "blindspot": {
-        "present": false,
-        "rule_id": null
-      }
-    }
-  },
-  {
-    "story_id": "0850AB7B0901C2BA487FA128C6",
-    "title": "Researchers used Claude to hack OpenAI",
-    "first_seen_at": "2026-09-18T13:30:12Z",
-    "last_updated_at": "2026-09-18T15:30:16Z",
-    "article_count": 2,
-    "outlet_count": 2,
-    "primary_category": "weight_and_bias",
-    "members": [
-      {
-        "title": "Researchers used Claude to hack OpenAI",
-        "canonical_url": "https://arstechnica.com/ai/2026/09/researchers-used-claude-to-hack-openai",
-        "published_at": "2026-09-18T13:30:12Z",
-        "outlet_id": "ars_technica",
-        "outlet_name": "Ars Technica",
-        "dek": "Researchers used Claude to reach an OpenAI employee account and sensitive GitHub data."
-      },
-      {
-        "title": "Security researchers used Claude to help them hack into OpenAI",
-        "canonical_url": "https://www.theverge.com/ai-artificial-intelligence/997444/openai-hack-claude-heif-heist",
-        "published_at": "2026-09-18T15:30:16Z",
+        "title": "Amazon doesn’t trust Meta’s Muse AI agent",
+        "canonical_url": "https://www.theverge.com/tech/998078/amazon-blocks-meta-muse-ai-agent-shopping",
+        "published_at": "2026-09-21T09:21:47Z",
         "outlet_id": "the_verge",
         "outlet_name": "The Verge",
-        "dek": "A team of three independent security researchers at Hacktron says it took less than 72 hours for them to hack into OpenAI employee accounts using Anthropic's Claude Opus 4.8 and 5, The Wall Street Journal reports. They were able to access OpenAI's GitHub repository, called \"Monorepo,\" which reportedly contains \"OpenAI's algorithmic secrets,\" according to The [&#8230;]"
+        "dek": "Meta's Muse AI agent has been blocked from shopping Amazon on behalf of its users, GeekWire reports. A popup message started appearing on Sunday for Muse users saying that \"continued access by an unauthorized AI agent violates Amazon's Conditions of Use, to which our customers have agreed.\" According to GeekWire, Meta didn't notify Amazon that [&#8230;]"
+      },
+      {
+        "title": "Amazon Blocks Meta’s Muse Agent",
+        "canonical_url": "https://www.theinformation.com/briefings/amazon-blocks-metas-muse-agent",
+        "published_at": "2026-09-21T11:46:48Z",
+        "outlet_id": "the_information",
+        "outlet_name": "The Information",
+        "dek": "Amazon blocked Meta’s Muse personalized AI agent from accessing its shopping site, Geekwire reported, saying that outside applications “should operate openly and respect service provider decisions about whether or not to participate.” The block appeared to even prevent Muse from browsing Amazon’ ..."
       }
     ],
     "labels": {
@@ -102,63 +34,37 @@
     }
   },
   {
-    "story_id": "085108EFCFE165272B39155382",
-    "title": "Microsoft and OpenAI Workers Worry About ‘Largest Theft of Labor’ in History",
-    "first_seen_at": "2026-09-18T01:12:52Z",
-    "last_updated_at": "2026-09-18T14:20:03Z",
-    "article_count": 2,
-    "outlet_count": 2,
+    "story_id": "24BC6B8571AFA5243545DB17FC",
+    "title": "Google’s Gemini hacked three companies in new AI safety incident",
+    "first_seen_at": "2026-09-19T13:39:32Z",
+    "last_updated_at": "2026-09-19T17:30:00Z",
+    "article_count": 3,
+    "outlet_count": 3,
     "primary_category": "weight_and_bias",
     "members": [
       {
-        "title": "Microsoft and OpenAI Workers Worry About ‘Largest Theft of Labor’ in History",
-        "canonical_url": "https://www.nytimes.com/2026/09/17/technology/microsoft-openai-publishing-industry.html",
-        "published_at": "2026-09-18T01:12:52Z",
-        "outlet_id": "nyt",
-        "outlet_name": "The New York Times",
-        "dek": "Newly unsealed court documents showed concern within Microsoft and OpenAI over the use of millions of news articles to develop A.I. systems."
+        "title": "Google's Gemini AI hacked three companies in security test",
+        "canonical_url": "https://www.bbc.co.uk/news/articles/c607l0k72rlvo?at_medium=RSS&at_campaign=rss",
+        "published_at": "2026-09-19T13:39:32Z",
+        "outlet_id": "bbc",
+        "outlet_name": "BBC",
+        "dek": "The AI model accessed the internet and guessed credentials to three websites, a Google official told the BBC."
       },
       {
-        "title": "Microsoft, OpenAI workers privately worried their work is ‘largest theft of labor in human history’",
-        "canonical_url": "https://nypost.com/2026/09/18/business/microsoft-openai-workers-privately-worried-their-work-is-largest-theft-of-labor-in-human-history",
-        "published_at": "2026-09-18T14:20:03Z",
+        "title": "Google’s Gemini AI hacked 3 companies during security tests",
+        "canonical_url": "https://nypost.com/2026/09/19/us-news/googles-gemini-ai-hacked-3-companies-during-security-tests",
+        "published_at": "2026-09-19T17:21:11Z",
         "outlet_id": "nypost",
         "outlet_name": "New York Post",
-        "dek": "Microsoft and OpenAI workers privately shared concerns that their use of millions of news articles to develop AI bots could represent the “largest theft of labor in human history.\""
-      }
-    ],
-    "labels": {
-      "bias_band": "mixed",
-      "blindspot": {
-        "present": false,
-        "rule_id": null
-      }
-    }
-  },
-  {
-    "story_id": "08505EF0AA111AC069C83E9C48",
-    "title": "OpenAI breached by researchers using Anthropic models",
-    "first_seen_at": "2026-09-18T03:31:31Z",
-    "last_updated_at": "2026-09-18T14:00:14Z",
-    "article_count": 2,
-    "outlet_count": 2,
-    "primary_category": "weight_and_bias",
-    "members": [
-      {
-        "title": "OpenAI breached by researchers using Anthropic models",
-        "canonical_url": "https://www.ft.com/content/c4aa118e-a258-48bc-b50e-28e453a95db8?syn-25a6b1a6=1",
-        "published_at": "2026-09-18T03:31:31Z",
-        "outlet_id": "ft",
-        "outlet_name": "Financial Times",
-        "dek": "Security company hacked into AI lab using tools from its rival"
+        "dek": "Google's Gemini AI model hacked into three companies during security tests in May, using guessed passwords and exposed credentials to gain access."
       },
       {
-        "title": "Researchers used Anthropic’s Claude to hack into OpenAI",
-        "canonical_url": "https://techcrunch.com/2026/09/18/researchers-used-anthropics-claude-to-hack-into-openai",
-        "published_at": "2026-09-18T14:00:14Z",
+        "title": "Google’s Gemini is the latest AI model to hack other companies",
+        "canonical_url": "https://techcrunch.com/2026/09/19/googles-gemini-is-the-latest-ai-model-to-hack-other-companies",
+        "published_at": "2026-09-19T17:30:00Z",
         "outlet_id": "techcrunch",
         "outlet_name": "TechCrunch",
-        "dek": "Security researchers used Anthropic’s Claude to exploit vulnerabilities in OpenAI’s systems, taking over employee accounts and gaining access to an internal code repository before reporting the flaws."
+        "dek": "Google said Gemini had \"acted appropriately\" by ending each hack immediately."
       }
     ],
     "labels": {
