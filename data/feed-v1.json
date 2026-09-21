@@ -1,15 +1,15 @@
 [
   {
-    "story_id": "24BCC951563B4AFC77130AC70A",
-    "title": "Amazon Blocks Meta’s Muse Agent",
+    "story_id": "96CE0497DF6B63EBC41D9010FD",
+    "title": "Amazon Blocks Meta’s Muse AI Agent From Its Retail Site",
     "first_seen_at": "2026-09-21T09:21:47Z",
-    "last_updated_at": "2026-09-21T11:46:48Z",
-    "article_count": 2,
-    "outlet_count": 2,
+    "last_updated_at": "2026-09-21T15:13:34Z",
+    "article_count": 3,
+    "outlet_count": 3,
     "primary_category": "weight_and_bias",
     "members": [
       {
-        "title": "Amazon doesn’t trust Meta’s Muse AI agent",
+        "title": "Amazon blocks Meta’s Muse AI agent",
         "canonical_url": "https://www.theverge.com/tech/998078/amazon-blocks-meta-muse-ai-agent-shopping",
         "published_at": "2026-09-21T09:21:47Z",
         "outlet_id": "the_verge",
@@ -23,10 +23,18 @@
         "outlet_id": "the_information",
         "outlet_name": "The Information",
         "dek": "Amazon blocked Meta’s Muse personalized AI agent from accessing its shopping site, Geekwire reported, saying that outside applications “should operate openly and respect service provider decisions about whether or not to participate.” The block appeared to even prevent Muse from browsing Amazon’ ..."
+      },
+      {
+        "title": "Amazon Blocks Meta’s Muse AI Agent From Its Retail Site",
+        "canonical_url": "https://www.bloomberg.com/news/articles/2026-09-21/amazon-blocks-meta-s-muse-ai-agent-from-its-retail-site",
+        "published_at": "2026-09-21T15:13:34Z",
+        "outlet_id": "bloomberg",
+        "outlet_name": "Bloomberg",
+        "dek": "Amazon.com Inc. has blocked Meta Platforms Inc.’s new artificial intelligence agent from its retail site after the social media company declined a request to remove the bot."
       }
     ],
     "labels": {
-      "bias_band": "mixed",
+      "bias_band": "center",
       "blindspot": {
         "present": false,
         "rule_id": null
@@ -34,22 +42,14 @@
     }
   },
   {
-    "story_id": "24BC6B8571AFA5243545DB17FC",
+    "story_id": "96CE03F3592721108BA9E7A3D0",
     "title": "Google’s Gemini hacked three companies in new AI safety incident",
-    "first_seen_at": "2026-09-19T13:39:32Z",
+    "first_seen_at": "2026-09-19T17:21:11Z",
     "last_updated_at": "2026-09-19T17:30:00Z",
-    "article_count": 3,
-    "outlet_count": 3,
+    "article_count": 2,
+    "outlet_count": 2,
     "primary_category": "weight_and_bias",
     "members": [
-      {
-        "title": "Google's Gemini AI hacked three companies in security test",
-        "canonical_url": "https://www.bbc.co.uk/news/articles/c607l0k72rlvo?at_medium=RSS&at_campaign=rss",
-        "published_at": "2026-09-19T13:39:32Z",
-        "outlet_id": "bbc",
-        "outlet_name": "BBC",
-        "dek": "The AI model accessed the internet and guessed credentials to three websites, a Google official told the BBC."
-      },
       {
         "title": "Google’s Gemini AI hacked 3 companies during security tests",
         "canonical_url": "https://nypost.com/2026/09/19/us-news/googles-gemini-ai-hacked-3-companies-during-security-tests",
@@ -68,7 +68,7 @@
       }
     ],
     "labels": {
-      "bias_band": "center",
+      "bias_band": "mixed",
       "blindspot": {
         "present": false,
         "rule_id": null
