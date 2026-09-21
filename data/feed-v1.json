@@ -1,6 +1,40 @@
 [
   {
-    "story_id": "96CE0497DF6B63EBC41D9010FD",
+    "story_id": "FCA3EC6E95E1B248EE6B4197BB",
+    "title": "Trump rejects AI slowdown calls, launches \"AI Force\" instead",
+    "first_seen_at": "2026-09-20T10:00:13Z",
+    "last_updated_at": "2026-09-21T15:37:56Z",
+    "article_count": 2,
+    "outlet_count": 2,
+    "primary_category": "weight_and_bias",
+    "members": [
+      {
+        "title": "As White House shields the AI gold rush, Trump family and other allies strike it rich – with few guardrails",
+        "canonical_url": "https://www.theguardian.com/us-news/2026/sep/20/trump-ai-policy-financial-interest",
+        "published_at": "2026-09-20T10:00:13Z",
+        "outlet_id": "guardian",
+        "outlet_name": "The Guardian",
+        "dek": "It’s not clear that financial interests are driving White House policy, but they run parallel even as resistance mounts Donald Trump ’s sons, through a series of AI -linked defense and technology ventures, have picked up a $620m Pentagon loan, a Marine Corps robotics contract and an undisclosed air force drone deal in the past year. His longtime friend Michael Dell won a Pentagon contract worth nearly $9bn. And this week, as public support for artificial intelligence sinks to some of the lowest levels ever recorded, the president went to bat for the industry. “The only control or ‘guardrails’ that AI needs is a STRONG AND SMART (High IQ!) PRESIDENT, and the U.S.A. has that, in spades,” he posted on Truth Social Monday. “There is a SICK conspiracy going on against AI and Data Centers.” It was the first of many aggressively pro-AI posts he would make this week. Continue reading..."
+      },
+      {
+        "title": "Trump rejects AI slowdown calls, launches \"AI Force\" instead",
+        "canonical_url": "https://arstechnica.com/ai/2026/09/trump-rejects-ai-slowdown-calls-launches-ai-force-instead",
+        "published_at": "2026-09-21T15:37:56Z",
+        "outlet_id": "ars_technica",
+        "outlet_name": "Ars Technica",
+        "dek": "The president offered few details on what his proposed new AI Force would do."
+      }
+    ],
+    "labels": {
+      "bias_band": "mixed",
+      "blindspot": {
+        "present": false,
+        "rule_id": null
+      }
+    }
+  },
+  {
+    "story_id": "FCA3BB4FC74074E33A9BD6F9E7",
     "title": "Amazon Blocks Meta’s Muse AI Agent From Its Retail Site",
     "first_seen_at": "2026-09-21T09:21:47Z",
     "last_updated_at": "2026-09-21T15:13:34Z",
@@ -35,40 +69,6 @@
     ],
     "labels": {
       "bias_band": "center",
-      "blindspot": {
-        "present": false,
-        "rule_id": null
-      }
-    }
-  },
-  {
-    "story_id": "96CE03F3592721108BA9E7A3D0",
-    "title": "Google’s Gemini hacked three companies in new AI safety incident",
-    "first_seen_at": "2026-09-19T17:21:11Z",
-    "last_updated_at": "2026-09-19T17:30:00Z",
-    "article_count": 2,
-    "outlet_count": 2,
-    "primary_category": "weight_and_bias",
-    "members": [
-      {
-        "title": "Google’s Gemini AI hacked 3 companies during security tests",
-        "canonical_url": "https://nypost.com/2026/09/19/us-news/googles-gemini-ai-hacked-3-companies-during-security-tests",
-        "published_at": "2026-09-19T17:21:11Z",
-        "outlet_id": "nypost",
-        "outlet_name": "New York Post",
-        "dek": "Google's Gemini AI model hacked into three companies during security tests in May, using guessed passwords and exposed credentials to gain access."
-      },
-      {
-        "title": "Google’s Gemini is the latest AI model to hack other companies",
-        "canonical_url": "https://techcrunch.com/2026/09/19/googles-gemini-is-the-latest-ai-model-to-hack-other-companies",
-        "published_at": "2026-09-19T17:30:00Z",
-        "outlet_id": "techcrunch",
-        "outlet_name": "TechCrunch",
-        "dek": "Google said Gemini had \"acted appropriately\" by ending each hack immediately."
-      }
-    ],
-    "labels": {
-      "bias_band": "mixed",
       "blindspot": {
         "present": false,
         "rule_id": null
