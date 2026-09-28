@@ -313,6 +313,66 @@ def event_key(title: str, dek: str | None = None) -> str | None:
     return None
 
 
+# ---------------------------------------------------------------------------
+# Shared event anchor (2026-09-28)
+# ---------------------------------------------------------------------------
+# An edge needs more than shared entities + similar phrasing: both articles must
+# name the SAME event. Anchors come from title + dek (lowercased) and are:
+#   1. event classes from a closed lexicon (dinner, meeting, launch, lawsuit,
+#      acquisition, hire, ipo, funding, investigation, hack, ban);
+#   2. product/version names: a capitalized word followed by a version number,
+#      e.g. "Sonnet 5.5", "GPT-5" -> "product:sonnet 5.5". Words that are known
+#      named entities (KNOWN) or months are not products on their own;
+#   3. pair-level fallback: the density event_key (title-primary) counts as a
+#      shared anchor ("event:<key>") ONLY when at least one of the two articles
+#      has no lexicon/product anchor of its own. When BOTH name an explicit
+#      event (e.g. "dinner" vs "launch" + "Sonnet 5.5"), those must overlap:
+#      a "CEO who called for a slowdown" backstory phrase cannot bridge them.
+# Shared named entities never count (they are not in the lexicon) and generic
+# words ("ai", "ceo", "model", "company") are not anchors.
+# Rule: every would-be edge (density path and legacy Jaccard path) must pass
+# _anchor_gate; blocked edges are counted in summary.edges_removed_event_anchor.
+EVENT_ANCHOR_CLASSES = (
+    ("dinner", r"dinner|dinners|dine|dined|dines|dining"),
+    ("meeting", r"meeting|meetings|meet|meets|met with|summit"),
+    ("launch", r"launch|launches|launched|launching|release|releases|released|"
+               r"unveil|unveils|unveiled|debut|debuts|debuted|rolls out|rolled out"),
+    ("lawsuit", r"lawsuit|lawsuits|sue|sues|sued|suing|litigation"),
+    ("acquisition", r"acquisition|acquisitions|acquire|acquires|acquired|acquiring|"
+                    r"buyout|takeover|merger"),
+    ("hire", r"hire|hires|hired|hiring|taps|tapped|tapping|appoint|appoints|"
+             r"appointed|appointment|poach|poaches|poached"),
+    ("ipo", r"ipo|go public|going public"),
+    ("funding", r"funding round|fundraise|fundraising|raises|raised \$[\d.]+"),
+    ("investigation", r"investigation|investigations|probe|probes|subpoena|subpoenas"),
+    ("hack", r"hack|hacked|hacks|hacking|breach|breached|cyberattack"),
+    ("ban", r"ban|bans|banned|banning"),
+)
+_EVENT_ANCHOR_RES = tuple(
+    (name, re.compile(r"\b(?:" + pat + r")\b")) for name, pat in EVENT_ANCHOR_CLASSES
+)
+_PRODUCT_RE = re.compile(r"\b([A-Z][A-Za-z]{1,20})[ -](\d+(?:\.\d+)*)\b")
+_PRODUCT_WORD_STOP = {"top", "the", "section", "chapter", "page", "phase", "stage", "day",
+                      "week", "year", "class", "level", "tier", "round", "part"}
+
+
+def event_anchors(title: str, dek: str | None = None) -> set[str]:
+    """Deterministic event anchors from title + dek (see block comment above)."""
+    text = f"{title or ''}. {dek or ''}"
+    text = re.sub(r"&(#\d+|[a-z]+);", " ", text).replace("\u2019", "'")
+    lower = text.lower()
+    out: set[str] = set()
+    for name, rx in _EVENT_ANCHOR_RES:
+        if rx.search(lower):
+            out.add(name)
+    for m in _PRODUCT_RE.finditer(text):
+        word = m.group(1).lower()
+        if word in _PRODUCT_WORD_STOP or word in MONTHS or word in KNOWN:
+            continue
+        out.add(f"product:{word} {m.group(2)}")
+    return out
+
+
 def parse_dt(s: str) -> datetime:
     if s.endswith("Z"):
         s = s[:-1] + "+00:00"
@@ -640,13 +700,31 @@ def soft_merge_ok(a, b, ea, eb) -> tuple[bool, dict]:
             return False, evidence
         evidence["shared_entities"] = sorted(set(shared) | {ka})
         evidence["density_event"] = ka
-        return True, evidence
+        return _anchor_gate(a, b, evidence)
     if dt_h > 18.0:
         return False, evidence
     # Strict legacy path (no density event on either side, or only one side keyed)
     if jac < 0.55:
         return False, evidence
     if len(shared) < 1:
+        return False, evidence
+    return _anchor_gate(a, b, evidence)
+
+
+def _anchor_gate(a, b, evidence: dict) -> tuple[bool, dict]:
+    """Final gate for every would-be edge: require a shared event anchor."""
+    aa = event_anchors(a["title"], a.get("dek"))
+    ab = event_anchors(b["title"], b.get("dek"))
+    common = aa & ab
+    if not common and (not aa or not ab):
+        ka, kb = event_key(a["title"]), event_key(b["title"])
+        if ka and ka == kb:
+            common = {f"event:{ka}"}
+    evidence["event_anchors"] = sorted(common)
+    if not common:
+        evidence["blocked_by"] = "event_anchor"
+        evidence["event_anchors_a"] = sorted(aa)
+        evidence["event_anchors_b"] = sorted(ab)
         return False, evidence
     return True, evidence
 
@@ -922,6 +1000,7 @@ def main(out_dir: Path | None = None, app_data: Path | None = APP_DATA, verbose:
             parent[ry] = rx
             rank[rx] += 1
 
+    anchor_blocked: list = []  # edges that passed every other test but share no event anchor
     ents_cache = {a["article_id"]: extract_entities(a["title"], a.get("dek")) for a in survivors}
 
     for i in range(len(survivors)):
@@ -931,6 +1010,8 @@ def main(out_dir: Path | None = None, app_data: Path | None = APP_DATA, verbose:
             if ok:
                 union(a["article_id"], b["article_id"])
                 edge_evidence[frozenset({a["article_id"], b["article_id"]})] = ev
+            elif ev.get("blocked_by") == "event_anchor":
+                anchor_blocked.append((a["article_id"], b["article_id"], ev))
 
     clusters: dict[str, list] = defaultdict(list)
     for a in survivors:
@@ -1186,6 +1267,7 @@ def main(out_dir: Path | None = None, app_data: Path | None = APP_DATA, verbose:
         "survivors": len(survivors),
         "aged_out_stories": aged_out_stories,
         "freshness_hours": HOME_FRESHNESS_HOURS,
+        "edges_removed_event_anchor": len(anchor_blocked),
         "story_ids_reused": reused_ids,
         "story_ids_minted": minted_ids,
         "story_id_prior_source": prior_source,
@@ -1239,7 +1321,8 @@ def main(out_dir: Path | None = None, app_data: Path | None = APP_DATA, verbose:
         (app_data / "feed-v1.json").write_text(feed_json)
         (app_data / "cluster-summary.json").write_text(summary_json)
 
-    result = {"summary": summary, "feed": feed, "stories": stories, "held": held}
+    result = {"summary": summary, "feed": feed, "stories": stories, "held": held,
+              "anchor_blocked": anchor_blocked}
     if not verbose:
         return result
 
@@ -1252,6 +1335,13 @@ def main(out_dir: Path | None = None, app_data: Path | None = APP_DATA, verbose:
             print(f"    - {m['outlet_id']}: {m['title'][:95]}")
         if item["labels"]["blindspot"]["present"]:
             print(f"    blindspot={item['labels']['blindspot']['rule_id']}")
+    print("\n=== EDGES REMOVED BY EVENT ANCHOR ===")
+    for x, y, ev in anchor_blocked:
+        a, b = art_by_id[x], art_by_id[y]
+        print(f"jac={ev['title_overlap']:.2f} ents={ev['shared_entities']} "
+              f"anchors_a={ev.get('event_anchors_a')} anchors_b={ev.get('event_anchors_b')}")
+        print(f"  {a['outlet_id']}: {a['title'][:85]}")
+        print(f"  {b['outlet_id']}: {b['title'][:85]}")
     print("\n=== DIRECT EDGES ===")
     for key, ev in sorted(edge_evidence.items(), key=lambda x: -x[1]["title_overlap"]):
         ids = list(key)

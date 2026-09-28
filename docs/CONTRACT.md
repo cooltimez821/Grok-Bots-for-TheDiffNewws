@@ -138,3 +138,16 @@ v1 blindspot tighten (Bias 2026-09-11): `missing_left` / `missing_right` require
 - New cluster reuses a prior `story_id` when **Jaccard(member keys) ≥ 0.5**. Highest overlap wins; ties go to the lexicographically smaller (older) `story_id`. Greedy by descending overlap; each prior id is claimed by at most one new cluster. Otherwise a new ULID is minted.
 - Unclaimed prior ids stay in the map for 7 days (`STORY_ID_RETAIN_HOURS`), so a story that drops out for a refresh or two gets its id back.
 - Feed shape, bands, blindspots, freshness and `outlet_count >= 2` are unchanged. Test: `.venv/bin/python debug/test_stable_ids.py`.
+
+
+## Shared event anchor (2026-09-28)
+
+A soft-merge edge needs more than shared entities plus similar wording: **both articles must name the same event** (`event_anchors` / `_anchor_gate` in `cluster_v0.py`). This applies to every edge, on both the density path and the legacy Jaccard path. Anchors come from **title + dek**, are deterministic, and never include named entities or generic words (`ai`, `ceo`, `model`, `company`):
+
+1. **Event classes** from a closed lexicon: `dinner` (dinner/dine/dined), `meeting` (meeting/meet/met with/summit), `launch` (launch/release/unveil/debut/rolls out), `lawsuit` (lawsuit/sue/sued/litigation), `acquisition` (acquire/acquisition/buyout/takeover/merger), `hire` (hire/hires/taps/tapped/appoint/poach), `ipo`, `funding`, `investigation` (investigation/probe/subpoena), `hack` (hack/breach/cyberattack), `ban`.
+2. **Product/version names**: a capitalized word followed by a version number (`Sonnet 5.5` → `product:sonnet 5.5`, `GPT-5`). The word is ignored if it is a known entity, a month, or a counter word (Top/Phase/Round/…).
+3. **Density fallback (pair-level)**: a shared title `event_key` (e.g. `amodei_call`) counts as the anchor **only when at least one of the two articles has no class/product anchor of its own**. If both name explicit events, those events must overlap. A "CEO who called for a slowdown" backstory clause cannot bridge a dinner story and a model launch.
+
+Blocked edges are counted in `cluster-summary.json` → `edges_removed_event_anchor`.
+
+Regression (3:01 PM ET refresh, 2026-09-28): WaPo "Trump dined with the Anthropic CEO who called for AI slowdown" {dinner, meeting} was merged with CNBC "Anthropic launches cheaper AI model…" {launch, product:sonnet 5.5} at 0.40 via `amodei_call` + `anthropic`. That edge is now removed and both are held single-outlet. The Amodei dinner story (all members share `dinner`) and Meta/MongoDB (`hire`) are unchanged. Test: `.venv/bin/python debug/test_event_anchor.py`.
