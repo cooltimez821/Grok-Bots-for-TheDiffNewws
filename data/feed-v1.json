@@ -1,5 +1,39 @@
 [
   {
+    "story_id": "FFD1E5147710658895B0E6E5C2",
+    "title": "Nvidia says new tool can contain rogue AI agents in \"milliseconds\"",
+    "first_seen_at": "2026-09-28T13:36:06Z",
+    "last_updated_at": "2026-09-28T21:20:42Z",
+    "article_count": 2,
+    "outlet_count": 2,
+    "primary_category": "weight_and_bias",
+    "members": [
+      {
+        "title": "Nvidia says its new AI safety platform can contain rogue agents within ‘milliseconds’",
+        "canonical_url": "https://www.theverge.com/tech/1001287/nvidia-ai-safety-platform-rogue-agents",
+        "published_at": "2026-09-28T13:36:06Z",
+        "outlet_id": "the_verge",
+        "outlet_name": "The Verge",
+        "dek": "Nvidia is launching a new safety platform designed to contain and monitor AI agents, a move that comes in response to a wave of rogue hacking incidents, as reported earlier by Reuters. In an announcement on Monday, Nvidia says its new Open Agent Safety Platform can quarantine agents that attempt to escape their boundaries within [&#8230;]"
+      },
+      {
+        "title": "Nvidia says new tool can contain rogue AI agents in \"milliseconds\"",
+        "canonical_url": "https://www.axios.com/2026/09/28/nvidia-ai-agent-safety",
+        "published_at": "2026-09-28T21:20:42Z",
+        "outlet_id": "axios",
+        "outlet_name": "Axios",
+        "dek": "Nvidia is deploying a new tool that it says can be used to prevent and contain rogue and potentially dangerous AI agents. Why it matters: The world's largest chip company has resisted calls to slow AI development over safety fears — arguing now that technological guardrails can keep rogue AI agents under control. Driving the news: Nvidia debuted the Nvidia Open Agent Safety Platform, which includes its OpenShell open source software system and its Sentry agent monitoring system. The system \"traces all actions\" by agents running on Nvidia Vera CPUs, promising to \"quarantine agents that attempt to move outside their boundaries in milliseconds.\" AI's \"full promise can only be realized when people have confidence that AI is being built to be safe and deployed with wisdom and responsibility,\" Nvidia CEO Jensen Huang wrote on X. \"Safety is how trust is earned.\" State of play: OpenAI, Anthropic and security researchers are investigating tens of thousands of incidents in which their frontier models took steps that outside evaluators would consider problematic, sources told Axios' Madison Mills last week. The episodes include bypassing guardrails, creating message boards, escaping sandboxes, website hijacking, self-prompting or seeking to bypass monitors. \"Some of the agents even misreported what they did,\" Nvidia noted in a blog post Monday announcing its new platform. The intrigue: We're moving into a new era in which AI will be monitoring AI. And that will create more demand for chips — including the type that Nvidia sells — plus the data centers that use them and the power that's needed to run them. \"If security agents or validation models are running alongside production agents, that creates another inference workload that did not previously exist,\" writes Brad Gastwirth, global head of research and market intel, at Circular Technology. Zoom out: The Nvidia tool rollout comes amid a feverish debate over whether rogue AI could destroy humanity. Anthropic researcher Jacob…"
+      }
+    ],
+    "labels": {
+      "bias_band": "mixed",
+      "blindspot": {
+        "present": false,
+        "rule_id": null
+      }
+    }
+  },
+  {
     "story_id": "FFD1731A8EB8FF60DD10788911",
     "title": "Meta launches enterprise AI platform, hires MongoDB CEO to lead new initiative",
     "first_seen_at": "2026-09-28T15:42:24Z",
