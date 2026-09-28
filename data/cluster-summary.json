@@ -1,25 +1,25 @@
 {
-  "stories_total": 154,
-  "feed_stories": 2,
-  "held_single_outlet": 152,
+  "stories_total": 157,
+  "feed_stories": 1,
+  "held_single_outlet": 156,
   "deduped": 0,
   "unclustered": 0,
   "by_category": {
-    "prism": 7,
-    "weight_and_bias": 147
+    "prism": 8,
+    "weight_and_bias": 149
   },
   "by_bias_band": {
-    "center": 2
+    "center": 1
   },
   "unexplained_merges": 0,
-  "clustered_articles": 160,
-  "survivors": 160,
-  "aged_out_stories": 31,
+  "clustered_articles": 161,
+  "survivors": 161,
+  "aged_out_stories": 27,
   "freshness_hours": 48,
   "edges_removed_event_anchor": 1,
-  "story_ids_reused": 153,
-  "story_ids_minted": 1,
+  "story_ids_reused": 143,
+  "story_ids_minted": 14,
   "story_id_prior_source": "story_id_map",
-  "generated_at": "2026-09-28T19:08:46.357244Z",
-  "story_ids_retained_unclaimed": 21
+  "generated_at": "2026-09-28T21:00:03.289641Z",
+  "story_ids_retained_unclaimed": 32
 }

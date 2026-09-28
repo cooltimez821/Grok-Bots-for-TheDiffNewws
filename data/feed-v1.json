@@ -1,47 +1,5 @@
 [
   {
-    "story_id": "FFD1731A8EB8FF60DD10788911",
-    "title": "Meta Taps MongoDB CEO to Lead New Enterprise AI Platform",
-    "first_seen_at": "2026-09-28T12:42:47Z",
-    "last_updated_at": "2026-09-28T16:52:38Z",
-    "article_count": 3,
-    "outlet_count": 3,
-    "primary_category": "weight_and_bias",
-    "members": [
-      {
-        "title": "Meta Taps MongoDB CEO to Lead New Enterprise AI Platform",
-        "canonical_url": "https://www.bloomberg.com/news/articles/2026-09-28/mongodb-s-ceo-steps-down-for-senior-role-at-meta-shares-plunge",
-        "published_at": "2026-09-28T12:42:47Z",
-        "outlet_id": "bloomberg",
-        "outlet_name": "Bloomberg",
-        "dek": "Meta Platforms Inc. tapped MongoDB Inc.’s president and chief executive officer to lead a new AI platform for enterprise customers that Meta CEO Mark Zuckerberg called “the next major pillar of our business.”"
-      },
-      {
-        "title": "Meta Taps MongoDB CEO to Lead New Enterprise AI Division",
-        "canonical_url": "https://www.theinformation.com/briefings/meta-taps-mongodb-ceo-lead-new-enterprise-ai-division",
-        "published_at": "2026-09-28T15:42:24Z",
-        "outlet_id": "the_information",
-        "outlet_name": "The Information",
-        "dek": "Meta Platforms is launching a new division to sell its AI tools to businesses, tapping MongoDB Chief Executive Chirantan Desai to lead the unit as chief enterprise platform officer. In a post on X Monday, Meta CEO Mark Zuckerberg said the new division, called Meta Enterprise Platform, will focus ..."
-      },
-      {
-        "title": "Meta launches enterprise AI platform, hires MongoDB CEO to lead new initiative",
-        "canonical_url": "https://techcrunch.com/2026/09/28/meta-launches-enterprise-ai-platform-hires-mongodb-ceo-to-lead-new-initiative",
-        "published_at": "2026-09-28T16:52:38Z",
-        "outlet_id": "techcrunch",
-        "outlet_name": "TechCrunch",
-        "dek": "Meta says it will focus on bringing its full technology stack, including Muse, Meta Business Agent, Muse API, Muse Code, and more to businesses and developers."
-      }
-    ],
-    "labels": {
-      "bias_band": "center",
-      "blindspot": {
-        "present": false,
-        "rule_id": null
-      }
-    }
-  },
-  {
     "story_id": "FFD17FFE5AB8D613465F8F94F3",
     "title": "Scoop: Anthropic's Dario Amodei to have White House dinner with Trump",
     "first_seen_at": "2026-09-27T15:26:12Z",
