@@ -144,10 +144,37 @@ v1 blindspot tighten (Bias 2026-09-11): `missing_left` / `missing_right` require
 
 A soft-merge edge needs more than shared entities plus similar wording: **both articles must name the same event** (`event_anchors` / `_anchor_gate` in `cluster_v0.py`). This applies to every edge, on both the density path and the legacy Jaccard path. Anchors come from **title + dek**, are deterministic, and never include named entities or generic words (`ai`, `ceo`, `model`, `company`):
 
-1. **Event classes** from a closed lexicon: `dinner` (dinner/dine/dined), `meeting` (meeting/meet/met with/summit), `launch` (launch/release/unveil/debut/rolls out), `lawsuit` (lawsuit/sue/sued/litigation), `acquisition` (acquire/acquisition/buyout/takeover/merger), `hire` (hire/hires/taps/tapped/appoint/poach), `ipo`, `funding`, `investigation` (investigation/probe/subpoena), `hack` (hack/breach/cyberattack), `ban`.
+1. **Event classes** from a closed lexicon, via the event-word normalization map (see below): `dinner`, `meeting`, `launch`, `lawsuit`, `acquisition`, `hire`, `ipo`, `funding`, `investigation`, `hack`, `ban`.
 2. **Product/version names**: a capitalized word followed by a version number (`Sonnet 5.5` → `product:sonnet 5.5`, `GPT-5`). The word is ignored if it is a known entity, a month, or a counter word (Top/Phase/Round/…).
 3. **Density fallback (pair-level)**: a shared title `event_key` (e.g. `amodei_call`) counts as the anchor **only when at least one of the two articles has no class/product anchor of its own**. If both name explicit events, those events must overlap. A "CEO who called for a slowdown" backstory clause cannot bridge a dinner story and a model launch.
 
 Blocked edges are counted in `cluster-summary.json` → `edges_removed_event_anchor`.
 
 Regression (3:01 PM ET refresh, 2026-09-28): WaPo "Trump dined with the Anthropic CEO who called for AI slowdown" {dinner, meeting} was merged with CNBC "Anthropic launches cheaper AI model…" {launch, product:sonnet 5.5} at 0.40 via `amodei_call` + `anthropic`. That edge is now removed and both are held single-outlet. The Amodei dinner story (all members share `dinner`) and Meta/MongoDB (`hire`) are unchanged. Test: `.venv/bin/python debug/test_event_anchor.py`.
+
+### Event-word normalization map (2026-09-28 PM)
+
+`EVENT_CLASS_WORDS` → `EVENT_WORD_CANON` in `cluster_v0.py` maps every listed inflection/synonym to one of the 11 canonical classes by **exact lowercase word lookup** (no fuzzy stemming):
+
+| class | words |
+|---|---|
+| `dinner` | dinner, dinners, dine, dines, dined, dining |
+| `meeting` | meeting(s), meet(s), met, summit(s) |
+| `launch` | launch(es/ed/ing), release(s/d/releasing), unveil(s/ed/ing), debut(s/ed/ing), introduces, introduced |
+| `lawsuit` | lawsuit(s), sue(s/d), suing, litigation |
+| `acquisition` | acquisition(s), acquire(s/d), acquiring, buyout, takeover, merger, buy(s), bought, buying |
+| `hire` | hire(s/d), hiring, taps, tapped, tapping, appoint(s/ed/ing), appointment, poach(es/ed/ing) |
+| `ipo` | ipo(s) |
+| `funding` | fundraise(s/d), fundraising, raises |
+| `investigation` | investigation(s), investigate(s/d), investigating, probe(s/d), probing, subpoena(s/ed) |
+| `hack` | hack(s/ed/ing), breach(ed), cyberattack(s) |
+| `ban` | ban(s), banned, banning |
+
+Multi-word phrases (`EVENT_PHRASE_CANON`, anchors only, title + dek): `to lead` → `hire`; `names/named/naming <…up to 6 words…> <role>` (ceo, cto, cfo, coo, chief, president, chair(man/woman), head, leader, director) → `hire` (so "a startup named X" is not a hire); `met with` → `meeting`; `roll(s/ed/ing) out` → `launch`; `go/goes/going/went public` → `ipo`; `funding round`, `raised $N` → `funding`.
+
+Where the map applies:
+
+* **Anchor gate** (`event_anchors`): **all** classes are normalized, including `dinner`.
+* **Title similarity** (`tokenize_title` → title Jaccard): every class is normalized (`taps`/`hires` → `hire`, `unveils`/`launches` → `launch`, …) **except `dinner`** (`TITLE_CANON_EXCLUDE = {"dinner"}`); dinner words fall back to plain `stem_token`. Why: normalizing dine/dined/dinner in title similarity lifts TechCrunch "Anthropic's CEO is about to have dinner with President Trump" vs WaPo "Trump dined with the Anthropic CEO who called for AI slowdown" to 0.57 and creates a **duplicate satellite dinner card** next to the main Amodei dinner card (`FFD17FFE5AB8D613465F8F94F3`). The two stay separate, single-outlet, until satellite-folding is designed (pending proposal); revisit this exclusion then.
+
+Regression that motivated it (5:02 PM ET refresh, 2026-09-28): Meta/MongoDB `FFD1731A8EB8FF60DD10788911` fell apart once its Bloomberg text article (the bridge) left the feed. TechCrunch "Meta launches enterprise AI platform, hires MongoDB CEO to lead new initiative" vs The Information "Meta Taps MongoDB CEO to Lead New Enterprise AI Division" scored title Jaccard 0.5455 < 0.55 (`taps` ≠ `hire`). With the map they score 0.70, share `hire`, and re-form as `FFD1731A8EB8FF60DD10788911` (stable ID carried forward). The WaPo/CNBC Sonnet edge is still blocked (`edges_removed_event_anchor` = 1). Tests in `debug/test_event_anchor.py`: normalization, Meta pair links (sim ≥ 0.55, shares `hire`), TechCrunch "about to have dinner" and WaPo "dined with" stay separate, WaPo/CNBC Sonnet still don't link, end-to-end.

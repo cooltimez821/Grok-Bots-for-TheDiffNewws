@@ -7,6 +7,17 @@ Run:  /workspace/news-pipeline/.venv/bin/python debug/test_event_anchor.py
 Regression: 2026-09-28 3:01 PM ET refresh merged WaPo "Trump dined with the
 Anthropic CEO..." with CNBC "Anthropic launches cheaper AI model..." (Sonnet 5.5)
 on a shared entity + the "CEO's call for a slowdown" backstory phrase (~0.40).
+
+Regression 2 (5:02 PM ET refresh): Meta/MongoDB story FFD1731A8EB8FF60DD10788911
+fell apart once its Bloomberg text article (the bridge) left the feed. TechCrunch
+"...hires MongoDB CEO to lead..." vs The Information "Meta Taps MongoDB CEO to
+Lead..." scored title Jaccard 0.5455 < 0.55 because "taps" != "hire". Event words
+are now normalized to canonical classes (EVENT_WORD_CANON) in anchors AND titles,
+EXCEPT the "dinner" class, which is normalized for anchors only (variant 2):
+normalizing dine/dined/dinner in title similarity joins TechCrunch "Anthropic's
+CEO is about to have dinner with President Trump" + WaPo "Trump dined with the
+Anthropic CEO..." (0.57) into a duplicate satellite dinner card beside the main
+Amodei card. They stay separate until satellite-folding is designed.
 """
 from __future__ import annotations
 
@@ -50,6 +61,21 @@ AXIOS = art("axios", "Scoop: Anthropic's Dario Amodei to have White House dinner
 WEX = art("wash_examiner", "Trump to have dinner with Anthropic CEO Dario Amodei at White House: Report",
           "President Donald Trump is reportedly slated to have dinner with Anthropic CEO Dario Amodei.",
           "https://www.washingtonexaminer.com/trump-dinner-amodei", hours_ago=4.0)
+
+TC_META = art("techcrunch", "Meta launches enterprise AI platform, hires MongoDB CEO to lead new initiative",
+              "Meta says it will focus on bringing its full technology stack, including Muse, Meta Business "
+              "Agent, Muse API, Muse Code, and more to businesses and developers.",
+              "https://techcrunch.com/2026/09/28/meta-launches-enterprise-ai-platform-hires-mongodb-ceo-to-lead-new-initiative",
+              hours_ago=4.2)
+TI_META = art("the_information", "Meta Taps MongoDB CEO to Lead New Enterprise AI Division",
+              "Meta Platforms is launching a new division to sell its AI tools to businesses, tapping MongoDB "
+              "Chief Executive Chirantan Desai to lead the unit as chief enterprise platform officer.",
+              "https://www.theinformation.com/briefings/meta-taps-mongodb-ceo-lead-new-enterprise-ai-division",
+              hours_ago=5.4)
+TC_DINNER = art("techcrunch", "Anthropic\u2019s CEO is about to have dinner with President Trump",
+                "This will be the first one-on-one meeting between Dario Amodei and Donald Trump",
+                "https://techcrunch.com/2026/09/27/anthropics-ceo-is-about-to-have-dinner-with-president-trump",
+                hours_ago=20.0)
 
 
 def _ok(a, b):
@@ -96,6 +122,91 @@ def test_end_to_end_split():
     assert feed_urls == [sorted([AXIOS["canonical_url"], WEX["canonical_url"]])], feed_urls
     held_urls = {m["canonical_url"] for s in r["held"] for m in s["members"]}
     assert CNBC["canonical_url"] in held_urls and WAPO["canonical_url"] in held_urls
+
+
+def test_event_word_normalization():
+    canon = cv.canonical_event_word
+    for w in ("launch", "launches", "launched", "launching", "unveils", "released"):
+        assert canon(w) == "launch", w
+    for w in ("hire", "hires", "hired", "hiring", "taps", "tapped", "tapping", "appoints", "appointed"):
+        assert canon(w) == "hire", w
+    for w in ("meeting", "meet", "meets", "met"):
+        assert canon(w) == "meeting", w
+    for w in ("dine", "dined", "dinner"):
+        assert canon(w) == "dinner", w
+    for w in ("sue", "sues", "sued", "lawsuit"):
+        assert canon(w) == "lawsuit", w
+    for w in ("acquire", "acquires", "acquisition", "buy", "buys"):
+        assert canon(w) == "acquisition", w
+    assert canon("ceo") is None and canon("model") is None
+    # phrase classes
+    assert "hire" in cv.event_anchors("Acme names Jane Doe as chief executive")
+    assert "hire" in cv.event_anchors("Jane Doe to lead Acme's new AI unit")
+    assert "hire" not in cv.event_anchors("A startup named Acme ships a chatbot")
+    # title tokens share the canonical class
+    assert "hire" in cv.tokenize_title(TI_META["title"]) and "hire" in cv.tokenize_title(TC_META["title"])
+
+
+def test_meta_pair_links():
+    assert {"hire", "launch"} <= cv.event_anchors(TC_META["title"], TC_META["dek"])
+    assert {"hire", "launch"} <= cv.event_anchors(TI_META["title"], TI_META["dek"])
+    ok, ev = _ok(TC_META, TI_META)
+    assert ok is True, ev
+    assert ev["title_overlap"] >= 0.55, ev
+    assert "hire" in ev["event_anchors"], ev
+
+
+def test_meta_links_wapo_cnbc_still_split_end_to_end():
+    with tempfile.TemporaryDirectory() as d:
+        d = Path(d)
+        with open(d / "articles.jsonl", "w") as f:
+            for a in (WAPO, CNBC, AXIOS, WEX, TC_META, TI_META):
+                f.write(json.dumps(a) + "\n")
+        r = cv.main(out_dir=d, app_data=None, verbose=False)
+    assert r["summary"]["edges_removed_event_anchor"] == 1, r["summary"]
+    feed_urls = sorted(sorted(m["canonical_url"] for m in s["members"]) for s in r["feed"])
+    assert sorted([TC_META["canonical_url"], TI_META["canonical_url"]]) in feed_urls, feed_urls
+    held_urls = {m["canonical_url"] for s in r["held"] for m in s["members"]}
+    assert CNBC["canonical_url"] in held_urls and WAPO["canonical_url"] in held_urls
+
+
+def test_dinner_not_normalized_in_title_similarity():
+    # anchors: dinner class fully normalized
+    assert "dinner" in cv.event_anchors(TC_DINNER["title"], TC_DINNER["dek"])
+    assert "dinner" in cv.event_anchors(WAPO["title"], WAPO["dek"])
+    assert "dinner" in cv.event_anchors("Amodei dines with Trump")
+    # title tokens: dinner class NOT canonicalized (other classes still are)
+    assert "dinner" in cv.TITLE_CANON_EXCLUDE
+    assert "dinner" not in cv.tokenize_title(WAPO["title"])
+    assert "hire" in cv.tokenize_title(TI_META["title"])
+
+
+def test_tc_dinner_wapo_dined_stay_separate():
+    ok, ev = _ok(TC_DINNER, WAPO)
+    assert ok is False, ev
+    ta, tb = cv.tokenize_title(TC_DINNER["title"]), cv.tokenize_title(WAPO["title"])
+    assert cv.jaccard(ta, tb) < 0.55, (ta, tb)
+
+
+def test_wapo_cnbc_sonnet_still_no_link():
+    ok, ev = _ok(WAPO, CNBC)
+    assert ok is False and ev.get("blocked_by") == "event_anchor", ev
+    ok, ev = _ok(CNBC, WAPO)
+    assert ok is False, ev
+
+
+def test_tc_dinner_wapo_separate_end_to_end():
+    with tempfile.TemporaryDirectory() as d:
+        d = Path(d)
+        with open(d / "articles.jsonl", "w") as f:
+            for a in (WAPO, CNBC, TC_DINNER, TC_META, TI_META):
+                f.write(json.dumps(a) + "\n")
+        r = cv.main(out_dir=d, app_data=None, verbose=False)
+    feed_urls = sorted(sorted(m["canonical_url"] for m in s["members"]) for s in r["feed"])
+    assert feed_urls == [sorted([TC_META["canonical_url"], TI_META["canonical_url"]])], feed_urls
+    held = [sorted(m["canonical_url"] for m in s["members"]) for s in r["held"]]
+    assert [TC_DINNER["canonical_url"]] in held and [WAPO["canonical_url"]] in held, held
+    assert [CNBC["canonical_url"]] in held, held
 
 
 if __name__ == "__main__":

@@ -332,25 +332,78 @@ def event_key(title: str, dek: str | None = None) -> str | None:
 # words ("ai", "ceo", "model", "company") are not anchors.
 # Rule: every would-be edge (density path and legacy Jaccard path) must pass
 # _anchor_gate; blocked edges are counted in summary.edges_removed_event_anchor.
-EVENT_ANCHOR_CLASSES = (
-    ("dinner", r"dinner|dinners|dine|dined|dines|dining"),
-    ("meeting", r"meeting|meetings|meet|meets|met with|summit"),
-    ("launch", r"launch|launches|launched|launching|release|releases|released|"
-               r"unveil|unveils|unveiled|debut|debuts|debuted|rolls out|rolled out"),
-    ("lawsuit", r"lawsuit|lawsuits|sue|sues|sued|suing|litigation"),
-    ("acquisition", r"acquisition|acquisitions|acquire|acquires|acquired|acquiring|"
-                    r"buyout|takeover|merger"),
-    ("hire", r"hire|hires|hired|hiring|taps|tapped|tapping|appoint|appoints|"
-             r"appointed|appointment|poach|poaches|poached"),
-    ("ipo", r"ipo|go public|going public"),
-    ("funding", r"funding round|fundraise|fundraising|raises|raised \$[\d.]+"),
-    ("investigation", r"investigation|investigations|probe|probes|subpoena|subpoenas"),
-    ("hack", r"hack|hacked|hacks|hacking|breach|breached|cyberattack"),
-    ("ban", r"ban|bans|banned|banning"),
+#
+# Event-word normalization (2026-09-28 PM fix)
+# --------------------------------------------
+# Every inflection / synonym of an event word maps to ONE canonical class via
+# EVENT_WORD_CANON (exact lowercase word lookup, no fuzzy stemming), plus a few
+# multi-word patterns in EVENT_PHRASE_CANON. The same map is used by
+#   * event_anchors()  -> the anchor gate compares canonical classes, and
+#   * tokenize_title() -> title Jaccard sees "taps"/"hires"/"appoints" as the
+#     same token "hire", "unveils"/"launches"/"rolls out" as "launch", etc.
+#     EXCEPTION (variant 2): the "dinner" class is NOT normalized in title
+#     similarity (TITLE_CANON_EXCLUDE) -- doing so would create a duplicate
+#     satellite dinner card beside the main Amodei card until satellite-folding
+#     is designed (pending proposal). Anchors still normalize dinner fully.
+# Regression that motivated it: 5:02 PM ET refresh, Meta/MongoDB story
+# (FFD1731A8EB8FF60DD10788911) lost its Bloomberg text article (bridge); the
+# remaining TechCrunch "...hires MongoDB CEO to lead..." vs The Information
+# "Meta Taps MongoDB CEO to Lead..." scored title Jaccard 0.5455 < 0.55 because
+# "taps" and "hire" were different tokens. With the map they score 0.70.
+EVENT_CLASS_WORDS: dict[str, tuple[str, ...]] = {
+    "dinner": ("dinner", "dinners", "dine", "dines", "dined", "dining"),
+    "meeting": ("meeting", "meetings", "meet", "meets", "met", "summit", "summits"),
+    "launch": ("launch", "launches", "launched", "launching", "release", "releases",
+               "released", "releasing", "unveil", "unveils", "unveiled", "unveiling",
+               "debut", "debuts", "debuted", "debuting", "introduces", "introduced"),
+    "lawsuit": ("lawsuit", "lawsuits", "sue", "sues", "sued", "suing", "litigation"),
+    "acquisition": ("acquisition", "acquisitions", "acquire", "acquires", "acquired",
+                    "acquiring", "buyout", "takeover", "merger", "buy", "buys",
+                    "bought", "buying"),
+    "hire": ("hire", "hires", "hired", "hiring", "taps", "tapped", "tapping",
+             "appoint", "appoints", "appointed", "appointing", "appointment",
+             "poach", "poaches", "poached", "poaching"),
+    "ipo": ("ipo", "ipos"),
+    "funding": ("fundraise", "fundraises", "fundraising", "fundraised", "raises"),
+    "investigation": ("investigation", "investigations", "investigate", "investigates",
+                      "investigated", "investigating", "probe", "probes", "probed",
+                      "probing", "subpoena", "subpoenas", "subpoenaed"),
+    "hack": ("hack", "hacks", "hacked", "hacking", "breach", "breached", "cyberattack",
+             "cyberattacks"),
+    "ban": ("ban", "bans", "banned", "banning"),
+}
+EVENT_WORD_CANON: dict[str, str] = {
+    w: cls for cls, words in EVENT_CLASS_WORDS.items() for w in words
+}
+# Multi-word patterns (applied to lowercased title + dek for anchors only).
+# "names/named" only count as a hire when a role follows within a few words,
+# so "a startup named X" is not a hire.
+EVENT_PHRASE_CANON: tuple[tuple[str, str], ...] = (
+    ("hire", r"\bto lead\b"),
+    ("hire", r"\bnam(?:es|ed|ing)\b(?:\W+\w+){0,6}?\W+(?:ceo|cto|cfo|coo|chief|president|"
+             r"chair|chairman|chairwoman|head|leader|director)\b"),
+    ("meeting", r"\bmet with\b"),
+    ("launch", r"\broll(?:s|ed|ing)? out\b"),
+    ("ipo", r"\bgo(?:es|ing)? public\b|\bwent public\b"),
+    ("funding", r"\bfunding round\b|\braised \$[\d.]+"),
 )
-_EVENT_ANCHOR_RES = tuple(
-    (name, re.compile(r"\b(?:" + pat + r")\b")) for name, pat in EVENT_ANCHOR_CLASSES
+_EVENT_PHRASE_RES = tuple((cls, re.compile(pat)) for cls, pat in EVENT_PHRASE_CANON)
+# Back-compat view: (class, regex alternation) pairs, as before.
+EVENT_ANCHOR_CLASSES = tuple(
+    (cls, "|".join(words)) for cls, words in EVENT_CLASS_WORDS.items()
 )
+
+
+# Event classes NOT normalized in tokenize_title (title similarity). They are
+# still normalized for the anchor gate. See tokenize_title for why.
+TITLE_CANON_EXCLUDE: frozenset[str] = frozenset({"dinner"})
+
+
+def canonical_event_word(word: str) -> str | None:
+    """Exact-lookup canonical event class for one lowercase word, else None."""
+    return EVENT_WORD_CANON.get(word)
+
+
 _PRODUCT_RE = re.compile(r"\b([A-Z][A-Za-z]{1,20})[ -](\d+(?:\.\d+)*)\b")
 _PRODUCT_WORD_STOP = {"top", "the", "section", "chapter", "page", "phase", "stage", "day",
                       "week", "year", "class", "level", "tier", "round", "part"}
@@ -362,9 +415,13 @@ def event_anchors(title: str, dek: str | None = None) -> set[str]:
     text = re.sub(r"&(#\d+|[a-z]+);", " ", text).replace("\u2019", "'")
     lower = text.lower()
     out: set[str] = set()
-    for name, rx in _EVENT_ANCHOR_RES:
+    for w in re.findall(r"[a-z]+", lower):
+        cls = EVENT_WORD_CANON.get(w)
+        if cls:
+            out.add(cls)
+    for cls, rx in _EVENT_PHRASE_RES:
         if rx.search(lower):
-            out.add(name)
+            out.add(cls)
     for m in _PRODUCT_RE.finditer(text):
         word = m.group(1).lower()
         if word in _PRODUCT_WORD_STOP or word in MONTHS or word in KNOWN:
@@ -568,7 +625,20 @@ def tokenize_title(title: str) -> set[str]:
         w = w.strip("-_")
         if len(w) < 2 or w in STOP or w in MONTHS:
             continue
-        out.add(stem_token(w))
+        ev = EVENT_WORD_CANON.get(w)
+        # Title similarity normalizes every event class EXCEPT "dinner"
+        # (TITLE_CANON_EXCLUDE). The anchor gate (event_anchors) still maps
+        # dine/dined/dining/dinner -> "dinner" in full. Reason: normalizing
+        # dinner words here lifts TechCrunch "Anthropic's CEO is about to have
+        # dinner with President Trump" vs WaPo "Trump dined with the Anthropic
+        # CEO who called for AI slowdown" to title Jaccard 0.57, which creates
+        # a duplicate satellite dinner card beside the main Amodei dinner card
+        # (FFD17FFE5AB8D613465F8F94F3). Keep them separate until
+        # satellite-folding is designed (pending proposal); then revisit.
+        if ev and ev not in TITLE_CANON_EXCLUDE:
+            out.add(ev)
+        else:
+            out.add(stem_token(w))
     if "biological_weapons" in out:
         out.discard("weapon")
         out.discard("biological")
