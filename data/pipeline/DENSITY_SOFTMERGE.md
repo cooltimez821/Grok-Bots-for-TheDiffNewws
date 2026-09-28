@@ -74,3 +74,7 @@ Thick partisan side must **strictly outnumber center** (`thick > center`) and be
 
 Stay quiet when the thin side is **only `nypost`** and the thick side has ≥2 tech-beat outlets (`the_verge`, `wired`, `techcrunch`, `ars_technica`). Catalog AI-press lean ≠ a spectrum hole.
 
+
+## Stable story_id (2026-09-28)
+
+`cluster_v0.py` reuses the previous run's `story_id` when outlet+URL member-key Jaccard ≥ 0.5 (highest overlap wins, ties → smaller id, one claim per prior id). State lives in `out/story_id_map.json`; do not delete it between seed and cluster. See CONTRACT.md "story_id stability". Test: `.venv/bin/python debug/test_stable_ids.py`.

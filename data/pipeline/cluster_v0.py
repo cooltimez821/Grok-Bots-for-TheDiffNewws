@@ -9,11 +9,19 @@ import time
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 ROOT = Path("/workspace/news-pipeline")
 OUT = ROOT / "out"
 CATALOG = ROOT / "catalog" / "v1-outlets.json"
 HOME_FRESHNESS_HOURS = 48  # Bob freshness: drop home stories with no member update in this window
+APP_DATA = Path("/workspace/thediffnews/data")
+
+# Stable story_id (2026-09-28): reuse a prior story_id when member-key Jaccard >= 0.5.
+STORY_ID_MAP_NAME = "story_id_map.json"
+STORY_ID_JACCARD_MIN = 0.5
+# Unclaimed prior ids stay in the map this long so an id survives brief drops.
+STORY_ID_RETAIN_HOURS = 168
 
 STOP = {
     "a", "an", "the", "and", "or", "but", "in", "on", "at", "to", "for", "of",
@@ -316,6 +324,158 @@ def make_ulid() -> str:
     h = hashlib.sha256(f"{t}-{time.time_ns()}-{id(t)}".encode()).hexdigest()[:20].upper()
     ts = f"{t:012X}"[-6:]
     return (ts + h)[:26]
+
+
+# ---------------------------------------------------------------------------
+# Stable story_ids
+# ---------------------------------------------------------------------------
+_TRACKING_PARAM = re.compile(
+    r"^(utm_.*|fbclid|gclid|mc_cid|mc_eid|cmpid|smid|sr_share|ocid|taid|mod|ref)$", re.I
+)
+
+
+def normalize_url(url: str | None) -> str:
+    """Canonical form for member keys: https, lowercase host sans www, no
+    fragment, no trailing slash, tracking params dropped, query sorted."""
+    u = (url or "").strip()
+    if not u:
+        return ""
+    try:
+        p = urlsplit(u)
+    except ValueError:
+        return u.lower()
+    scheme = p.scheme.lower()
+    if scheme in ("http", "https", ""):
+        scheme = "https"
+    host = p.netloc.lower()
+    if host.startswith("www."):
+        host = host[4:]
+    path = p.path or "/"
+    if len(path) > 1:
+        path = path.rstrip("/") or "/"
+    q = sorted(
+        (k, v) for k, v in parse_qsl(p.query, keep_blank_values=True)
+        if not _TRACKING_PARAM.match(k)
+    )
+    return urlunsplit((scheme, host, path, urlencode(q), ""))
+
+
+def member_key(a: dict) -> str:
+    """outlet_id + normalized canonical URL (falls back to article url)."""
+    url = a.get("canonical_url") or a.get("url") or ""
+    return f"{a.get('outlet_id') or ''}|{normalize_url(url)}"
+
+
+def _read_json(path: Path):
+    try:
+        return json.loads(path.read_text())
+    except (OSError, ValueError):
+        return None
+
+
+def _read_jsonl(path: Path) -> list:
+    rows = []
+    try:
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line:
+                    try:
+                        rows.append(json.loads(line))
+                    except ValueError:
+                        pass
+    except OSError:
+        pass
+    return rows
+
+
+def load_prior_story_members(out_dir: Path, prior_articles: list) -> tuple[dict, str]:
+    """Previous run's stories -> {story_id: {"members": set[key], "last_seen_at": str}}.
+
+    Must run BEFORE this run overwrites any output. Source order:
+      1. out/story_id_map.json (full story set incl. aged-off + retained ids)
+      2. bootstrap (no map yet): articles.jsonl story_id stamps,
+         stories/story_members.jsonl joined to articles, feed-v1.json and
+         held-single-outlet.json members.
+    """
+    data = _read_json(out_dir / STORY_ID_MAP_NAME)
+    if isinstance(data, dict) and isinstance(data.get("stories"), dict):
+        prior = {}
+        for sid, ent in data["stories"].items():
+            if not isinstance(ent, dict):
+                continue
+            keys = {k for k in ent.get("members") or [] if isinstance(k, str) and k}
+            if sid and keys:
+                prior[sid] = {"members": keys, "last_seen_at": ent.get("last_seen_at") or ""}
+        return prior, "story_id_map"
+
+    summary = _read_json(out_dir / "cluster-summary.json") or {}
+    seen_at = summary.get("generated_at") or ""
+    acc: dict[str, set] = defaultdict(set)
+    art_by_id = {a.get("article_id"): a for a in prior_articles}
+    for a in prior_articles:
+        if a.get("status") == "clustered" and a.get("story_id"):
+            acc[a["story_id"]].add(member_key(a))
+    for sm in _read_jsonl(out_dir / "story_members.jsonl"):
+        a = art_by_id.get(sm.get("article_id"))
+        if a is not None and sm.get("story_id"):
+            acc[sm["story_id"]].add(member_key(a))
+    for name in ("feed-v1.json", "held-single-outlet.json"):
+        items = _read_json(out_dir / name)
+        if not isinstance(items, list):
+            continue
+        for it in items:
+            sid = it.get("story_id") if isinstance(it, dict) else None
+            if not sid:
+                continue
+            for m in it.get("members") or []:
+                acc[sid].add(member_key(m))
+    prior = {
+        sid: {"members": {k for k in keys if k}, "last_seen_at": seen_at}
+        for sid, keys in acc.items()
+        if any(keys)
+    }
+    return prior, ("bootstrap" if prior else "none")
+
+
+def assign_stable_story_ids(new_key_sets: list, prior: dict) -> list:
+    """Greedy one-to-one match of new clusters to prior story_ids.
+
+    new_key_sets: list of set[member_key] (one per new cluster).
+    prior: {story_id: set[member_key]}.
+    Returns list (same order) of (story_id or None, jaccard or None).
+    Rule: Jaccard >= 0.5; highest overlap first; ties -> lexicographically
+    smaller (older) prior story_id, then smaller sorted member keys.
+    Each prior id is claimed at most once.
+    """
+    by_key: dict[str, set] = defaultdict(set)
+    for sid, keys in prior.items():
+        for k in keys:
+            by_key[k].add(sid)
+    cands = []
+    for i, keys in enumerate(new_key_sets):
+        keys = set(keys)
+        if not keys:
+            continue
+        hits = set()
+        for k in keys:
+            hits |= by_key.get(k, set())
+        tb = tuple(sorted(keys))
+        for sid in hits:
+            pk = prior[sid]
+            inter = len(keys & pk)
+            union = len(keys | pk)
+            if union and inter * 2 >= union:  # exact Jaccard >= 0.5
+                cands.append((-(inter / union), sid, tb, i))
+    cands.sort()
+    out: list = [(None, None)] * len(new_key_sets)
+    claimed: set = set()
+    for negj, sid, _tb, i in cands:
+        if sid in claimed or out[i][0] is not None:
+            continue
+        out[i] = (sid, round(-negj, 4))
+        claimed.add(sid)
+    return out
 
 
 def stem_token(w: str) -> str:
@@ -676,14 +836,21 @@ def dedupe_members_by_outlet(members: list) -> list:
     return out
 
 
-def main() -> None:
+def main(out_dir: Path | None = None, app_data: Path | None = APP_DATA, verbose: bool = True) -> dict:
+    out_dir = Path(out_dir) if out_dir is not None else OUT
     catalog = json.loads(CATALOG.read_text())
     outlets = {o["outlet_id"]: o for o in catalog["outlets"]}
 
     articles = []
-    with open(OUT / "articles.jsonl") as f:
+    with open(out_dir / "articles.jsonl") as f:
         for line in f:
             articles.append(json.loads(line))
+
+    # Stable ids: load previous run's stories + member keys BEFORE resetting
+    # article stamps or overwriting any output file.
+    prior_stories, prior_source = load_prior_story_members(
+        out_dir, [dict(a) for a in articles]
+    )
 
     # Reset prior clustering on non-dropped rows so re-runs are idempotent
     for a in articles:
@@ -697,7 +864,8 @@ def main() -> None:
 
     fetched = [a for a in articles if a["status"] == "fetched"]
     assert len(fetched) > 0, f"expected fetched articles, got {len(fetched)}"
-    print(f"fetched_articles={len(fetched)}")
+    if verbose:
+        print(f"fetched_articles={len(fetched)}")
 
     # --- 1. Exact dedupe ---
     by_url: dict[str, list] = defaultdict(list)
@@ -776,11 +944,23 @@ def main() -> None:
     story_id_by_article: dict[str, str] = {}
     unexplained = 0
 
+    # Stable story_id assignment (Jaccard >= 0.5 on outlet+URL member keys)
+    cluster_list = []
     for _root, raw_members in clusters.items():
         raw_members = sorted(raw_members, key=lambda x: (x["published_at"], x["article_id"]))
         members = dedupe_members_by_outlet(raw_members)
         if not members:
             continue
+        cluster_list.append((raw_members, members))
+    new_key_sets = [{member_key(m) for m in members} for _raw, members in cluster_list]
+    assigned = assign_stable_story_ids(
+        new_key_sets, {sid: ent["members"] for sid, ent in prior_stories.items()}
+    )
+    used_ids = {sid for sid, _j in assigned if sid} | set(prior_stories)
+    reused_ids = 0
+    minted_ids = 0
+
+    for (raw_members, members), (reuse_id, _reuse_j) in zip(cluster_list, assigned):
         kept_by_outlet = {m["outlet_id"]: m for m in members}
         # Same-outlet extras: exact-dedupe style (unique outlet_id per story members)
         for rm in raw_members:
@@ -795,8 +975,17 @@ def main() -> None:
         same_tier = [m for m in members if trust_rank(outlets.get(m["outlet_id"], {})) == best_tier]
         title_src = sorted(same_tier, key=lambda m: (m["published_at"], m["article_id"]))[0]
 
-        story_id = make_ulid()
-        time.sleep(0.001)
+        if reuse_id:
+            story_id = reuse_id
+            reused_ids += 1
+        else:
+            story_id = make_ulid()
+            while story_id in used_ids:
+                time.sleep(0.001)
+                story_id = make_ulid()
+            used_ids.add(story_id)
+            minted_ids += 1
+            time.sleep(0.001)
 
         story = {
             "story_id": story_id,
@@ -997,29 +1186,62 @@ def main() -> None:
         "survivors": len(survivors),
         "aged_out_stories": aged_out_stories,
         "freshness_hours": HOME_FRESHNESS_HOURS,
+        "story_ids_reused": reused_ids,
+        "story_ids_minted": minted_ids,
+        "story_id_prior_source": prior_source,
         "generated_at": now,
     }
 
-    with open(OUT / "stories.jsonl", "w") as f:
+    # story_id map: every story this run + unclaimed prior ids seen recently
+    id_map: dict[str, dict] = {}
+    for s in stories:
+        id_map[s["story_id"]] = {
+            "members": sorted({member_key(art_by_id[sm["article_id"]]) for sm in members_by_story[s["story_id"]]}),
+            "last_seen_at": now,
+        }
+    retained = 0
+    for sid, ent in prior_stories.items():
+        if sid in id_map:
+            continue
+        if ent.get("last_seen_at") and is_fresh(ent["last_seen_at"], now_dt, STORY_ID_RETAIN_HOURS):
+            id_map[sid] = {"members": sorted(ent["members"]), "last_seen_at": ent["last_seen_at"]}
+            retained += 1
+    summary["story_ids_retained_unclaimed"] = retained
+    id_map_json = json.dumps({
+        "version": 1,
+        "rule": "reuse prior story_id when Jaccard(member keys outlet_id|normalized canonical_url) >= 0.5; highest overlap wins; ties -> smaller story_id; one claim per prior id",
+        "generated_at": now,
+        "stories": dict(sorted(id_map.items())),
+    }, ensure_ascii=False, indent=1) + "\n"
+
+    with open(out_dir / "stories.jsonl", "w") as f:
         for s in stories:
             f.write(json.dumps(s, ensure_ascii=False) + "\n")
-    with open(OUT / "story_members.jsonl", "w") as f:
+    with open(out_dir / "story_members.jsonl", "w") as f:
         for m in members_out:
             f.write(json.dumps(m, ensure_ascii=False) + "\n")
-    with open(OUT / "articles.jsonl", "w") as f:
+    with open(out_dir / "articles.jsonl", "w") as f:
         for a in articles:
             f.write(json.dumps(a, ensure_ascii=False) + "\n")
     feed_json = json.dumps(feed, ensure_ascii=False, indent=2) + "\n"
     held_json = json.dumps(held, ensure_ascii=False, indent=2) + "\n"
     summary_json = json.dumps(summary, ensure_ascii=False, indent=2) + "\n"
-    (OUT / "feed-v1.json").write_text(feed_json)
-    (OUT / "held-single-outlet.json").write_text(held_json)
-    (OUT / "cluster-summary.json").write_text(summary_json)
+    (out_dir / "feed-v1.json").write_text(feed_json)
+    (out_dir / "held-single-outlet.json").write_text(held_json)
+    (out_dir / "cluster-summary.json").write_text(summary_json)
+    tmp_map = out_dir / (STORY_ID_MAP_NAME + ".tmp")
+    tmp_map.write_text(id_map_json)
+    tmp_map.replace(out_dir / STORY_ID_MAP_NAME)
     # Mirror durable feed for TheDiffNews app (survives scheduled refresh consumers)
-    app_data = Path("/workspace/thediffnews/data")
-    app_data.mkdir(parents=True, exist_ok=True)
-    (app_data / "feed-v1.json").write_text(feed_json)
-    (app_data / "cluster-summary.json").write_text(summary_json)
+    if app_data is not None:
+        app_data = Path(app_data)
+        app_data.mkdir(parents=True, exist_ok=True)
+        (app_data / "feed-v1.json").write_text(feed_json)
+        (app_data / "cluster-summary.json").write_text(summary_json)
+
+    result = {"summary": summary, "feed": feed, "stories": stories, "held": held}
+    if not verbose:
+        return result
 
     print("=== SUMMARY ===")
     print(json.dumps(summary, indent=2))
@@ -1037,6 +1259,7 @@ def main() -> None:
         print(f"jac={ev['title_overlap']:.2f} dt={ev['time_delta_hours']:.1f}h ents={ev['shared_entities']}")
         print(f"  {a['outlet_id']}: {a['title'][:85]}")
         print(f"  {b['outlet_id']}: {b['title'][:85]}")
+    return result
 
 
 if __name__ == "__main__":

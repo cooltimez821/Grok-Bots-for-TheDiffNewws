@@ -128,3 +128,13 @@ Cluster `bias_band` = majority of member outlet bands, else `mixed`. Lean stays 
 
 
 v1 blindspot tighten (Bias 2026-09-11): `missing_left` / `missing_right` require ≥3 members and ≥2 on the present side, plus clear partisan stakes. Skeleton pairs stay `{ present: false, rule_id: null }`.
+
+## story_id stability (2026-09-28)
+
+`story_id` stays a ULID string, but is **stable across refreshes**: a re-clustered story keeps its prior id instead of minting a new one.
+
+- Member key = `outlet_id` + normalized `canonical_url` (https, lowercase host without `www.`, no fragment/trailing slash, tracking params like `utm_*` dropped). Article ids are not used (seed re-mints them).
+- Before minting, the clusterer loads the previous run's full story set (all clusters, incl. held/aged-off) from `out/story_id_map.json` (`story_id → member keys, last_seen_at`). If the map is missing it bootstraps from `stories.jsonl` / `story_members.jsonl` / `articles.jsonl` / `feed-v1.json` / `held-single-outlet.json`.
+- New cluster reuses a prior `story_id` when **Jaccard(member keys) ≥ 0.5**. Highest overlap wins; ties go to the lexicographically smaller (older) `story_id`. Greedy by descending overlap; each prior id is claimed by at most one new cluster. Otherwise a new ULID is minted.
+- Unclaimed prior ids stay in the map for 7 days (`STORY_ID_RETAIN_HOURS`), so a story that drops out for a refresh or two gets its id back.
+- Feed shape, bands, blindspots, freshness and `outlet_count >= 2` are unchanged. Test: `.venv/bin/python debug/test_stable_ids.py`.

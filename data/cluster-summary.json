@@ -16,5 +16,9 @@
   "survivors": 160,
   "aged_out_stories": 44,
   "freshness_hours": 48,
-  "generated_at": "2026-09-28T17:11:14.542305Z"
+  "story_ids_reused": 154,
+  "story_ids_minted": 0,
+  "story_id_prior_source": "story_id_map",
+  "generated_at": "2026-09-28T17:17:24.514350Z",
+  "story_ids_retained_unclaimed": 0
 }
