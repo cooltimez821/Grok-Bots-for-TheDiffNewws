@@ -1,70 +1,52 @@
 [
   {
-    "story_id": "FCA3EC6E95E1B248EE6B4197BB",
-    "title": "Trump rejects AI slowdown calls, launches \"AI Force\" instead",
-    "first_seen_at": "2026-09-20T10:00:13Z",
-    "last_updated_at": "2026-09-21T15:37:56Z",
-    "article_count": 2,
-    "outlet_count": 2,
+    "story_id": "25C9518EEDFAA998D0CD4C1118",
+    "title": "Scoop: Anthropic's Dario Amodei to have White House dinner with Trump",
+    "first_seen_at": "2026-09-27T15:26:12Z",
+    "last_updated_at": "2026-09-28T03:25:12Z",
+    "article_count": 5,
+    "outlet_count": 5,
     "primary_category": "weight_and_bias",
     "members": [
       {
-        "title": "As White House shields the AI gold rush, Trump family and other allies strike it rich – with few guardrails",
-        "canonical_url": "https://www.theguardian.com/us-news/2026/sep/20/trump-ai-policy-financial-interest",
-        "published_at": "2026-09-20T10:00:13Z",
-        "outlet_id": "guardian",
-        "outlet_name": "The Guardian",
-        "dek": "It’s not clear that financial interests are driving White House policy, but they run parallel even as resistance mounts Donald Trump ’s sons, through a series of AI -linked defense and technology ventures, have picked up a $620m Pentagon loan, a Marine Corps robotics contract and an undisclosed air force drone deal in the past year. His longtime friend Michael Dell won a Pentagon contract worth nearly $9bn. And this week, as public support for artificial intelligence sinks to some of the lowest levels ever recorded, the president went to bat for the industry. “The only control or ‘guardrails’ that AI needs is a STRONG AND SMART (High IQ!) PRESIDENT, and the U.S.A. has that, in spades,” he posted on Truth Social Monday. “There is a SICK conspiracy going on against AI and Data Centers.” It was the first of many aggressively pro-AI posts he would make this week. Continue reading..."
+        "title": "Scoop: Anthropic's Dario Amodei to have White House dinner with Trump",
+        "canonical_url": "https://www.axios.com/2026/09/27/anthropic-trump-dario-amodei-dinner-invite",
+        "published_at": "2026-09-27T15:26:12Z",
+        "outlet_id": "axios",
+        "outlet_name": "Axios",
+        "dek": "President Trump plans to host Anthropic CEO Dario Amodei at a private White House dinner on Sunday evening, sources familiar told Axios. Why it matters: The dinner —the first one-on-one meeting between the two— is an indication of thawing relations between Anthropic and the administration, whose officials and allies have had longstanding tensions. Driving the news: Trump and House Speaker Mike Johnson plan to meet top AI CEOs Tuesday at the White House, and this friendly dinner serves as an appetizer. Top tech CEOs from OpenAI's Sam Altman to Google's Sundar Pichai flanked Trump during a state dinner last week but there was one notable exception —Amodei, who had a scheduling conflict. Afterward, Trump personally invited Amodei to the dinner, one of the sources said. The big picture: Anthropic's relationship with the administration has been on shaky ground all year, with signs of warming quickly deteriorating thereafter. Between the lines: Amodei is such a quirky and controversial figure in AI that he has started to enter mainstream pop culture. Amodei was mocked on the latest episode of Saturday Night Live over his personality traits and his views on AI safety. Last week, Trump allies circulated talking points to the White House that emphasized Amodei's role in, and the oddities of, the effective altruism movement . Months ago, when Anthropic first started talking about having a one-on-one with Trump, some advised against it because \"Dario's a little too weird\" for Trump, one senior official told Axios. What they are saying: \"President Trump has been clear: America will lead the world in Super Intelligence, while protecting American consumers,\" a White House official said. \"We will drive innovation, strengthen American competitiveness, and ensure this transformative technology works for the American people.\" The bottom line: In an administration that is so closely attuned to the president's moods and personal relationships, a sit down with Trump at the White House i…"
       },
       {
-        "title": "Trump rejects AI slowdown calls, launches \"AI Force\" instead",
-        "canonical_url": "https://arstechnica.com/ai/2026/09/trump-rejects-ai-slowdown-calls-launches-ai-force-instead",
-        "published_at": "2026-09-21T15:37:56Z",
-        "outlet_id": "ars_technica",
-        "outlet_name": "Ars Technica",
-        "dek": "The president offered few details on what his proposed new AI Force would do."
-      }
-    ],
-    "labels": {
-      "bias_band": "mixed",
-      "blindspot": {
-        "present": false,
-        "rule_id": null
-      }
-    }
-  },
-  {
-    "story_id": "FCA3BB4FC74074E33A9BD6F9E7",
-    "title": "Amazon Blocks Meta’s Muse AI Agent From Its Retail Site",
-    "first_seen_at": "2026-09-21T09:21:47Z",
-    "last_updated_at": "2026-09-21T15:13:34Z",
-    "article_count": 3,
-    "outlet_count": 3,
-    "primary_category": "weight_and_bias",
-    "members": [
-      {
-        "title": "Amazon blocks Meta’s Muse AI agent",
-        "canonical_url": "https://www.theverge.com/tech/998078/amazon-blocks-meta-muse-ai-agent-shopping",
-        "published_at": "2026-09-21T09:21:47Z",
-        "outlet_id": "the_verge",
-        "outlet_name": "The Verge",
-        "dek": "Meta's Muse AI agent has been blocked from shopping Amazon on behalf of its users, GeekWire reports. A popup message started appearing on Sunday for Muse users saying that \"continued access by an unauthorized AI agent violates Amazon's Conditions of Use, to which our customers have agreed.\" According to GeekWire, Meta didn't notify Amazon that [&#8230;]"
-      },
-      {
-        "title": "Amazon Blocks Meta’s Muse Agent",
-        "canonical_url": "https://www.theinformation.com/briefings/amazon-blocks-metas-muse-agent",
-        "published_at": "2026-09-21T11:46:48Z",
+        "title": "Anthropic’s Amodei to Dine With Trump at White House",
+        "canonical_url": "https://www.theinformation.com/briefings/anthropics-amodei-dine-trump-white-house",
+        "published_at": "2026-09-27T18:47:41Z",
         "outlet_id": "the_information",
         "outlet_name": "The Information",
-        "dek": "Amazon blocked Meta’s Muse personalized AI agent from accessing its shopping site, Geekwire reported, saying that outside applications “should operate openly and respect service provider decisions about whether or not to participate.” The block appeared to even prevent Muse from browsing Amazon’ ..."
+        "dek": "Anthropic CEO Dario Amodei is scheduled to have dinner with President Donald Trump at the White House on Sunday, Axios reported. The private dinner will be the first meeting between Trump and Amodei, Axios reported, and could be a sign of warming relations between Anthropic and the White House. ..."
       },
       {
-        "title": "Amazon Blocks Meta’s Muse AI Agent From Its Retail Site",
-        "canonical_url": "https://www.bloomberg.com/news/articles/2026-09-21/amazon-blocks-meta-s-muse-ai-agent-from-its-retail-site",
-        "published_at": "2026-09-21T15:13:34Z",
-        "outlet_id": "bloomberg",
-        "outlet_name": "Bloomberg",
-        "dek": "Amazon.com Inc. has blocked Meta Platforms Inc.’s new artificial intelligence agent from its retail site after the social media company declined a request to remove the bot."
+        "title": "Trump to have dinner with Anthropic CEO Dario Amodei at White House: Report",
+        "canonical_url": "https://www.washingtonexaminer.com/news/white-house/4744483/trump-dinner-anthropic-dario-amodei-white-house",
+        "published_at": "2026-09-27T19:19:11Z",
+        "outlet_id": "wash_examiner",
+        "outlet_name": "Washington Examiner",
+        "dek": "President Donald Trump is reportedly slated to have dinner with Anthropic CEO Dario Amodei at the White House, opening up a chance to warm their long, frosty relationship. Trump and Amodei have long been at loggerheads, a dispute that first arose over the AI leader’s refusal to give the Pentagon unfettered access to Anthropic’s top [&#8230;]"
+      },
+      {
+        "title": "Dario Amodei of Anthropic to Dine With Trump at White House",
+        "canonical_url": "https://www.nytimes.com/2026/09/27/us/politics/trump-amodei-anthropic-artificial-intelligence.html",
+        "published_at": "2026-09-27T22:12:24Z",
+        "outlet_id": "nyt",
+        "outlet_name": "The New York Times",
+        "dek": "Dario Amodei, who is also the company’s chief executive, will join the president at the White House for a private dinner. Mr. Trump has dismissed his cautions."
+      },
+      {
+        "title": "Trump hosts Anthropic boss Dario Amodei at White House dinner",
+        "canonical_url": "https://www.ft.com/content/fb3aa961-fa28-4dd0-a2ea-cdb03ac8258d?syn-25a6b1a6=1",
+        "published_at": "2026-09-28T03:25:12Z",
+        "outlet_id": "ft",
+        "outlet_name": "Financial Times",
+        "dek": "Dinner hints at rapprochement between US president and chief executive of leading AI lab"
       }
     ],
     "labels": {
