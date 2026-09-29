@@ -146,20 +146,12 @@
   {
     "story_id": "FFD17FFE5AB8D613465F8F94F3",
     "title": "Scoop: Anthropic's Dario Amodei to have White House dinner with Trump",
-    "first_seen_at": "2026-09-27T15:26:12Z",
+    "first_seen_at": "2026-09-27T18:47:41Z",
     "last_updated_at": "2026-09-28T03:25:12Z",
-    "article_count": 5,
-    "outlet_count": 5,
+    "article_count": 4,
+    "outlet_count": 4,
     "primary_category": "weight_and_bias",
     "members": [
-      {
-        "title": "Scoop: Anthropic's Dario Amodei to have White House dinner with Trump",
-        "canonical_url": "https://www.axios.com/2026/09/27/anthropic-trump-dario-amodei-dinner-invite",
-        "published_at": "2026-09-27T15:26:12Z",
-        "outlet_id": "axios",
-        "outlet_name": "Axios",
-        "dek": "President Trump plans to host Anthropic CEO Dario Amodei at a private White House dinner on Sunday evening, sources familiar told Axios. Why it matters: The dinner —the first one-on-one meeting between the two— is an indication of thawing relations between Anthropic and the administration, whose officials and allies have had longstanding tensions. Driving the news: Trump and House Speaker Mike Johnson plan to meet top AI CEOs Tuesday at the White House, and this friendly dinner serves as an appetizer. Top tech CEOs from OpenAI's Sam Altman to Google's Sundar Pichai flanked Trump during a state dinner last week but there was one notable exception —Amodei, who had a scheduling conflict. Afterward, Trump personally invited Amodei to the dinner, one of the sources said. The big picture: Anthropic's relationship with the administration has been on shaky ground all year, with signs of warming quickly deteriorating thereafter. Between the lines: Amodei is such a quirky and controversial figure in AI that he has started to enter mainstream pop culture. Amodei was mocked on the latest episode of Saturday Night Live over his personality traits and his views on AI safety. Last week, Trump allies circulated talking points to the White House that emphasized Amodei's role in, and the oddities of, the effective altruism movement . Months ago, when Anthropic first started talking about having a one-on-one with Trump, some advised against it because \"Dario's a little too weird\" for Trump, one senior official told Axios. What they are saying: \"President Trump has been clear: America will lead the world in Super Intelligence, while protecting American consumers,\" a White House official said. \"We will drive innovation, strengthen American competitiveness, and ensure this transformative technology works for the American people.\" The bottom line: In an administration that is so closely attuned to the president's moods and personal relationships, a sit down with Trump at the White House i…"
-      },
       {
         "title": "Anthropic’s Amodei to Dine With Trump at White House",
         "canonical_url": "https://www.theinformation.com/briefings/anthropics-amodei-dine-trump-white-house",
@@ -194,7 +186,7 @@
       }
     ],
     "labels": {
-      "bias_band": "center",
+      "bias_band": "mixed",
       "blindspot": {
         "present": false,
         "rule_id": null

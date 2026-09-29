@@ -1,33 +1,47 @@
 {
-  "stories_total": 190,
+  "stories_total": 227,
   "feed_stories": 5,
-  "held_single_outlet": 185,
+  "held_single_outlet": 222,
   "deduped": 0,
   "unclustered": 0,
   "by_category": {
-    "prism": 6,
-    "source_code": 3,
-    "weight_and_bias": 181
+    "prism": 7,
+    "source_code": 4,
+    "weight_and_bias": 216
   },
   "by_bias_band": {
-    "center": 2,
+    "center": 1,
     "lean_left": 1,
-    "mixed": 2
+    "mixed": 3
   },
   "unexplained_merges": 0,
-  "clustered_articles": 199,
-  "survivors": 199,
-  "aged_out_stories": 14,
+  "clustered_articles": 236,
+  "survivors": 236,
+  "aged_out_stories": 16,
   "freshness_hours": 48,
-  "edges_removed_event_anchor": 4,
-  "story_ids_reused": 190,
-  "story_ids_minted": 0,
+  "edges_removed_event_anchor": 6,
+  "story_ids_reused": 212,
+  "story_ids_minted": 15,
   "story_id_prior_source": "story_id_map",
-  "articles_carried_forward": 2,
-  "members_carried_forward": 2,
-  "members_carried_forward_all_stories": 2,
+  "articles_carried_forward": 33,
+  "members_carried_forward": 4,
+  "members_carried_forward_all_stories": 33,
   "in_window_member_loss_warnings": [],
-  "seed_carry_forward": null,
-  "generated_at": "2026-09-29T13:21:32.516878Z",
-  "story_ids_retained_unclaimed": 94
+  "seed_carry_forward": {
+    "seed_generated_at": "2026-09-29T17:09:30.728549Z",
+    "stats": {
+      "prior_rows": 386,
+      "refetched": 332,
+      "expired": 0,
+      "skipped_dropped": 21,
+      "skipped_duplicate": 0,
+      "carried": 33,
+      "carried_again": 20,
+      "lost_in_window": 0
+    },
+    "in_window_losses": [],
+    "story_member_losses": []
+  },
+  "generated_at": "2026-09-29T17:10:31.024223Z",
+  "story_ids_retained_unclaimed": 96
 }
