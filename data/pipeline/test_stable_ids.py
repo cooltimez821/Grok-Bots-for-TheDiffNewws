@@ -71,17 +71,20 @@ def sid_by_url(result: dict) -> dict:
     }
 
 
-# Amodei "pace the frontier" density event (same event_key -> one cluster)
+# Amodei "pace the frontier" density event (same event_key -> one cluster).
+# Softfix 2026-09-29: the shared event_key alone no longer links (generic
+# slow-down phrasing); fixtures name a shared event ("summit" -> meeting) in
+# every title so the density path still forms one cluster for the ID tests.
 AMODEI = [
-    art("nyt", "Amodei calls on AI companies to slow down", "https://www.nytimes.com/2026/ai/amodei-slow.html"),
-    art("axios", "Anthropic's Amodei urges AI leaders to pump the brakes", "https://www.axios.com/amodei-brakes"),
-    art("the_verge", "Amodei says AI is advancing too fast", "https://www.theverge.com/amodei-too-fast"),
-    art("bloomberg", "AI CEOs call for slowdown as Amodei leads", "https://www.bloomberg.com/news/amodei-slowdown"),
+    art("nyt", "Amodei calls on AI companies to slow down at AI summit", "https://www.nytimes.com/2026/ai/amodei-slow.html"),
+    art("axios", "Anthropic's Amodei urges AI leaders to pump the brakes at AI summit", "https://www.axios.com/amodei-brakes"),
+    art("the_verge", "Amodei says AI is advancing too fast at AI summit", "https://www.theverge.com/amodei-too-fast"),
+    art("bloomberg", "AI CEOs call for slowdown at AI summit as Amodei leads", "https://www.bloomberg.com/news/amodei-slowdown"),
 ]
-EXTRA_MEMBER = art("techcrunch", "Anthropic CEO Amodei wants AI to slow down", "https://techcrunch.com/amodei-slow-down/")
+EXTRA_MEMBER = art("techcrunch", "Anthropic CEO Amodei wants AI to slow down at AI summit", "https://techcrunch.com/amodei-slow-down/")
 OBAMA = [
     art("cnn", "Obama unveils AI safeguards plan for Democrats", "https://www.cnn.com/obama-ai-safeguards"),
-    art("wapo", "Obama AI safeguard policy push", "https://www.washingtonpost.com/obama-ai-safeguards"),
+    art("wapo", "Obama unveils AI safeguard policy push", "https://www.washingtonpost.com/obama-ai-safeguards"),
 ]
 
 

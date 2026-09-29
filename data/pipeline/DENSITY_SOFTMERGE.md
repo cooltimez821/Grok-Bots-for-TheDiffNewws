@@ -23,7 +23,7 @@ Title-primary (dek intentionally ignored for routing — standfirsts cross-menti
 | `obama_safeguards` | Obama AI safeguards / Dems plan | `amodei_call` |
 
 If both articles have event keys and they **differ** → never soft-merge (satellite-split).
-If both share the **same** event key and `|Δt| ≤ 18h` → soft-merge (density path; Jaccard not required).
+If both share the **same** event key and `|Δt| ≤ 48h` → density path (Jaccard not required) **only if** both titles share a named event anchor (softfix 2026-09-29); otherwise the legacy path below applies.
 Otherwise → legacy path: Jaccard ≥ 0.55 **and** ≥1 shared entity **and** `|Δt| ≤ 18h`, plus contradiction checks.
 
 ## Product locks (must hold)
@@ -86,11 +86,23 @@ A soft-merge edge needs more than shared entities plus similar wording: **both a
 
 1. **Event classes** from a closed lexicon, via the event-word normalization map (see below): `dinner`, `meeting`, `launch`, `lawsuit`, `acquisition`, `hire`, `ipo`, `funding`, `investigation`, `hack`, `ban`.
 2. **Product/version names**: a capitalized word followed by a version number (`Sonnet 5.5` → `product:sonnet 5.5`, `GPT-5`). The word is ignored if it is a known entity, a month, or a counter word (Top/Phase/Round/…).
-3. **Density fallback (pair-level)**: a shared title `event_key` (e.g. `amodei_call`) counts as the anchor **only when at least one of the two articles has no class/product anchor of its own**. If both name explicit events, those events must overlap. A "CEO who called for a slowdown" backstory clause cannot bridge a dinner story and a model launch.
+3. ~~**Density fallback (pair-level)**~~ **REMOVED 2026-09-29 (softfix).** A shared `event_key` (e.g. `amodei_call`) is never an anchor: `amodei_call` fires on generic "slow down / slowdown" phrasing and cannot stand in for a named event. See "Softfix (2026-09-29)" below.
 
 Blocked edges are counted in `cluster-summary.json` → `edges_removed_event_anchor`.
 
 Regression (3:01 PM ET refresh, 2026-09-28): WaPo "Trump dined with the Anthropic CEO who called for AI slowdown" {dinner, meeting} was merged with CNBC "Anthropic launches cheaper AI model…" {launch, product:sonnet 5.5} at 0.40 via `amodei_call` + `anthropic`. That edge is now removed and both are held single-outlet. The Amodei dinner story (all members share `dinner`) and Meta/MongoDB (`hire`) are unchanged. Test: `.venv/bin/python debug/test_event_anchor.py`.
+
+### Softfix (2026-09-29): density path needs a shared named event in both titles
+
+Regression (9:09 AM ET refresh, 2026-09-29): home card `6B6BA0C8DAA617B2675D4FC1C6` joined WaPo "Trump dined with the Anthropic CEO who called for AI slowdown" with The Verge "Will Chinese AI companies slow down? A top House Democrat wants answers" (Khanna/China treaty) at title Jaccard 0.08. Path: both titles map to `event_key` = `amodei_call` (WaPo: "Anthropic" + "slowdown"; Verge: "AI companies" + "slow down"), so the **density path** skipped the Jaccard ≥ 0.55 / shared-entity / 18h checks; the anchor gate then passed on `meeting`, which came only from the two **deks** ("first one-on-one meeting with Dario Amodei" vs "as Trump prepares to meet tech and AI CEOs") — two different meetings. The pair-level `event:amodei_call` fallback was not used in this edge but is the same "slowdown glue" and is removed too.
+
+Rules now (`soft_merge_ok` / `_anchor_gate` in `cluster_v0.py`):
+
+* **Every edge** passes `_anchor_gate`: shared class/product anchor from title + dek; **no event_key fallback**.
+* **Density path** (both titles share the same `event_key`, Δt ≤ 48h): additionally requires a shared class/product anchor in **both titles** (`event_anchors(title_a) ∩ event_anchors(title_b)`); a dek-only overlap is not enough. If that fails, the pair may still link only via the **strict legacy path** (Jaccard ≥ 0.55, ≥1 shared entity, Δt ≤ 18h, anchor gate). Density-path blocks are counted in `edges_removed_event_anchor` (`blocked_detail = density_path_no_shared_title_event`).
+* Other code paths do not create edges: exact dedupe (URL/content hash) only collapses identical articles, the transitive-evidence loop only reads `soft_merge_ok` evidence, and stable-ID carry-forward only renames clusters.
+
+Effect on the 2026-09-29 data: `6B6BA0C8` splits; the Verge China piece keeps `6B6BA0C8DAA617B2675D4FC1C6` (stable-ID tie-break at Jaccard 0.5: smaller sorted member key `the_verge|…` < `wapo|…`), WaPo gets a new id; both are held single-outlet and the card leaves home. All other multi-outlet stories are unchanged (`4A6939A5` OpenAI Astra oc=3, `4A68FCAA` Anthropic IPO, `FFD1E514` Nvidia, `FFD1731A` Meta, `FFD17FFE` Amodei oc=3). `edges_removed_event_anchor` 3 → 4. Tests (`debug/test_event_anchor.py`): WaPo dinner vs Verge China slowdown no link on any path (synthetic + real articles, end-to-end), WaPo/CNBC Sonnet still split, Meta pair / Nvidia pair / OpenAI Astra trio still link; the old fallback test now asserts that two slow-down-only titles do **not** link. `debug/test_stable_ids.py` fixtures now name a shared event ("summit"/"unveils") because the key alone no longer links them.
 
 ### Event-word normalization map (2026-09-28 PM)
 

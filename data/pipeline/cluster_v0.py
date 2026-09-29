@@ -323,11 +323,17 @@ def event_key(title: str, dek: str | None = None) -> str | None:
 #   2. product/version names: a capitalized word followed by a version number,
 #      e.g. "Sonnet 5.5", "GPT-5" -> "product:sonnet 5.5". Words that are known
 #      named entities (KNOWN) or months are not products on their own;
-#   3. pair-level fallback: the density event_key (title-primary) counts as a
-#      shared anchor ("event:<key>") ONLY when at least one of the two articles
-#      has no lexicon/product anchor of its own. When BOTH name an explicit
-#      event (e.g. "dinner" vs "launch" + "Sonnet 5.5"), those must overlap:
-#      a "CEO who called for a slowdown" backstory phrase cannot bridge them.
+#   3. (REMOVED 2026-09-29 softfix) the old pair-level fallback that let a
+#      shared density event_key ("event:<key>", e.g. amodei_call) count as the
+#      anchor when one side had no lexicon/product anchor. amodei_call fires on
+#      generic "slow down / slowdown" phrasing, so it is never an anchor now.
+#      Additionally the density (same-event_key) soft-merge path must share a
+#      class/product anchor in BOTH TITLES (not just deks); otherwise the pair
+#      must pass the strict legacy path (Jaccard >= 0.55, >=1 shared entity,
+#      dt <= 18h, anchor gate). Regression: 9:09 AM ET 2026-09-29 refresh
+#      merged WaPo "Trump dined with the Anthropic CEO who called for AI
+#      slowdown" with The Verge "Will Chinese AI companies slow down? ..." at
+#      title Jaccard 0.08 via amodei_call + a dek-only "meeting" overlap.
 # Shared named entities never count (they are not in the lexicon) and generic
 # words ("ai", "ceo", "model", "company") are not anchors.
 # Rule: every would-be edge (density path and legacy Jaccard path) must pass
@@ -768,9 +774,34 @@ def soft_merge_ok(a, b, ea, eb) -> tuple[bool, dict]:
     if ka and kb and ka == kb:
         if dt_h > float(HOME_FRESHNESS_HOURS):
             return False, evidence
-        evidence["shared_entities"] = sorted(set(shared) | {ka})
-        evidence["density_event"] = ka
-        return _anchor_gate(a, b, evidence)
+        # Softfix (2026-09-29): the shared density key is glue, not an event.
+        # The density path must still pass the anchor gate AND share a named
+        # event (class/product anchor) in BOTH TITLES; a dek-only overlap
+        # ("meeting" in two unrelated standfirsts) no longer suffices. If the
+        # density path fails, fall through to the strict legacy path below.
+        d_ev = dict(evidence)
+        d_ev["shared_entities"] = sorted(set(shared) | {ka})
+        d_ev["density_event"] = ka
+        ok, d_ev = _anchor_gate(a, b, d_ev)
+        if ok:
+            title_common = event_anchors(a["title"]) & event_anchors(b["title"])
+            if title_common:
+                d_ev["title_event_anchors"] = sorted(title_common)
+                return True, d_ev
+            d_ev["blocked_by"] = "event_anchor"
+            d_ev["blocked_detail"] = "density_path_no_shared_title_event"
+            d_ev["event_anchors_a"] = sorted(event_anchors(a["title"], a.get("dek")))
+            d_ev["event_anchors_b"] = sorted(event_anchors(b["title"], b.get("dek")))
+        ok2, l_ev = _legacy_path(a, b, evidence, jac, dt_h, shared)
+        if ok2:
+            return True, l_ev
+        # report the density-path block (so it is counted as an anchor removal)
+        return False, d_ev
+    return _legacy_path(a, b, evidence, jac, dt_h, shared)
+
+
+def _legacy_path(a, b, evidence, jac, dt_h, shared) -> tuple[bool, dict]:
+    evidence = dict(evidence)
     if dt_h > 18.0:
         return False, evidence
     # Strict legacy path (no density event on either side, or only one side keyed)
@@ -786,10 +817,10 @@ def _anchor_gate(a, b, evidence: dict) -> tuple[bool, dict]:
     aa = event_anchors(a["title"], a.get("dek"))
     ab = event_anchors(b["title"], b.get("dek"))
     common = aa & ab
-    if not common and (not aa or not ab):
-        ka, kb = event_key(a["title"]), event_key(b["title"])
-        if ka and ka == kb:
-            common = {f"event:{ka}"}
+    # Softfix (2026-09-29): the old pair-level fallback (shared event_key such
+    # as amodei_call counted as an anchor when one side had no class/product
+    # anchor) is REMOVED. event_key "amodei_call" fires on generic "slow down /
+    # slowdown" phrasing, so it cannot stand in for a shared named event.
     evidence["event_anchors"] = sorted(common)
     if not common:
         evidence["blocked_by"] = "event_anchor"

@@ -1,39 +1,5 @@
 [
   {
-    "story_id": "6B6BA0C8DAA617B2675D4FC1C6",
-    "title": "Trump dined with the Anthropic CEO who called for AI slowdown",
-    "first_seen_at": "2026-09-28T12:16:43Z",
-    "last_updated_at": "2026-09-29T12:00:00Z",
-    "article_count": 2,
-    "outlet_count": 2,
-    "primary_category": "weight_and_bias",
-    "members": [
-      {
-        "title": "Trump dined with the Anthropic CEO who called for AI slowdown",
-        "canonical_url": "https://www.washingtonpost.com/politics/2026/09/28/trump-dined-with-anthropic-ceo-who-called-ai-slowdown",
-        "published_at": "2026-09-28T12:16:43Z",
-        "outlet_id": "wapo",
-        "outlet_name": "The Washington Post",
-        "dek": "The president’s first one-on-one meeting with Dario Amodei followed months of tensions."
-      },
-      {
-        "title": "Will Chinese AI companies slow down? A top House Democrat wants answers",
-        "canonical_url": "https://www.theverge.com/policy/1001767/khanna-ai-safety-china-treaty",
-        "published_at": "2026-09-29T12:00:00Z",
-        "outlet_id": "the_verge",
-        "outlet_name": "The Verge",
-        "dek": "As President Donald Trump prepares to meet tech and AI CEOs in Washington, Rep. Ro Khanna (D-CA) is calling for a treaty between the US and China to keep AI from wreaking havoc on the world. But wrangling leaders in both countries to take action could be a long shot. In letters shared exclusively with [&#8230;]"
-      }
-    ],
-    "labels": {
-      "bias_band": "lean_left",
-      "blindspot": {
-        "present": false,
-        "rule_id": null
-      }
-    }
-  },
-  {
     "story_id": "4A6939A5DF87B65EC1FF0591E3",
     "title": "OpenAI Says It Will Not Release Newest Astra A.I. Model Over Safety Concerns",
     "first_seen_at": "2026-09-29T00:32:19Z",

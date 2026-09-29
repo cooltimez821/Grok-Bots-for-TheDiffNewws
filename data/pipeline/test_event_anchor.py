@@ -89,11 +89,14 @@ def test_anchor_extraction():
     assert cv.event_anchors("Amodei calls on AI companies to slow down") == set()
 
 
-def test_density_key_fallback_only_when_one_side_unanchored():
+def test_density_key_is_not_an_anchor():
+    # Softfix 2026-09-29: the shared amodei_call key (generic slow-down phrasing)
+    # no longer counts as an anchor; with no shared named event the pair is split.
     a = art("nyt", "Amodei calls on AI companies to slow down", None, "https://x.test/a")
     b = art("axios", "Anthropic's Amodei urges AI leaders to pump the brakes", None, "https://x.test/b")
+    assert cv.event_key(a["title"]) == cv.event_key(b["title"]) == "amodei_call"
     ok, ev = _ok(a, b)
-    assert ok is True and ev["event_anchors"] == ["event:amodei_call"], ev
+    assert ok is False and ev.get("blocked_by") == "event_anchor", ev
     # WaPo (dinner) and CNBC (launch) both share amodei_call but name different events
     assert cv.event_key(WAPO["title"]) == cv.event_key(CNBC["title"]) == "amodei_call"
 
@@ -207,6 +210,95 @@ def test_tc_dinner_wapo_separate_end_to_end():
     held = [sorted(m["canonical_url"] for m in s["members"]) for s in r["held"]]
     assert [TC_DINNER["canonical_url"]] in held and [WAPO["canonical_url"]] in held, held
     assert [CNBC["canonical_url"]] in held, held
+
+
+# --- Softfix regression (9:09 AM ET 2026-09-29 refresh) ---------------------
+VERGE_CHINA = art("the_verge", "Will Chinese AI companies slow down? A top House Democrat wants answers",
+                  "As President Donald Trump prepares to meet tech and AI CEOs in Washington, Rep. Ro "
+                  "Khanna (D-CA) is calling for a treaty between the US and China to keep AI from wreaking "
+                  "havoc on the world. But wrangling leaders in both countries to take action could be a "
+                  "long shot. In letters shared exclusively with [&#8230;]",
+                  "https://www.theverge.com/ai-artificial-intelligence/khanna-china-ai-slow-down",
+                  hours_ago=1.0)
+WAPO_24H = dict(WAPO, published_at=(NOW - timedelta(hours=24.7)).strftime("%Y-%m-%dT%H:%M:%SZ"))
+NV_VERGE = art("the_verge", "Nvidia says its new AI safety platform can contain rogue agents in milliseconds",
+               "Nvidia unveiled a new platform it says can detect and shut down rogue AI agents.",
+               "https://www.theverge.com/news/nvidia-rogue-agents-milliseconds", hours_ago=3.0)
+NV_AXIOS = art("axios", "Nvidia says new tool can contain rogue AI agents in \"milliseconds\"",
+               "Nvidia on Monday launched a tool meant to contain misbehaving AI agents.",
+               "https://www.axios.com/2026/09/28/nvidia-rogue-ai-agents-milliseconds", hours_ago=4.0)
+OA_NYT = art("nyt", "OpenAI Says It Will Not Release Newest Astra A.I. Model Over Safety Concerns",
+             "The company said GPT 6.1 Astra showed capabilities that raised safety concerns.",
+             "https://www.nytimes.com/2026/09/28/technology/openai-astra-model.html", hours_ago=6.0)
+OA_WEX = art("wash_examiner", "OpenAI scraps release of new \u2018Astra\u2019 model over safety concerns",
+             "OpenAI will not release GPT 6.1, its Astra model, citing safety concerns.",
+             "https://www.washingtonexaminer.com/openai-astra-scraps-release", hours_ago=5.0)
+OA_GUARD = art("guardian", "OpenAI scraps release of new model over safety concerns in industry first",
+               "OpenAI says GPT 6.1 will not be released after internal safety testing.",
+               "https://www.theguardian.com/technology/2026/sep/28/openai-scraps-release-new-model",
+               hours_ago=4.5)
+
+
+def _real(outlet, needle):
+    """The actual article from out/articles.jsonl when present (else None)."""
+    p = Path("/workspace/news-pipeline/out/articles.jsonl")
+    if not p.exists():
+        return None
+    for line in p.read_text().splitlines():
+        a = json.loads(line)
+        if a.get("outlet_id") == outlet and needle in a.get("title", ""):
+            return a
+    return None
+
+
+def test_wapo_dinner_vs_verge_china_slowdown_no_link_any_path():
+    assert cv.event_key(WAPO_24H["title"]) == cv.event_key(VERGE_CHINA["title"]) == "amodei_call"
+    for x, y in ((WAPO_24H, VERGE_CHINA), (VERGE_CHINA, WAPO_24H), (WAPO, VERGE_CHINA)):
+        ok, ev = _ok(x, y)
+        assert ok is False, ev
+    # the real refresh articles too (dek-only "meeting" overlap no longer glues)
+    rw, rv = _real("wapo", "Trump dined with"), _real("the_verge", "Chinese AI companies slow down")
+    if rw and rv:
+        ok, ev = _ok(rw, rv)
+        assert ok is False, ev
+
+
+def test_wapo_verge_china_split_end_to_end():
+    with tempfile.TemporaryDirectory() as d:
+        d = Path(d)
+        with open(d / "articles.jsonl", "w") as f:
+            for a in (WAPO_24H, VERGE_CHINA, TC_META, TI_META):
+                f.write(json.dumps(a) + "\n")
+        r = cv.main(out_dir=d, app_data=None, verbose=False)
+    feed_urls = sorted(sorted(m["canonical_url"] for m in s["members"]) for s in r["feed"])
+    assert feed_urls == [sorted([TC_META["canonical_url"], TI_META["canonical_url"]])], feed_urls
+    held = [sorted(m["canonical_url"] for m in s["members"]) for s in r["held"]]
+    assert [WAPO_24H["canonical_url"]] in held and [VERGE_CHINA["canonical_url"]] in held, held
+
+
+def test_nvidia_pair_still_links():
+    ok, ev = _ok(NV_VERGE, NV_AXIOS)
+    assert ok is True, ev
+    rv, ra = _real("the_verge", "rogue agents"), _real("axios", "rogue AI agents")
+    if rv and ra:
+        ok, ev = _ok(rv, ra)
+        assert ok is True, ev
+
+
+def test_openai_astra_trio_still_links():
+    with tempfile.TemporaryDirectory() as d:
+        d = Path(d)
+        with open(d / "articles.jsonl", "w") as f:
+            for a in (OA_NYT, OA_WEX, OA_GUARD):
+                f.write(json.dumps(a) + "\n")
+        r = cv.main(out_dir=d, app_data=None, verbose=False)
+    assert len(r["feed"]) == 1 and r["feed"][0]["outlet_count"] == 3, r["feed"]
+    assert {m["outlet_id"] for m in r["feed"][0]["members"]} == {"nyt", "wash_examiner", "guardian"}
+
+
+def test_meta_pair_still_links_after_softfix():
+    ok, ev = _ok(TC_META, TI_META)
+    assert ok is True and "hire" in ev["event_anchors"], ev
 
 
 if __name__ == "__main__":
