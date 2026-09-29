@@ -1,5 +1,73 @@
 [
   {
+    "story_id": "8CB12CAD93C59FE88B0D10B4D8",
+    "title": "Altman Says OpenAI Investors Patient on IPO Amid Safety Focus",
+    "first_seen_at": "2026-09-29T17:57:43Z",
+    "last_updated_at": "2026-09-29T19:43:02Z",
+    "article_count": 2,
+    "outlet_count": 2,
+    "primary_category": "weight_and_bias",
+    "members": [
+      {
+        "title": "OpenAI in Early Talks to Raise $30 Billion Before an IPO",
+        "canonical_url": "https://www.theinformation.com/briefings/openai-early-talks-raise-30-billion-ipo",
+        "published_at": "2026-09-29T17:57:43Z",
+        "outlet_id": "the_information",
+        "outlet_name": "The Information",
+        "dek": "OpenAI is in early talks with investors to raise a pre-IPO round and is targeting raising $30 billion, according to a person familiar with the matter. The ChatGPT maker could seek a valuation around $1.4 trillion, though it hasn’t signed a term sheet yet with any investor, the person said. The ..."
+      },
+      {
+        "title": "Altman Says OpenAI Investors Patient on IPO Amid Safety Focus",
+        "canonical_url": "https://www.bloomberg.com/news/articles/2026-09-29/altman-openai-investors-are-patient-on-ipo-amid-safety-focus",
+        "published_at": "2026-09-29T19:43:02Z",
+        "outlet_id": "bloomberg",
+        "outlet_name": "Bloomberg",
+        "dek": "OpenAI’s Chief Executive Officer Sam Altman said the company wants to navigate a period of heightened artificial intelligence safety concerns without the pressure of being a newly public company and believes investors will be “patient” with its IPO planning."
+      }
+    ],
+    "labels": {
+      "bias_band": "center",
+      "blindspot": {
+        "present": false,
+        "rule_id": null
+      }
+    }
+  },
+  {
+    "story_id": "FAA6494EECBC49DE6827F8579E",
+    "title": "OpenAI hit with landmark lawsuit following Hugging Face hack",
+    "first_seen_at": "2026-09-29T19:00:05Z",
+    "last_updated_at": "2026-09-29T19:05:00Z",
+    "article_count": 2,
+    "outlet_count": 2,
+    "primary_category": "weight_and_bias",
+    "members": [
+      {
+        "title": "OpenAI hit with landmark lawsuit following Hugging Face hack",
+        "canonical_url": "https://www.axios.com/2026/09/29/openai-sued-hugging-face-breach",
+        "published_at": "2026-09-29T19:00:05Z",
+        "outlet_id": "axios",
+        "outlet_name": "Axios",
+        "dek": "A public interest law group hit OpenAI with a lawsuit Tuesday over its breach of tech company Hugging Face , seeking court-ordered restrictions to prevent future hacks. The big picture: The rogue hacking incident — and reports of tens of thousands of other possible examples of problematic agentic behavior — demonstrated the urgent risk of AI agents escaping their testing environments, bypassing guardrails and outpacing their creators . The case tests an increasingly urgent question as AI agents gain power: Who bears legal responsibility when an agent blows past its guardrails and causes real-world harm? Driving the news: \" OpenAI is responsible for the conduct of its agents,\" Legal Advocates for Safe Science and Technology (LASST), representing itself alongside Gerstein Harrow LLP, argued in its suit filed in California Superior Court Tuesday. They allege OpenAI agents \"knowingly\" accessed Hugging Face without permission and that employees or officers caused that access \"either with actual knowledge or in willful blindness.\" The suit aims to block development practices that allow AI agents to autonomously cause outside harm, LASST founder Tyler Whitmer tells Axios and ensures there are \"legal mechanisms that tie these harms back to a responsible human\" or corporate actor when an AI agent causes harm. Whitmer hopes an injunction would \"incentivize OpenAI and … the industry to alter their development processes in a way that would prevent this from happening\" again. Zoom in: The organization sued under California's Unfair Competition Law , arguing OpenAI's \"unlawful and unfair business practices\" diverted work and resources to responding to the Hugging Face incident. It also argued \"OpenAI's insistence on externalizing the harms of its unsafe decision-making is a fundamentally unfair business practice,\" nodding to a letter from OpenAI and other tech leaders calling on organizations to \"[m]ake cyber defense an immediate leadership priority.\" The suit also argued OpenAI…"
+      },
+      {
+        "title": "OpenAI Gets Sued Over the Hugging Face Hack",
+        "canonical_url": "https://www.wired.com/story/openai-sued-over-the-hugging-face-hack",
+        "published_at": "2026-09-29T19:05:00Z",
+        "outlet_id": "wired",
+        "outlet_name": "Wired",
+        "dek": "A nonprofit in California is doing what Hugging Face has not—attempting to hold OpenAI legally accountable for the actions of its agents."
+      }
+    ],
+    "labels": {
+      "bias_band": "mixed",
+      "blindspot": {
+        "present": false,
+        "rule_id": null
+      }
+    }
+  },
+  {
     "story_id": "4A68FCAAA9EA182B279B288E78",
     "title": "Anthropic warns of ‘existential risks to humanity’ in IPO prospectus",
     "first_seen_at": "2026-09-29T02:28:18Z",
@@ -188,20 +256,12 @@
   {
     "story_id": "FFD17FFE5AB8D613465F8F94F3",
     "title": "Trump hosts Anthropic boss Dario Amodei at White House dinner",
-    "first_seen_at": "2026-09-27T19:19:11Z",
+    "first_seen_at": "2026-09-27T22:12:24Z",
     "last_updated_at": "2026-09-28T03:25:12Z",
-    "article_count": 3,
-    "outlet_count": 3,
+    "article_count": 2,
+    "outlet_count": 2,
     "primary_category": "weight_and_bias",
     "members": [
-      {
-        "title": "Trump to have dinner with Anthropic CEO Dario Amodei at White House: Report",
-        "canonical_url": "https://www.washingtonexaminer.com/news/white-house/4744483/trump-dinner-anthropic-dario-amodei-white-house",
-        "published_at": "2026-09-27T19:19:11Z",
-        "outlet_id": "wash_examiner",
-        "outlet_name": "Washington Examiner",
-        "dek": "President Donald Trump is reportedly slated to have dinner with Anthropic CEO Dario Amodei at the White House, opening up a chance to warm their long, frosty relationship. Trump and Amodei have long been at loggerheads, a dispute that first arose over the AI leader’s refusal to give the Pentagon unfettered access to Anthropic’s top [&#8230;]"
-      },
       {
         "title": "Dario Amodei of Anthropic to Dine With Trump at White House",
         "canonical_url": "https://www.nytimes.com/2026/09/27/us/politics/trump-amodei-anthropic-artificial-intelligence.html",
