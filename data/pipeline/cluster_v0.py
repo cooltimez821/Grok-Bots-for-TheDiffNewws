@@ -890,6 +890,21 @@ def assign_category(members: list, outlets: dict) -> str:
     return "weight_and_bias"
 
 
+def pick_title_member(members: list, outlets: dict) -> dict:
+    """Headline source: best trust tier, then earliest published_at, then article_id.
+
+    Title-fresh fix (2026-09-29): the feed item calls this again on its fresh
+    (in-window, unique-by-outlet) members so an expired member never supplies
+    the headline. Rule unchanged; only the input set differs.
+    """
+    def title_key(m):
+        return (trust_rank(outlets.get(m["outlet_id"], {})), m["published_at"], m["article_id"])
+
+    best_tier = trust_rank(outlets.get(sorted(members, key=title_key)[0]["outlet_id"], {}))
+    same_tier = [m for m in members if trust_rank(outlets.get(m["outlet_id"], {})) == best_tier]
+    return sorted(same_tier, key=lambda m: (m["published_at"], m["article_id"]))[0]
+
+
 def compute_bias_band(members: list, outlets: dict) -> str:
     bands = [outlets[m["outlet_id"]]["bias_band"] for m in members if m["outlet_id"] in outlets]
     if not bands:
@@ -1173,12 +1188,7 @@ def main(out_dir: Path | None = None, app_data: Path | None = APP_DATA, verbose:
                 continue
             survivor_of[rm["article_id"]] = kept_by_outlet[rm["outlet_id"]]["article_id"]
 
-        def title_key(m):
-            return (trust_rank(outlets.get(m["outlet_id"], {})), m["published_at"], m["article_id"])
-
-        best_tier = trust_rank(outlets.get(sorted(members, key=title_key)[0]["outlet_id"], {}))
-        same_tier = [m for m in members if trust_rank(outlets.get(m["outlet_id"], {})) == best_tier]
-        title_src = sorted(same_tier, key=lambda m: (m["published_at"], m["article_id"]))[0]
+        title_src = pick_title_member(members, outlets)
 
         if reuse_id:
             story_id = reuse_id
@@ -1344,14 +1354,20 @@ def main(out_dir: Path | None = None, app_data: Path | None = APP_DATA, verbose:
             seen.add(m["outlet_id"])
             uniq.append(m)
         outlet_count = len(uniq)
+        # Title-fresh fix: headline + category come from the fresh (in-window)
+        # members only, same rules as the story-level pick. stories.jsonl and
+        # aged_out held rows keep the all-member title/category. Blindspot still
+        # receives the story-level category (blindspot computation unchanged).
+        fresh_title = pick_title_member(uniq, outlets)["title"]
+        fresh_category = assign_category(uniq, outlets)
         item = {
             "story_id": s["story_id"],
-            "title": s["title"],
+            "title": fresh_title,
             "first_seen_at": min(m["published_at"] for m in uniq),
             "last_updated_at": last_updated,
             "article_count": len(uniq),
             "outlet_count": outlet_count,
-            "primary_category": s["primary_category"],
+            "primary_category": fresh_category,
             "members": [
                 {
                     "title": m["title"],

@@ -20,8 +20,8 @@
   "aged_out_stories": 16,
   "freshness_hours": 48,
   "edges_removed_event_anchor": 7,
-  "story_ids_reused": 224,
-  "story_ids_minted": 28,
+  "story_ids_reused": 252,
+  "story_ids_minted": 0,
   "story_id_prior_source": "story_id_map",
   "articles_carried_forward": 51,
   "members_carried_forward": 4,
@@ -42,6 +42,6 @@
     "in_window_losses": [],
     "story_member_losses": []
   },
-  "generated_at": "2026-09-29T19:03:12.905501Z",
+  "generated_at": "2026-09-29T19:08:25.292180Z",
   "story_ids_retained_unclaimed": 99
 }

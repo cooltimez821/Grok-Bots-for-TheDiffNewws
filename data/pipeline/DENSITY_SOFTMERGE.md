@@ -144,3 +144,14 @@ Rule (`debug/seed_feeds.py`, `carry_forward()`), applied before `out/articles.js
 * Warnings: any prior in-window article that is neither re-fetched nor carried (e.g. its outlet left the catalog) and any story whose member keys disappear while still inside 48h.
 * Tests: `.venv/bin/python debug/test_carry_forward.py` (47h carried / 49h not; carried twice still expires by original `published_at`; latest-10 feed keeps older in-window items; re-fetched article not duplicated; outlet removed from catalog is not carried and warns).
 * One-time restore (2026-09-29 ~9:20 AM ET): The Information "Anthropic's Amodei to Dine With Trump at White House" (published Sep 27 2:47 PM ET, expires Sep 29 2:47 PM ET) and Washington Examiner "Trump to have dinner with Anthropic CEO Dario Amodei at White House: Report" (published Sep 27 3:19 PM ET, expires Sep 29 3:19 PM ET) were restored from `out/_pre_variant2_20260928-170618/` with original ids and `carried_forward: true`. Amodei is back to 5 outlets, same id, `weight_and_bias`.
+
+## Title and category from fresh members (2026-09-29)
+
+The feed item's `title` and `primary_category` are derived from its **fresh (in-window, ≤48h) members** only — the same unique-by-outlet `members` list the card shows after the 48h freshness trim. Rules are unchanged; only the input set changed:
+
+* `title`: best trust tier (`trust_rank`: center non-provisional, then center provisional, then other), then earliest `published_at`, then `article_id` (`pick_title_member` in `cluster_v0.py`).
+* `primary_category`: existing `assign_category` rules (Bias-owned, untouched), applied to the fresh members.
+* Applies to `feed-v1.json` home items and to single-outlet held items (they share the same item builder). `stories.jsonl` and `aged_out` held rows keep the all-member title/category (story-level record; an aged_out row has no fresh members). `cluster-summary.json` `by_category` still counts `stories.jsonl`.
+* Unchanged: members, `story_id` / `story_id_map`, `outlet_count`, `bias_band`, blindspot (still passed the story-level category), freshness, carry-forward, anchors, edges.
+* Regression: Amodei dinner `FFD17FFE5AB8D613465F8F94F3` showed the expired axios headline "Scoop: Anthropic's Dario Amodei to have White House dinner with Trump" while its fresh members were only wash_examiner, nyt and ft; it now shows FT "Trump hosts Anthropic boss Dario Amodei at White House dinner" (category unchanged, `weight_and_bias`). No other story changed on the 2026-09-29 data.
+* Test: `.venv/bin/python debug/test_title_fresh.py`.
