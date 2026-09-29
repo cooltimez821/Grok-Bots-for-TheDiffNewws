@@ -1031,6 +1031,29 @@ def main(out_dir: Path | None = None, app_data: Path | None = APP_DATA, verbose:
         out_dir, [dict(a) for a in articles]
     )
 
+    # In-window member-loss check (carry-forward guard): any member of a prior
+    # home/held story still inside the freshness window whose member key is no
+    # longer present in articles.jsonl at all (neither fetched nor carried).
+    now_chk = datetime.now(timezone.utc)
+    current_keys = {member_key(a) for a in articles}
+    member_loss_warnings = []
+    for fname, was_home in (("feed-v1.json", True), ("held-single-outlet.json", False)):
+        for item in _read_json(out_dir / fname) or []:
+            lost = [
+                member_key(m) for m in item.get("members") or []
+                if m.get("published_at") and is_fresh(m["published_at"], now_chk)
+                and member_key(m) not in current_keys
+            ]
+            if lost:
+                member_loss_warnings.append({
+                    "story_id": item.get("story_id"),
+                    "title": item.get("title"),
+                    "was_home": was_home,
+                    "lost_member_keys": sorted(lost),
+                })
+    seed_summary = _read_json(out_dir / "seed-summary.json") or {}
+    seed_carry = seed_summary.get("carry_forward") or {}
+
     # Reset prior clustering on non-dropped rows so re-runs are idempotent
     for a in articles:
         if a["status"] in ("clustered", "deduped", "fetched"):
@@ -1353,6 +1376,7 @@ def main(out_dir: Path | None = None, app_data: Path | None = APP_DATA, verbose:
     feed.sort(key=lambda x: x["last_updated_at"], reverse=True)
     held.sort(key=lambda x: x["last_updated_at"], reverse=True)
 
+    art_by_key = {member_key(a): a for a in articles if a["status"] == "clustered"}
     by_cat = Counter(s["primary_category"] for s in stories)
     by_bias = Counter(i["labels"]["bias_band"] for i in feed)
     summary = {
@@ -1372,6 +1396,22 @@ def main(out_dir: Path | None = None, app_data: Path | None = APP_DATA, verbose:
         "story_ids_reused": reused_ids,
         "story_ids_minted": minted_ids,
         "story_id_prior_source": prior_source,
+        # carry-forward (carried rows obey the same 48h original-published_at rule)
+        "articles_carried_forward": sum(1 for a in articles if a.get("carried_forward")),
+        "members_carried_forward": sum(
+            1 for i in feed for m in i["members"]
+            if (art_by_key.get(member_key(m)) or {}).get("carried_forward")
+        ),
+        "members_carried_forward_all_stories": sum(
+            1 for sm in members_out if art_by_id[sm["article_id"]].get("carried_forward")
+        ),
+        "in_window_member_loss_warnings": member_loss_warnings,
+        "seed_carry_forward": {
+            "seed_generated_at": seed_summary.get("generated_at"),
+            "stats": seed_carry.get("stats"),
+            "in_window_losses": seed_carry.get("in_window_losses", []),
+            "story_member_losses": seed_carry.get("story_member_losses", []),
+        } if seed_carry else None,
         "generated_at": now,
     }
 
