@@ -1,5 +1,115 @@
 [
   {
+    "story_id": "6B6BA0C8DAA617B2675D4FC1C6",
+    "title": "Trump dined with the Anthropic CEO who called for AI slowdown",
+    "first_seen_at": "2026-09-28T12:16:43Z",
+    "last_updated_at": "2026-09-29T12:00:00Z",
+    "article_count": 2,
+    "outlet_count": 2,
+    "primary_category": "weight_and_bias",
+    "members": [
+      {
+        "title": "Trump dined with the Anthropic CEO who called for AI slowdown",
+        "canonical_url": "https://www.washingtonpost.com/politics/2026/09/28/trump-dined-with-anthropic-ceo-who-called-ai-slowdown",
+        "published_at": "2026-09-28T12:16:43Z",
+        "outlet_id": "wapo",
+        "outlet_name": "The Washington Post",
+        "dek": "The president’s first one-on-one meeting with Dario Amodei followed months of tensions."
+      },
+      {
+        "title": "Will Chinese AI companies slow down? A top House Democrat wants answers",
+        "canonical_url": "https://www.theverge.com/policy/1001767/khanna-ai-safety-china-treaty",
+        "published_at": "2026-09-29T12:00:00Z",
+        "outlet_id": "the_verge",
+        "outlet_name": "The Verge",
+        "dek": "As President Donald Trump prepares to meet tech and AI CEOs in Washington, Rep. Ro Khanna (D-CA) is calling for a treaty between the US and China to keep AI from wreaking havoc on the world. But wrangling leaders in both countries to take action could be a long shot. In letters shared exclusively with [&#8230;]"
+      }
+    ],
+    "labels": {
+      "bias_band": "lean_left",
+      "blindspot": {
+        "present": false,
+        "rule_id": null
+      }
+    }
+  },
+  {
+    "story_id": "4A6939A5DF87B65EC1FF0591E3",
+    "title": "OpenAI Says It Will Not Release Newest Astra A.I. Model Over Safety Concerns",
+    "first_seen_at": "2026-09-29T00:32:19Z",
+    "last_updated_at": "2026-09-29T11:16:31Z",
+    "article_count": 3,
+    "outlet_count": 3,
+    "primary_category": "weight_and_bias",
+    "members": [
+      {
+        "title": "OpenAI Says It Will Not Release Newest Astra A.I. Model Over Safety Concerns",
+        "canonical_url": "https://www.nytimes.com/2026/09/28/technology/openai-astra-safety.html",
+        "published_at": "2026-09-29T00:32:19Z",
+        "outlet_id": "nyt",
+        "outlet_name": "The New York Times",
+        "dek": "The company’s researchers raised questions about the security of the model, known as GPT-6.1 Astra."
+      },
+      {
+        "title": "OpenAI scraps release of new ‘Astra’ model over safety concerns",
+        "canonical_url": "https://www.washingtonexaminer.com/policy/technology/4746306/openai-scraps-release-astra-model-safety-concerns",
+        "published_at": "2026-09-29T02:06:14Z",
+        "outlet_id": "wash_examiner",
+        "outlet_name": "Washington Examiner",
+        "dek": "OpenAI said Monday that it is no longer releasing its GPT-6.1 Astra model, the company’s most advanced artificial intelligence chatbot, citing safety and security concerns raised by developers testing the model. Saachi Jain, OpenAI’s chief of safety systems, said in a statement that the model “didn’t quite meet the bar in terms of staying within [&#8230;]"
+      },
+      {
+        "title": "OpenAI scraps release of new model over safety concerns in internal testing",
+        "canonical_url": "https://www.theguardian.com/technology/2026/sep/28/openai-new-model-astra-release-scrapped",
+        "published_at": "2026-09-29T11:16:31Z",
+        "outlet_id": "guardian",
+        "outlet_name": "The Guardian",
+        "dek": "GPT-6.1 Astra showed deceptive behaviour and tried to use external tools despite knowing it would be unsafe As AI models go rogue, do you still trust OpenAI and Anthropic to stop them? I don’t and neither should you Business live – latest updates OpenAI is scrapping the release of a next-generation ⁠AI model after researchers raised safety concerns ⁠during internal testing. The model, GPT-6.1 Astra, was expected to appear in ChatGPT and ⁠Codex in October, designed to handle more complex tasks without human assistance. Continue reading..."
+      }
+    ],
+    "labels": {
+      "bias_band": "lean_left",
+      "blindspot": {
+        "present": false,
+        "rule_id": null
+      }
+    }
+  },
+  {
+    "story_id": "4A68FCAAA9EA182B279B288E78",
+    "title": "Anthropic warns of ‘existential risks to humanity’ in IPO prospectus",
+    "first_seen_at": "2026-09-29T02:28:18Z",
+    "last_updated_at": "2026-09-29T10:17:58Z",
+    "article_count": 2,
+    "outlet_count": 2,
+    "primary_category": "source_code",
+    "members": [
+      {
+        "title": "Anthropic warns of ‘existential risks to humanity’ in IPO prospectus",
+        "canonical_url": "https://www.ft.com/content/c7685a7e-7745-4cbc-8053-4958d0ea449b?syn-25a6b1a6=1",
+        "published_at": "2026-09-29T02:28:18Z",
+        "outlet_id": "ft",
+        "outlet_name": "Financial Times",
+        "dek": "Long-awaited S-1 filing reports Claude maker lost $8bn last year on $4.6bn in revenue"
+      },
+      {
+        "title": "Anthropic ‘warns of existential AI risks to humanity’ in IPO document",
+        "canonical_url": "https://www.theguardian.com/technology/2026/sep/29/anthropic-warns-existential-ai-risks-humanity-ipo-document-claude",
+        "published_at": "2026-09-29T10:17:58Z",
+        "outlet_id": "guardian",
+        "outlet_name": "The Guardian",
+        "dek": "Reported admission to investors of AI’s ‘self-preserving behaviours’ comes as company prepares for a potential $2tn flotation Anthropic is telling investors that advanced AI could pose “catastrophic or existential risks to humanity”, according to reports, as it prepares for a potential $2tn (£1.5tn) flotation. The warning inside the startup’s IPO prospectus, which has yet to be made public, was reported by Reuters and the Financial Times. It follows the company’s call for a slowdown in breakneck development of the technology – a warning echoed by rivals . Continue reading..."
+      }
+    ],
+    "labels": {
+      "bias_band": "mixed",
+      "blindspot": {
+        "present": false,
+        "rule_id": null
+      }
+    }
+  },
+  {
     "story_id": "FFD1E5147710658895B0E6E5C2",
     "title": "Nvidia says new tool can contain rogue AI agents in \"milliseconds\"",
     "first_seen_at": "2026-09-28T13:36:06Z",
@@ -72,9 +182,9 @@
     "title": "Scoop: Anthropic's Dario Amodei to have White House dinner with Trump",
     "first_seen_at": "2026-09-27T15:26:12Z",
     "last_updated_at": "2026-09-28T03:25:12Z",
-    "article_count": 5,
-    "outlet_count": 5,
-    "primary_category": "weight_and_bias",
+    "article_count": 3,
+    "outlet_count": 3,
+    "primary_category": "blindspot",
     "members": [
       {
         "title": "Scoop: Anthropic's Dario Amodei to have White House dinner with Trump",
@@ -83,22 +193,6 @@
         "outlet_id": "axios",
         "outlet_name": "Axios",
         "dek": "President Trump plans to host Anthropic CEO Dario Amodei at a private White House dinner on Sunday evening, sources familiar told Axios. Why it matters: The dinner —the first one-on-one meeting between the two— is an indication of thawing relations between Anthropic and the administration, whose officials and allies have had longstanding tensions. Driving the news: Trump and House Speaker Mike Johnson plan to meet top AI CEOs Tuesday at the White House, and this friendly dinner serves as an appetizer. Top tech CEOs from OpenAI's Sam Altman to Google's Sundar Pichai flanked Trump during a state dinner last week but there was one notable exception —Amodei, who had a scheduling conflict. Afterward, Trump personally invited Amodei to the dinner, one of the sources said. The big picture: Anthropic's relationship with the administration has been on shaky ground all year, with signs of warming quickly deteriorating thereafter. Between the lines: Amodei is such a quirky and controversial figure in AI that he has started to enter mainstream pop culture. Amodei was mocked on the latest episode of Saturday Night Live over his personality traits and his views on AI safety. Last week, Trump allies circulated talking points to the White House that emphasized Amodei's role in, and the oddities of, the effective altruism movement . Months ago, when Anthropic first started talking about having a one-on-one with Trump, some advised against it because \"Dario's a little too weird\" for Trump, one senior official told Axios. What they are saying: \"President Trump has been clear: America will lead the world in Super Intelligence, while protecting American consumers,\" a White House official said. \"We will drive innovation, strengthen American competitiveness, and ensure this transformative technology works for the American people.\" The bottom line: In an administration that is so closely attuned to the president's moods and personal relationships, a sit down with Trump at the White House i…"
-      },
-      {
-        "title": "Anthropic’s Amodei to Dine With Trump at White House",
-        "canonical_url": "https://www.theinformation.com/briefings/anthropics-amodei-dine-trump-white-house",
-        "published_at": "2026-09-27T18:47:41Z",
-        "outlet_id": "the_information",
-        "outlet_name": "The Information",
-        "dek": "Anthropic CEO Dario Amodei is scheduled to have dinner with President Donald Trump at the White House on Sunday, Axios reported. The private dinner will be the first meeting between Trump and Amodei, Axios reported, and could be a sign of warming relations between Anthropic and the White House. ..."
-      },
-      {
-        "title": "Trump to have dinner with Anthropic CEO Dario Amodei at White House: Report",
-        "canonical_url": "https://www.washingtonexaminer.com/news/white-house/4744483/trump-dinner-anthropic-dario-amodei-white-house",
-        "published_at": "2026-09-27T19:19:11Z",
-        "outlet_id": "wash_examiner",
-        "outlet_name": "Washington Examiner",
-        "dek": "President Donald Trump is reportedly slated to have dinner with Anthropic CEO Dario Amodei at the White House, opening up a chance to warm their long, frosty relationship. Trump and Amodei have long been at loggerheads, a dispute that first arose over the AI leader’s refusal to give the Pentagon unfettered access to Anthropic’s top [&#8230;]"
       },
       {
         "title": "Dario Amodei of Anthropic to Dine With Trump at White House",
