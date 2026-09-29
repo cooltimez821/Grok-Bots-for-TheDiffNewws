@@ -785,6 +785,11 @@ def soft_merge_ok(a, b, ea, eb) -> tuple[bool, dict]:
         ok, d_ev = _anchor_gate(a, b, d_ev)
         if ok:
             title_common = event_anchors(a["title"]) & event_anchors(b["title"])
+            # IPO/funding tightening: a titles-only overlap of ipo/funding needs
+            # the same corroboration as the anchor gate.
+            if title_common and title_common <= WEAK_ANCHOR_CLASSES and not \
+                    weak_anchor_corroborated(a, b, jac):
+                title_common = set()
             if title_common:
                 d_ev["title_event_anchors"] = sorted(title_common)
                 return True, d_ev
@@ -812,11 +817,50 @@ def _legacy_path(a, b, evidence, jac, dt_h, shared) -> tuple[bool, dict]:
     return _anchor_gate(a, b, evidence)
 
 
+# IPO/funding tightening (2026-09-29): "ipo" and "funding" are broad classes --
+# one company can have several unrelated IPO/funding stories the same day.
+# Regression (5:03 PM ET refresh): home card 8CB12CAD93C59FE88B0D10B4D8 merged
+# The Information "OpenAI in Early Talks to Raise $30 Billion Before an IPO"
+# (pre-IPO round) with Bloomberg "Altman Says OpenAI Investors Patient on IPO
+# Amid Safety Focus" (IPO timing) at title Jaccard 0.17: same event_key
+# (openai_ipo) + shared "ipo" was the only anchor. So an edge whose shared
+# anchors are ONLY ipo/funding also needs corroboration beyond the company:
+# a shared normalized $ figure (title + dek) or title Jaccard >= 0.5. Floor
+# from data: every genuine ipo-only edge seen so far is >= 0.5556 (Anthropic
+# S-1: ft/semafor 0.5556, ft/guardian 0.625); the bad pair is 0.1667. Any other
+# shared class or product anchor still suffices on its own (unchanged).
+WEAK_ANCHOR_CLASSES: frozenset[str] = frozenset({"ipo", "funding"})
+WEAK_ANCHOR_TITLE_JACCARD_MIN = 0.5
+_FIGURE_RE = re.compile(r"\$\s?(\d+(?:,\d{3})*(?:\.\d+)?)\s*(trillion|tn|billion|bn|million|mn)\b")
+_FIGURE_UNIT = {"trillion": 1e12, "tn": 1e12, "billion": 1e9, "bn": 1e9, "million": 1e6, "mn": 1e6}
+
+
+def money_figures(title: str, dek: str | None = None) -> set[int]:
+    """Normalized $ amounts ("$30 billion" == "$30bn" -> 30000000000)."""
+    text = f"{title or ''} {dek or ''}".lower()
+    return {round(float(n.replace(",", "")) * _FIGURE_UNIT[u])
+            for n, u in _FIGURE_RE.findall(text)}
+
+
+def weak_anchor_corroborated(a, b, title_jaccard: float) -> bool:
+    if title_jaccard >= WEAK_ANCHOR_TITLE_JACCARD_MIN:
+        return True
+    return bool(money_figures(a["title"], a.get("dek")) & money_figures(b["title"], b.get("dek")))
+
+
 def _anchor_gate(a, b, evidence: dict) -> tuple[bool, dict]:
     """Final gate for every would-be edge: require a shared event anchor."""
     aa = event_anchors(a["title"], a.get("dek"))
     ab = event_anchors(b["title"], b.get("dek"))
     common = aa & ab
+    if common and common <= WEAK_ANCHOR_CLASSES and not weak_anchor_corroborated(
+            a, b, evidence.get("title_overlap") or 0.0):
+        evidence["event_anchors"] = sorted(common)
+        evidence["blocked_by"] = "event_anchor"
+        evidence["blocked_detail"] = "weak_anchor_uncorroborated"
+        evidence["event_anchors_a"] = sorted(aa)
+        evidence["event_anchors_b"] = sorted(ab)
+        return False, evidence
     # Softfix (2026-09-29): the old pair-level fallback (shared event_key such
     # as amodei_call counted as an anchor when one side had no class/product
     # anchor) is REMOVED. event_key "amodei_call" fires on generic "slow down /

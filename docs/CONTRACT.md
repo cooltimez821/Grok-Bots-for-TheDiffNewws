@@ -215,3 +215,21 @@ The feed item's `title` and `primary_category` are derived from its **fresh (in-
 * Unchanged: members, `story_id` / `story_id_map`, `outlet_count`, `bias_band`, blindspot (still passed the story-level category), freshness, carry-forward, anchors, edges.
 * Regression: Amodei dinner `FFD17FFE5AB8D613465F8F94F3` showed the expired axios headline "Scoop: Anthropic's Dario Amodei to have White House dinner with Trump" while its fresh members were only wash_examiner, nyt and ft; it now shows FT "Trump hosts Anthropic boss Dario Amodei at White House dinner" (category unchanged, `weight_and_bias`). No other story changed on the 2026-09-29 data.
 * Test: `.venv/bin/python debug/test_title_fresh.py`.
+
+## IPO/funding anchor tightening (2026-09-29)
+
+`ipo` and `funding` are broad event classes: one company can have several unrelated IPO/funding stories on the same day. An edge whose shared event anchors are **only** `ipo` and/or `funding` (`WEAK_ANCHOR_CLASSES`) now also needs corroboration beyond the company/org entity:
+
+* a shared **normalized $ figure** in title + dek (`money_figures`: "$30 billion" == "$30bn"; units trillion/tn, billion/bn, million/mn; bare prices don't count), **or**
+* title Jaccard ≥ **0.5** (`WEAK_ANCHOR_TITLE_JACCARD_MIN`). This floor comes from the data: every genuine ipo-only edge seen so far scores ≥ 0.5556 (Anthropic S-1 filing: ft/semafor 0.5556, ft/guardian 0.625), and the bad pair scores 0.1667.
+
+Any other shared class (dinner, meeting, launch, lawsuit, acquisition, hire, investigation, hack, ban) or a product/version anchor still passes on its own, as before. The check lives in `_anchor_gate`, so it applies to both paths. The density path's "shared event in both titles" check applies the same rule: a titles-only overlap made up of just ipo/funding needs the same corroboration. Blocked edges get `blocked_detail = weak_anchor_uncorroborated` and are counted in `edges_removed_event_anchor`.
+
+The legacy path already requires Jaccard ≥ 0.55, so in practice this only affects the density path.
+
+Regression (5:03 PM ET refresh): home card `8CB12CAD93C59FE88B0D10B4D8` merged The Information "OpenAI in Early Talks to Raise $30 Billion Before an IPO" (a pre-IPO round) with Bloomberg "Altman Says OpenAI Investors Patient on IPO Amid Safety Focus" (IPO timing). They linked via density key `openai_ipo` plus a shared `ipo` anchor, at Jaccard 0.17 with no shared figure. After the fix:
+
+* The pair splits. Bloomberg keeps `8CB12CAD93C59FE88B0D10B4D8`; The Information gets a new id. Both are held as single-outlet stories, and home goes from 8 to 7.
+* No other story changed. The Anthropic IPO card `4A68FCAAA9EA182B279B288E78` (ft/guardian/semafor) is unchanged.
+* `edges_removed_event_anchor` 8 → 9.
+* Test: `.venv/bin/python debug/test_ipo_anchor.py`.

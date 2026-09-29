@@ -1,39 +1,5 @@
 [
   {
-    "story_id": "8CB12CAD93C59FE88B0D10B4D8",
-    "title": "Altman Says OpenAI Investors Patient on IPO Amid Safety Focus",
-    "first_seen_at": "2026-09-29T17:57:43Z",
-    "last_updated_at": "2026-09-29T19:43:02Z",
-    "article_count": 2,
-    "outlet_count": 2,
-    "primary_category": "weight_and_bias",
-    "members": [
-      {
-        "title": "OpenAI in Early Talks to Raise $30 Billion Before an IPO",
-        "canonical_url": "https://www.theinformation.com/briefings/openai-early-talks-raise-30-billion-ipo",
-        "published_at": "2026-09-29T17:57:43Z",
-        "outlet_id": "the_information",
-        "outlet_name": "The Information",
-        "dek": "OpenAI is in early talks with investors to raise a pre-IPO round and is targeting raising $30 billion, according to a person familiar with the matter. The ChatGPT maker could seek a valuation around $1.4 trillion, though it hasn’t signed a term sheet yet with any investor, the person said. The ..."
-      },
-      {
-        "title": "Altman Says OpenAI Investors Patient on IPO Amid Safety Focus",
-        "canonical_url": "https://www.bloomberg.com/news/articles/2026-09-29/altman-openai-investors-are-patient-on-ipo-amid-safety-focus",
-        "published_at": "2026-09-29T19:43:02Z",
-        "outlet_id": "bloomberg",
-        "outlet_name": "Bloomberg",
-        "dek": "OpenAI’s Chief Executive Officer Sam Altman said the company wants to navigate a period of heightened artificial intelligence safety concerns without the pressure of being a newly public company and believes investors will be “patient” with its IPO planning."
-      }
-    ],
-    "labels": {
-      "bias_band": "center",
-      "blindspot": {
-        "present": false,
-        "rule_id": null
-      }
-    }
-  },
-  {
     "story_id": "FAA6494EECBC49DE6827F8579E",
     "title": "OpenAI hit with landmark lawsuit following Hugging Face hack",
     "first_seen_at": "2026-09-29T19:00:05Z",
